@@ -1,0 +1,395 @@
+{
+  "利尿劑": {
+    "summary": "藥理學領域出題最密集的子考點，近6年共7題（★★★☆☆），110～115年幾乎年年入題；主軸集中在 furosemide（Lasix®）的分類與給藥時機，以及 spironolactone（Aldactone®）的保鉀特性與飲食衛教。",
+    "definition": "利尿劑（diuretics）藉由抑制腎小管對鈉、水的再吸收而增加尿液排出，用於高血壓（hypertension）、心衰竭（heart failure）、水腫（edema）與腹水。依作用部位分為五大類：①碳酸酐酶抑制劑（carbonic anhydrase inhibitors，如 acetazolamide）作用於近曲小管，兼治青光眼與高山症；②滲透性利尿劑（osmotic diuretics，如 mannitol）作用於亨利氏環下行支，用於降腦壓與眼壓；③亨利氏環利尿劑（loop diuretics，如 furosemide、bumetanide）抑制亨利氏環上行支粗段之 Na⁺-K⁺-2Cl⁻ 共同運輸體，利尿作用最強（high-ceiling diuretics）；④噻嗪類（thiazides，如 hydrochlorothiazide）抑制遠曲小管 Na⁺-Cl⁻ 共同運輸體，為高血壓第一線；⑤保鉀利尿劑（potassium-sparing diuretics），含醛固酮受體拮抗劑 spironolactone 與鈉通道阻斷劑 amiloride、triamterene，利尿力弱但可對抗低血鉀。",
+    "keyPoints": [
+      "Furosemide（Lasix®）＝亨利氏環利尿劑，作用最強、起效最快（IV 約5分鐘、PO 約30-60分鐘），是急性肺水腫與心衰竭的首選。",
+      "Loop 與 thiazide 皆為排鉀利尿劑（kaliuretic），易致低血鉀（hypokalemia）、低血鈉、低血鎂、代謝性鹼中毒；需補鉀或併用保鉀利尿劑。",
+      "Spironolactone 拮抗醛固酮（aldosterone）受體，會保留鉀、排出鈉，故最大風險是高血鉀（hyperkalemia），絕不可再補鉀或吃低鈉鹽（含氯化鉀）。",
+      "利尿劑一律安排早上或白天給藥（QD 早上、BID 早上與下午4點前），避免夜尿影響睡眠與跌倒風險。",
+      "Furosemide 屬磺胺類衍生物，對 sulfa 過敏者慎用；具耳毒性（ototoxicity），與 aminoglycoside 併用會加成聽力損傷。",
+      "Thiazide 的代謝性副作用可用「3高3低」記：高血糖、高尿酸、高血脂；低血鉀、低血鈉、低血鎂（但高血鈣）。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 作用部位 | 對血鉀影響 | 臨床用途 | 關鍵副作用 |\n|---|---|---|---|---|---|\n| 碳酸酐酶抑制劑 | Acetazolamide | 近曲小管 | ↓（排鉀） | 青光眼、高山症、代謝性鹼中毒 | 代謝性酸中毒、感覺異常 |\n| 滲透性利尿劑 | Mannitol | 亨利氏環下行支 | 影響小 | 降腦壓、降眼壓、急性腎損傷預防 | 急性肺水腫、脫水、電解質不平衡 |\n| 亨利氏環利尿劑 | Furosemide (Lasix®) | 亨利氏環上行支粗段 | ↓↓（大量排鉀） | 急性肺水腫、心衰竭、腎衰竭水腫 | 低血鉀、低血容積、耳毒性、高尿酸 |\n| 噻嗪類 | Hydrochlorothiazide | 遠曲小管 | ↓（排鉀） | 高血壓第一線、腎結石（降尿鈣） | 低血鉀、高血糖、高尿酸、高血脂 |\n| 保鉀利尿劑 | Spironolactone、Amiloride | 遠曲小管末端／集尿管 | ↑（保鉀） | 心衰竭、肝硬化腹水、原發性醛固酮增多症 | 高血鉀、男性女乳症（gynecomastia） |",
+    "criteria": "**用藥監測關鍵數值**\n\n| 監測項目 | 正常值 | 臨床警訊 |\n|---|---|---|\n| 血鉀 K⁺ | 3.5–5.0 mEq/L | <3.5 低血鉀：肌肉無力、腸蠕動減少、心律不整、增強毛地黃毒性；>5.5 高血鉀：T波高尖、心搏過緩 |\n| 血鈉 Na⁺ | 135–145 mEq/L | <135 低血鈉：意識改變、抽搐 |\n| 尿量 | ≥30 mL/hr（0.5 mL/kg/hr） | 給藥後應監測每小時尿量與每日體重 |\n| 體重 | 每日固定時間、同衣著測量 | 每日增加 >1 kg 或一週 >2 kg 表示體液滯留 |\n| 血壓 | — | 首次給藥後注意姿位性低血壓，教導緩慢起身 |\n\n※ 利尿劑療效最客觀的指標為「每日體重變化」與「輸出入量（I/O）」，其次為水腫程度與呼吸狀況。",
+    "mustKnow": [
+      "Furosemide＝loop diuretic（亨利氏環利尿劑）；Spironolactone＝potassium-sparing（保鉀、醛固酮拮抗劑）。這兩題型幾乎每年出現。",
+      "使用 furosemide 要「補鉀」（香蕉、柑橘、深綠蔬菜、番茄汁）；使用 spironolactone 要「限鉀」（避免高鉀水果與低鈉鹽），兩者衛教方向完全相反。",
+      "利尿劑給藥時間：早上（QD）或早上＋下午（BID），不可睡前給；醫囑若寫 HS 或睡前應質疑。",
+      "Mannitol 給藥須使用附濾器輸液套，且結晶時可加溫溶解後再用；心衰竭與肺水腫者禁用。"
+    ],
+    "traps": [
+      "「Lasix 1# PO PC QD」的不適當措施常考選項是「睡前給藥」或「鼓勵限制水分至極低」；正確做法是早上給藥、監測體重與血鉀、補充含鉀食物。",
+      "Spironolactone 題目常把「鼓勵多食柑橘類」列為正確選項來誘騙——柑橘、香蕉是高鉀食物，對保鉀利尿劑而言是禁忌；芭樂鉀含量相對低反而可食。",
+      "誤把 furosemide 當成 thiazide 或碳酸酐酶抑制劑；也常混淆「利尿作用最強」是 loop 而非 thiazide（thiazide 對腎功能不良者效果差，GFR <30 建議改用 loop）。"
+    ],
+    "mnemonics": [
+      "「環強、噻中、保鉀弱」——Loop（環）最強、Thiazide（噻嗪）中等、K-sparing（保鉀）最弱；前兩者排鉀要補鉀，最後一個保鉀要限鉀。",
+      "Thiazide「3高3低1鈣高」：高血糖、高尿酸、高血脂；低血鉀、低血鈉、低血鎂；唯獨血鈣升高（故可治高尿鈣結石）。"
+    ],
+    "samples": [
+      "給藥名（如 furosemide、hydrochlorothiazide、spironolactone）問其藥理分類或作用部位。",
+      "給臨床醫囑或情境（下肢水腫、心衰竭病人），問「下列護理措施何者不適當」，測給藥時間、飲食衛教與監測項目。",
+      "以複選組合題（①②③④）測 spironolactone 的用藥指導，鎖定「注意鉀離子濃度」與「高鉀食物禁忌」。"
+    ]
+  },
+  "抗生素": {
+    "summary": "近6年共5題（★★☆☆☆），111～115年間穩定出現；考法以「作用機轉分類」與「特殊族群／特殊菌種的藥物選擇」為主，特別愛考不作用於核糖體的藥物、抗綠膿桿菌青黴素，以及新生兒可安全使用的抗生素。",
+    "definition": "抗生素（antibiotics）依作用機轉可分四大類：①抑制細胞壁合成（cell wall synthesis inhibitors）：penicillins、cephalosporins、carbapenems、vancomycin，多為殺菌性（bactericidal）；②抑制蛋白質合成（protein synthesis inhibitors）：作用於 30S 核糖體的 aminoglycosides（gentamicin）與 tetracyclines，作用於 50S 的 macrolides（erythromycin）、clindamycin、chloramphenicol、linezolid；③抑制核酸合成（nucleic acid synthesis inhibitors）：fluoroquinolones（ciprofloxacin，抑制 DNA gyrase／topoisomerase IV）、rifampin（抑制 RNA polymerase）、metronidazole；④抑制葉酸代謝（folate antagonists）：sulfonamides 與 trimethoprim。另依殺菌力分為殺菌性與抑菌性（bacteriostatic）。",
+    "keyPoints": [
+      "「不作用於核糖體」的常見答案：penicillin、cephalosporin、vancomycin（細胞壁）、ciprofloxacin、rifampin（核酸）、sulfamethoxazole（葉酸）。",
+      "抗綠膿桿菌（Pseudomonas aeruginosa）的青黴素衍生物為 piperacillin、ticarcillin、carbenicillin（廣效性 antipseudomonal penicillins），常與 tazobactam 併用。",
+      "新生兒禁用：chloramphenicol（灰嬰症候群 gray baby syndrome）、sulfonamides（膽紅素置換致核黃疸 kernicterus）、tetracycline（牙齒染色、影響骨骼），故新生兒感染多選 penicillin 或 ampicillin。",
+      "Aminoglycosides（gentamicin、amikacin）具腎毒性與耳毒性，須監測峰／谷濃度（peak/trough）與腎功能。",
+      "Vancomycin 輸注過快會出現紅人症候群（red man syndrome），須至少滴注 60 分鐘以上並監測 trough level。",
+      "抗生素必須依醫囑服用完整療程，不可症狀改善即自行停藥，以免產生抗藥性（antibiotic resistance）。"
+    ],
+    "comparison": "| 作用機轉 | 代表藥物 | 作用標的 | 殺／抑菌 | 代表毒性 |\n|---|---|---|---|---|\n| 抑制細胞壁合成 | Penicillins、Cephalosporins、Vancomycin | PBP、細胞壁前驅物 | 殺菌 | 過敏性休克、紅人症候群 |\n| 抑制蛋白質合成（30S） | Aminoglycosides、Tetracyclines | 30S 核糖體 | 殺菌／抑菌 | 腎耳毒性；牙齒染色 |\n| 抑制蛋白質合成（50S） | Macrolides、Clindamycin、Chloramphenicol | 50S 核糖體 | 抑菌 | QT 延長；偽膜性結腸炎；灰嬰症候群 |\n| 抑制核酸合成 | Fluoroquinolones、Rifampin、Metronidazole | DNA gyrase、RNA polymerase | 殺菌 | 肌腱斷裂、體液橘紅色、雙硫龍反應 |\n| 抑制葉酸代謝 | Sulfonamides、Trimethoprim | 二氫葉酸合成／還原酶 | 抑菌 | 史蒂芬強生症候群、核黃疸 |",
+    "criteria": "**特殊族群用藥選擇原則**\n\n| 族群／情境 | 建議 | 禁忌 |\n|---|---|---|\n| 新生兒 | Penicillin G、Ampicillin | Chloramphenicol、Sulfonamides、Tetracycline |\n| 孕婦 | Penicillins、Cephalosporins、Erythromycin | Tetracycline、Fluoroquinolone、Aminoglycoside |\n| 8歲以下兒童 | 避免 tetracycline | 牙齒永久染色 |\n| Penicillin 過敏 | 改用 macrolide、vancomycin | Cephalosporin 有約 5-10% 交叉過敏 |\n| MRSA | Vancomycin、Linezolid | — |\n| 綠膿桿菌 | Piperacillin/Tazobactam、Ceftazidime、Carbapenem、Amikacin | 一般 penicillin 無效 |",
+    "mustKnow": [
+      "四大機轉分類與代表藥必須能互相對應，這是抗生素題的核心答題工具。",
+      "新生兒三大禁用抗生素：chloramphenicol、sulfonamide、tetracycline，且各自對應一個特徵性副作用。",
+      "抗綠膿桿菌青黴素＝piperacillin／ticarcillin／carbenicillin。"
+    ],
+    "traps": [
+      "把 tetracycline 與 aminoglycoside 誤認作用於 50S（兩者其實都是 30S）。",
+      "Penicillin 皮膚試驗陰性仍可能過敏，給藥後仍須觀察 30 分鐘；題目常以「試驗陰性即可放心」為錯誤選項。"
+    ],
+    "mnemonics": [
+      "「30 買 A 菜（AT）、50 買 C 罐（C、CL、L、M）」：30S＝Aminoglycoside、Tetracycline；50S＝Chloramphenicol、Clindamycin、Linezolid、Macrolide。",
+      "細胞壁四天王：「盤（Penicillin）、頭（Cephalosporin）、碳（Carbapenem）、萬（Vancomycin）」。"
+    ],
+    "samples": [
+      "列出四個抗生素問「何者不作用於細菌核糖體（或何者機轉不同）」。",
+      "給特定菌種（綠膿桿菌、MRSA）問應選何種藥物。",
+      "給特殊族群（新生兒、孕婦、兒童）問在副作用考量下的最佳選擇。"
+    ]
+  },
+  "氣喘用藥": {
+    "summary": "近6年共5題（★★☆☆☆），111～114年反覆入題；主軸是「藥物分類 × 快速緩解 vs. 長期控制」的區辨，以及各類藥物特徵性副作用（尤其 β2 致心悸、theophylline 中毒）。",
+    "definition": "氣喘（asthma）藥物分兩大策略：①快速緩解藥（reliever／rescue）——短效乙型交感神經興奮劑 SABA（short-acting β2 agonist，如 salbutamol/albuterol、terbutaline），為急性發作首選，5-15 分鐘起效；短效抗膽鹼素藥 SAMA（ipratropium bromide）；全身性類固醇。②長期控制藥（controller）——吸入性類固醇 ICS（inhaled corticosteroid，如 budesonide、fluticasone）為抗發炎主力，是持續型氣喘第一線；長效乙型興奮劑 LABA（salmeterol、formoterol）作用達12小時但無抗發炎作用，絕不可單獨使用；白三烯素受體拮抗劑 LTRA（montelukast）；肥大細胞穩定劑（cromolyn sodium）；甲基黃嘌呤（methylxanthine，theophylline）；長效抗膽鹼素藥 LAMA（tiotropium）；生物製劑（omalizumab，抗 IgE 單株抗體）。",
+    "keyPoints": [
+      "抗膽鹼素性拮抗劑（cholinergic antagonist）＝ipratropium bromide／tiotropium，適用於無法耐受 β2 交感作用（心悸、顫抖）或合併 COPD 的病人。",
+      "「長效、無抗發炎作用、不能緩解急性發作」的標準答案是 salmeterol（LABA）；LABA 必須與 ICS 併用，單用會增加氣喘死亡風險。",
+      "引起「心悸、心律不整、手抖、低血鉀」的最可能藥物是 β2 agonist（salbutamol、terbutaline）或 theophylline。",
+      "吸入性類固醇最常見副作用為口腔念珠菌感染（鵝口瘡）與聲音沙啞，用後務必漱口。",
+      "同時使用支氣管擴張劑與類固醇吸入劑時，先吸「支氣管擴張劑」再吸「類固醇」，中間間隔數分鐘。",
+      "Theophylline 治療濃度窄（10-20 μg/mL），>20 出現噁心、心悸、抽搐；與 erythromycin、ciprofloxacin、cimetidine 併用會升高血中濃度。"
+    ],
+    "comparison": "| 分類 | 代表藥 | 作用時間 | 抗發炎 | 可否緩解急性發作 |\n|---|---|---|---|---|\n| SABA（短效β2） | Salbutamol、Terbutaline | 4-6 小時 | 否 | ✔ 首選 |\n| LABA（長效β2） | Salmeterol、Formoterol | 12 小時 | 否 | ✘（須配 ICS） |\n| SAMA／LAMA（抗膽鹼） | Ipratropium／Tiotropium | 6-8／24 小時 | 否 | 輔助／✘ |\n| ICS（吸入類固醇） | Budesonide、Fluticasone | 長期 | ✔ 強 | ✘ |\n| LTRA（白三烯拮抗） | Montelukast | 長期（口服） | ✔ | ✘ |\n| 甲基黃嘌呤 | Theophylline | 長效 | 弱 | ✘（治療窗窄） |",
+    "criteria": "**急性發作嚴重度與 PEFR 判讀**\n\n| 分級 | PEFR（佔個人最佳值） | 臨床表現 |\n|---|---|---|\n| 綠燈（安全） | 80-100% | 無症狀，維持原用藥 |\n| 黃燈（警戒） | 50-79% | 咳嗽、喘鳴、夜咳，使用緩解藥並就醫評估 |\n| 紅燈（危險） | <50% | 呼吸困難、講話斷續、使用呼吸輔助肌，立即使用 SABA 並就醫 |\n\n※ Theophylline 治療濃度 10-20 μg/mL；>20 μg/mL 即中毒。",
+    "mustKnow": [
+      "SABA＝救急、ICS＝控制、LABA＝長效但無抗發炎，這三句話能解掉多數題目。",
+      "抗膽鹼素性藥物（ipratropium）是 β2 不耐受時的替代選項。",
+      "吸入劑順序：先擴張支氣管、後給類固醇；類固醇用完必須漱口。"
+    ],
+    "traps": [
+      "誤以為 LABA（salmeterol）可用於急性發作——它起效慢且無抗發炎作用，是最常見的錯誤選項；例外是 formoterol 起效快但仍須與 ICS 合併。",
+      "把心悸歸因於吸入性類固醇；心悸幾乎都是 β2 agonist 或 theophylline 造成。",
+      "Montelukast 為口服長期控制藥，睡前服用，不可拿來緩解急性發作。"
+    ],
+    "mnemonics": [
+      "「短救急、長控制；類固醇抗發炎、乙型擴支氣」——分類一句話定位。",
+      "β2 副作用「抖、悸、鉀低」：手抖、心悸、低血鉀。"
+    ],
+    "samples": [
+      "給藥理特性描述（長效、不具抗發炎、無法緩解急性發作）問是哪一個藥。",
+      "給副作用表現（心悸、心律不整、手抖）問最可能的致因藥物。",
+      "給臨床情境（無法忍受 β2 作用）問應改用何種機轉的藥物。"
+    ]
+  },
+  "抗憂鬱藥": {
+    "summary": "近6年共4題（★★☆☆☆），110、112、114、115年皆有；出題高度集中在 bupropion（非典型抗憂鬱藥兼戒菸用藥）與 SSRI 調節血清素的機轉，屬於「記住幾個特色藥就能拿分」的考點。",
+    "definition": "抗憂鬱藥（antidepressants）主要透過提升突觸間隙單胺類神經傳導物質（血清素 serotonin／5-HT、正腎上腺素 norepinephrine、多巴胺 dopamine）濃度發揮作用，共同特徵是需 2-4 週才顯現療效。分類：①選擇性血清素回收抑制劑 SSRI（fluoxetine、sertraline、paroxetine、escitalopram），為第一線用藥，安全性高；②血清素及正腎上腺素回收抑制劑 SNRI（venlafaxine、duloxetine）；③三環抗憂鬱劑 TCA（imipramine、amitriptyline），抗膽鹼副作用多、過量致命；④單胺氧化酶抑制劑 MAOI（phenelzine、tranylcypromine），與含酪胺（tyramine）食物併用會引發高血壓危象；⑤非典型（atypical）——bupropion（多巴胺／正腎上腺素回收抑制劑）、mirtazapine、trazodone。",
+    "keyPoints": [
+      "Bupropion（Wellbutrin®、Zyban®）是「可降低尼古丁渴求、用於戒菸」的抗憂鬱藥，另一特點是較少性功能障礙與體重增加，但會降低癲癇閾值（有癲癇、暴食症病史者禁用）。",
+      "調節血清素（serotonin）系統達抗憂鬱效果者為 SSRI（fluoxetine 等）與 SNRI。",
+      "抗憂鬱藥須連續服用 2-4 週（甚至6週）才見效，衛教重點是「不可因未見效或症狀改善即自行停藥」，突然停藥會有停藥症候群。",
+      "服藥初期（1-2週）活動力先恢復而情緒尚未改善，自殺風險反而升高，此期需加強自殺防範。",
+      "血清素症候群（serotonin syndrome）：高燒、肌肉僵直、反射亢進、躁動、腹瀉，常因 SSRI 併用 MAOI、tramadol 或 St. John's wort 引起；換藥須間隔 washout 期。",
+      "MAOI 使用者必須限制酪胺食物（起司、紅酒、醃燻肉、發酵豆製品、蠶豆），否則引發高血壓危象。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 主要機轉 | 特色副作用 |\n|---|---|---|---|\n| SSRI | Fluoxetine、Sertraline | 抑制 5-HT 回收 | 噁心、失眠、性功能障礙、低血鈉 |\n| SNRI | Venlafaxine、Duloxetine | 抑制 5-HT＋NE 回收 | 血壓上升、口乾 |\n| TCA | Imipramine、Amitriptyline | 抑制 5-HT＋NE 回收，並阻斷膽鹼、H1、α1 受體 | 口乾、便祕、尿滯留、姿位性低血壓、心律不整 |\n| MAOI | Phenelzine | 抑制單胺氧化酶 | 高血壓危象（酪胺反應） |\n| 非典型 | Bupropion | 抑制 DA／NE 回收 | 降低癲癇閾值；用於戒菸 |\n| 非典型 | Mirtazapine、Trazodone | α2 拮抗／5-HT2 拮抗 | 嗜睡、食慾與體重增加（可助眠） |",
+    "criteria": null,
+    "mustKnow": [
+      "Bupropion＝戒菸（降低尼古丁渴求）＋抗憂鬱；這是本考點命中率最高的單一事實。",
+      "SSRI＝調節血清素；TCA 抗膽鹼副作用；MAOI 忌酪胺食物。",
+      "抗憂鬱藥療效延遲 2-4 週，服藥初期自殺風險最高。"
+    ],
+    "traps": [
+      "誤答 fluoxetine 可戒菸——戒菸適應症是 bupropion（另有 varenicline 與尼古丁替代療法）。",
+      "以為藥效立即出現，把「服藥當天情緒即改善」當正確衛教。",
+      "SSRI 與 MAOI 併用是嚴重禁忌（血清素症候群），題目常以「可合併加強療效」誘答。"
+    ],
+    "mnemonics": [
+      "「Bu 幫你戒菸（Bupropion → Butt out）」，同時記「Bu 會抽（癲癇）」——有癲癇病史禁用。"
+    ],
+    "samples": [
+      "給功能描述（降低尼古丁渴求、非典型抗憂鬱）問是哪一個藥。",
+      "給機轉描述（調節血清素神經傳遞系統）問對應藥物類別。",
+      "問抗憂鬱藥用藥指導何者正確／錯誤，測療效延遲與停藥原則。"
+    ]
+  },
+  "抗組織胺": {
+    "summary": "近6年共4題（★★☆☆☆），112～115年連續四年出題，屬於穩定送分題；核心是第一代與第二代抗組織胺的區辨——鎮靜與抗膽鹼副作用、能否通過血腦障壁，以及 diphenhydramine、dimenhydrinate 防暈與 fexofenadine 不嗜睡的原因。",
+    "definition": "抗組織胺（antihistamines）指 H1 受體拮抗劑（H1-receptor antagonists），競爭性阻斷組織胺與 H1 受體結合，抑制過敏反應造成的血管擴張、通透性增加、平滑肌收縮與搔癢。第一代（first-generation，如 diphenhydramine、chlorpheniramine、hydroxyzine、dimenhydrinate、cyproheptadine）為脂溶性、可通過血腦障壁（blood-brain barrier），具明顯中樞鎮靜（sedation）與抗膽鹼（anticholinergic）作用，並能抑制前庭系統而用於暈車暈船與止吐。第二代（second-generation，如 loratadine、cetirizine、fexofenadine）親水性、對 P-glycoprotein 為受質，不易進入中樞，鎮靜作用低，適合白天使用之過敏性鼻炎與慢性蕁麻疹。另有 H2 受體拮抗劑（cimetidine、famotidine）作用於胃壁細胞抑制胃酸，用途完全不同。",
+    "keyPoints": [
+      "可治蕁麻疹（urticaria）又能預防暈車暈船者為第一代：diphenhydramine、dimenhydrinate（Dramamine®）、meclizine、promethazine。",
+      "Fexofenadine 不易引起嗜睡的原因：極性高、脂溶性低、不易通過血腦障壁，且為 P-glycoprotein 的受質而被排出中樞。",
+      "第一代抗組織胺的抗膽鹼副作用：口乾、視力模糊、便祕、尿滯留、心跳加快；青光眼、前列腺肥大者慎用。",
+      "服用第一代抗組織胺期間禁止開車、操作機械，並避免併用酒精或其他中樞抑制劑。",
+      "抗組織胺只能阻斷 H1 受體、無法拮抗已釋出組織胺造成的嚴重反應；過敏性休克（anaphylaxis）首選藥是 epinephrine，不是抗組織胺。",
+      "Fexofenadine 不可與果汁（葡萄柚、蘋果、柳橙汁）同服，會降低吸收；loratadine、cetirizine 每日一次即可。"
+    ],
+    "comparison": "| 項目 | 第一代 | 第二代 |\n|---|---|---|\n| 代表藥 | Diphenhydramine、Chlorpheniramine、Dimenhydrinate、Hydroxyzine | Loratadine、Cetirizine、Fexofenadine |\n| 通過血腦障壁 | 易（脂溶性高） | 不易（極性高、P-gp 受質） |\n| 鎮靜嗜睡 | 明顯 | 輕微或無 |\n| 抗膽鹼作用 | 明顯（口乾、尿滯留） | 幾乎無 |\n| 止暈止吐 | ✔ 可用於動暈症 | ✘ |\n| 作用時間 | 短（4-6 小時，需多次給藥） | 長（24 小時，每日一次） |",
+    "criteria": null,
+    "mustKnow": [
+      "第一代＝會嗜睡＋抗膽鹼＋可防暈車；第二代＝不嗜睡、每日一次、專治過敏性鼻炎與慢性蕁麻疹。",
+      "Fexofenadine 不鎮靜的機轉性理由：不易通過血腦障壁（脂溶性低、P-glycoprotein 排出）。",
+      "過敏性休克首選 epinephrine，抗組織胺僅為輔助。"
+    ],
+    "traps": [
+      "把 loratadine、cetirizine 當成可防暈車的藥——防暈是第一代（dimenhydrinate、meclizine）的專長。",
+      "Diphenhydramine 的錯誤敘述題常見誤述為「無鎮靜作用」「可安全用於青光眼」「屬第二代」，皆為錯。"
+    ],
+    "mnemonics": [
+      "「一代暈茫茫（嗜睡＋止暈），二代清爽爽（不嗜睡、日一次）」。"
+    ],
+    "samples": [
+      "給用途描述（治蕁麻疹又能預防暈車）問是哪一個抗組織胺。",
+      "問某第二代藥物不具鎮靜作用的原因（機轉層次）。",
+      "以「下列關於 diphenhydramine 的敘述何者錯誤」形式測第一代特性。"
+    ]
+  },
+  "抗癌藥物": {
+    "summary": "近6年共4題（★★☆☆☆），112～114年集中出現；考法偏純藥理分類，最常考烷基化藥物的成員辨識、topoisomerase 抑制劑歸類，以及 leucovorin 解救 methotrexate 毒性的搭配關係。",
+    "definition": "抗癌藥物（antineoplastic agents）依作用機轉分為：①烷基化藥物（alkylating agents，如 cyclophosphamide、cisplatin、busulfan、nitrogen mustard），使 DNA 烷基化並交聯而無法複製，屬細胞週期非特異性；②抗代謝藥物（antimetabolites，如 methotrexate 拮抗葉酸、5-FU 抑制 thymidylate synthase、cytarabine、6-MP），干擾核酸合成，作用於 S 期；③抗腫瘤抗生素（antitumor antibiotics，如 doxorubicin、bleomycin、mitomycin），嵌入 DNA 或產生自由基；④植物鹼與微管抑制劑（vinca alkaloids：vincristine、vinblastine 抑制微管聚合；taxanes：paclitaxel 抑制微管解聚，作用於 M 期）；⑤topoisomerase 抑制劑（irinotecan、topotecan 抑制 topoisomerase I；etoposide 抑制 topoisomerase II）；⑥荷爾蒙製劑與標靶／免疫治療（tamoxifen、trastuzumab、imatinib）。",
+    "keyPoints": [
+      "Leucovorin（folinic acid，四氫葉酸）為 methotrexate（MTX）的解毒／解救劑（leucovorin rescue），可降低骨髓抑制與黏膜炎；與 5-FU 併用時反而是增強療效。",
+      "Topoisomerase I 抑制劑＝irinotecan、topotecan（字尾 -tecan）；topoisomerase II 抑制劑＝etoposide、teniposide。",
+      "不屬烷基化藥物的常見選項：methotrexate、5-FU（抗代謝）、vincristine（植物鹼）、doxorubicin（抗生素）、paclitaxel（紫杉醇）。",
+      "特徵性毒性必背：doxorubicin 心臟毒性（累積劑量相關）、bleomycin 肺纖維化、cisplatin 腎毒性與耳毒性、vincristine 周邊神經病變、cyclophosphamide 出血性膀胱炎（以 mesna 預防並大量喝水）。",
+      "多數抗癌藥造成骨髓抑制（myelosuppression），最低點（nadir）約用藥後 7-14 天，需監測 ANC、血小板與 Hb，並執行防感染、防出血措施。",
+      "調配與給藥須遵守化療藥物安全處置（PPE、生物安全櫃、專用廢棄物）；發泡劑（vesicant，如 doxorubicin、vincristine）外滲會造成組織壞死，須立即停止輸注並依規處理。"
+    ],
+    "comparison": "| 機轉分類 | 代表藥 | 細胞週期特異性 | 標誌性毒性 |\n|---|---|---|---|\n| 烷基化藥物 | Cyclophosphamide、Cisplatin | 非特異性 | 出血性膀胱炎；腎／耳毒性 |\n| 抗代謝藥 | Methotrexate、5-FU、Cytarabine | S 期 | 口腔黏膜炎、骨髓抑制（MTX 用 leucovorin 解救） |\n| 抗腫瘤抗生素 | Doxorubicin、Bleomycin | 多為非特異性 | 心臟毒性；肺纖維化 |\n| 微管抑制劑 | Vincristine、Paclitaxel | M 期 | 周邊神經病變；過敏反應 |\n| Topoisomerase 抑制劑 | Irinotecan（I）、Etoposide（II） | S/G2 期 | 嚴重腹瀉；骨髓抑制 |\n| 荷爾蒙／標靶 | Tamoxifen、Trastuzumab | — | 子宮內膜癌風險；心毒性 |",
+    "criteria": "**骨髓抑制監測與防護原則**\n\n| 指標 | 警戒值 | 護理重點 |\n|---|---|---|\n| 絕對嗜中性球 ANC | <1500/mm³ 需警戒；<500/mm³ 嚴重 | 保護性隔離、避免生食與鮮花盆栽、監測體溫 |\n| 血小板 | <50,000/mm³ 出血風險；<20,000/mm³ 自發性出血 | 軟毛牙刷、電動刮鬍刀、避免侵入性處置與便祕 |\n| 血紅素 Hb | <10 g/dL | 活動漸進、預防姿位性低血壓 |\n| Nadir 時間 | 用藥後 7-14 天 | 為感染與出血最高風險期 |",
+    "mustKnow": [
+      "Leucovorin ↔ methotrexate 的解救配對。",
+      "-tecan 結尾＝topoisomerase I 抑制劑；etoposide＝topoisomerase II 抑制劑。",
+      "五大特徵毒性：doxorubicin 心、bleomycin 肺、cisplatin 腎耳、vincristine 神經、cyclophosphamide 膀胱。"
+    ],
+    "traps": [
+      "把 cisplatin 排除在烷基化藥物之外——cisplatin（白金製劑）作用類似烷基化藥物，題目常歸為此類。",
+      "混淆 vincristine（抑制微管聚合）與 paclitaxel（抑制微管解聚），兩者機轉方向相反但皆作用於 M 期。",
+      "誤以為 leucovorin 是「增強 MTX 療效」；對 MTX 是解毒，對 5-FU 才是增效。"
+    ],
+    "mnemonics": [
+      "「-tecan 拆一（topo I）、etoposide 拆二（topo II）」。",
+      "毒性口訣「小紅莓傷心、博萊黴素傷肺、白金傷腎耳、長春傷神經、環磷傷膀胱」。"
+    ],
+    "samples": [
+      "給藥名問其機轉分類，或問「何者不屬於烷基化藥物」。",
+      "問某解毒／輔助藥（leucovorin、mesna）是搭配哪一個抗癌藥使用。",
+      "給機轉描述（topoisomerase I 抑制）問對應藥物。"
+    ]
+  },
+  "藥物動力學": {
+    "summary": "近6年共3題（★★☆☆☆），出現於110與115年；屬觀念型送分題，核心考生體可用率／生體相等性（AUC）、半衰期與達穩定濃度時間（4-5 個半衰期），以及藥物動力學 ADME 四環節的範疇界定。",
+    "definition": "藥物動力學（pharmacokinetics）研究「身體對藥物做了什麼」，包含吸收（absorption）、分布（distribution）、代謝（metabolism）、排泄（excretion），簡稱 ADME；相對地，藥效學（pharmacodynamics）研究「藥物對身體做了什麼」，即作用機轉、受體結合與劑量-反應關係。重要參數包括：生體可用率（bioavailability, F）＝進入全身循環的藥量比例（靜脈注射 F＝100%）；曲線下面積（area under the curve, AUC）代表全身暴露量；半衰期（half-life, t½）為血中濃度降至一半所需時間；穩定血中濃度（steady state）在連續給藥約 4-5 個 t½ 後達成；首渡效應（first-pass effect）指口服藥經肝門靜脈代謝而降低生體可用率；治療指數（therapeutic index, TI）＝ TD50/ED50，數值愈小愈危險。",
+    "keyPoints": [
+      "兩種藥品 AUC（及 Cmax、Tmax）相同 → 具生體相等性（bioequivalence），是學名藥與原廠藥可互換的依據；其上位概念為生體可用率相同。",
+      "半衰期 10 小時的藥物，靜脈連續輸注達穩定濃度約需 4-5 個半衰期＝40-50 小時（考題常給「約 40 小時／約 2 天」）。",
+      "藥物動力學不包含「作用機轉／受體結合／藥效」——那屬藥效學，此為「不包括下列哪一項」的標準答案。",
+      "靜脈注射無吸收過程，生體可用率 100%，起效最快；口服受首渡效應影響最大；舌下與直腸給藥可部分避開首渡效應。",
+      "肝功能不良影響代謝、腎功能不良影響排泄，兩者皆會延長半衰期而需減量；老年人肝腎功能下降，用藥劑量宜降低。",
+      "血漿蛋白結合率高的藥物（如 warfarin、phenytoin）只有游離型具活性，兩藥競爭結合位置會使游離濃度上升而中毒。"
+    ],
+    "comparison": "| 概念 | 藥物動力學 Pharmacokinetics | 藥效學 Pharmacodynamics |\n|---|---|---|\n| 定義 | 身體對藥物的處置 | 藥物對身體的作用 |\n| 範疇 | 吸收、分布、代謝、排泄（ADME） | 受體結合、作用機轉、劑量-反應、療效與毒性 |\n| 代表參數 | 生體可用率、AUC、半衰期、清除率 | ED50、TD50、治療指數、效價（potency）、效能（efficacy） |",
+    "criteria": "**關鍵計算與判讀原則**\n\n| 項目 | 規則 |\n|---|---|\n| 達穩定血中濃度時間 | 約 4-5 個半衰期（連續給藥或定速輸注） |\n| 停藥後完全排除 | 約 4-5 個半衰期 |\n| 生體相等性判定 | AUC、Cmax、Tmax 相當 |\n| 靜脈注射 F 值 | 100% |\n| 治療指數 TI | TD50／ED50，TI 小（如 digoxin、warfarin、theophylline、phenytoin）須監測血中濃度 |",
+    "mustKnow": [
+      "AUC 相同＝生體可用率相同＝生體相等性。",
+      "4-5 個半衰期達穩定血中濃度（也是停藥後排除乾淨所需時間）。",
+      "ADME 屬藥物動力學；作用機轉屬藥效學。"
+    ],
+    "traps": [
+      "把「作用機轉」誤選為藥物動力學範疇。",
+      "計算達穩定濃度時誤用 1 個或 2 個半衰期；正確為 4-5 個。",
+      "誤以為口服與靜脈給予相同劑量會有相同血中濃度（忽略首渡效應與生體可用率差異）。"
+    ],
+    "mnemonics": [
+      "ADME＝「吸（收）分（布）代（謝）排（泄）」；動力學是「身體對藥」、藥效學是「藥對身體」。",
+      "「四五個半，穩了」——4-5 個半衰期達 steady state。"
+    ],
+    "samples": [
+      "給 AUC 相同的敘述問代表兩藥具何種性質。",
+      "給半衰期數值計算達穩定血中濃度所需時間。",
+      "問藥物動力學「不包括」下列哪一項（辨別藥效學概念）。"
+    ]
+  },
+  "抗癲癇藥": {
+    "summary": "近6年共3題（★★☆☆☆），集中在110年一次考出多題；焦點為抗癲癇藥的三大作用機轉、carbamazepine 阻斷鈉離子通道治部分性發作，以及 phenytoin 特徵性副作用（牙齦增生）的辨識。",
+    "definition": "抗癲癇藥（antiepileptic drugs, AEDs）藉三種主要機轉抑制神經元異常放電：①阻斷電位依賴性鈉離子通道（voltage-gated Na⁺ channel）——phenytoin、carbamazepine、valproic acid、lamotrigine，用於部分性發作（partial seizure）與強直陣攣發作；②阻斷 T 型鈣離子通道（T-type Ca²⁺ channel）——ethosuximide、valproic acid，為失神性發作（absence seizure）首選；③增強 GABA 抑制性傳導——benzodiazepines、phenobarbital、vigabatrin、gabapentin。癲癇重積狀態（status epilepticus）首選靜脈注射 lorazepam 或 diazepam，續以 phenytoin/fosphenytoin 維持。",
+    "keyPoints": [
+      "Carbamazepine 主要阻斷「鈉離子通道」，為部分性發作（partial seizure）與三叉神經痛的首選；副作用含骨髓抑制（顆粒球缺乏、再生不良性貧血）、低血鈉（SIADH）、Stevens-Johnson 症候群（HLA-B*1502 陽性的漢人族群風險高，用藥前應篩檢）。",
+      "「增加突觸間多巴胺濃度」「阻斷 NMDA 以外的興奮傳遞」等非上述三機轉者，即為『不是抗癲癇藥作用機轉』的答案。",
+      "Phenytoin 特徵副作用：牙齦增生（gingival hyperplasia，衛教勤刷牙、用牙線、定期口腔檢查）、多毛症、共濟失調、眼球震顫、複視；治療濃度 10-20 μg/mL，屬零階動力學，微量增量即可能中毒。",
+      "Phenytoin 靜脈注射須以生理食鹽水稀釋（不可用葡萄糖液，會沉澱），速度不可超過 50 mg/min，以免低血壓與心律不整。",
+      "Valproic acid 具肝毒性與致畸性（神經管缺損），孕婦禁用；ethosuximide 專治失神性發作。",
+      "抗癲癇藥須規律服用、不可自行停藥（會誘發癲癇重積狀態），停藥須醫師指示下數週至數月逐步減量。"
+    ],
+    "comparison": "| 發作型態 | 首選藥物 | 主要機轉 |\n|---|---|---|\n| 部分性發作 Partial | Carbamazepine、Phenytoin、Levetiracetam | 阻斷 Na⁺ 通道 |\n| 強直陣攣發作 Tonic-clonic | Valproic acid、Phenytoin、Carbamazepine | 阻斷 Na⁺ 通道 |\n| 失神性發作 Absence | Ethosuximide、Valproic acid | 阻斷 T 型 Ca²⁺ 通道 |\n| 肌陣攣發作 Myoclonic | Valproic acid、Clonazepam | 多重／增強 GABA |\n| 癲癇重積狀態 | IV Lorazepam／Diazepam → Phenytoin | 增強 GABA → 阻斷 Na⁺ |",
+    "criteria": "**血中濃度與監測**\n\n| 藥物 | 治療濃度 | 監測重點 |\n|---|---|---|\n| Phenytoin | 10–20 μg/mL | 眼球震顫、共濟失調為早期中毒徵象；牙齦增生 |\n| Carbamazepine | 4–12 μg/mL | CBC（顆粒球）、血鈉、肝功能、皮疹 |\n| Valproic acid | 50–100 μg/mL | 肝功能、氨、血小板 |\n| Phenobarbital | 15–40 μg/mL | 鎮靜程度、呼吸 |",
+    "mustKnow": [
+      "抗癲癇三大機轉：阻斷 Na⁺ 通道、阻斷 T 型 Ca²⁺ 通道、增強 GABA。",
+      "Carbamazepine → Na⁺ 通道 → 部分性發作；Ethosuximide → T 型 Ca²⁺ → 失神性發作。",
+      "Phenytoin 牙齦增生＋治療濃度 10-20 μg/mL＋IV 須用 N/S 稀釋且慢速給予。"
+    ],
+    "traps": [
+      "「phenytoin 的副作用何者不是」——常以「體重大幅增加」「脫髮」等 valproic acid 的副作用當作干擾選項。",
+      "把 carbamazepine 誤記為作用於鈣離子通道或 GABA。",
+      "誤選「多巴胺相關機轉」為抗癲癇藥作用途徑（那是抗帕金森／抗精神病藥）。"
+    ],
+    "mnemonics": [
+      "「鈉部分、鈣失神、GABA 壓全場」——Na⁺ 通道治部分性、T 型 Ca²⁺ 治失神性、GABA 類廣泛抑制。",
+      "Phenytoin「牙（齦增生）、毛（多毛）、暈（共濟失調／眼震）」。"
+    ],
+    "samples": [
+      "問「下列何者不是抗癲癇藥物的作用機轉」。",
+      "給藥名（carbamazepine）問其作用的離子通道與適應症。",
+      "給藥名（phenytoin）問「下列何者不是其副作用」。"
+    ]
+  },
+  "藥物交互作用": {
+    "summary": "近6年共3題（★★☆☆☆），110、111、113年各一；考法多為統整型的「敘述何者錯誤」，涵蓋阿斯匹靈與 warfarin 併用、葡萄柚汁、酪胺食物、制酸劑與牛奶等經典藥物-藥物／藥物-食物禁忌。",
+    "definition": "藥物交互作用（drug interaction）指兩種以上藥物或藥物與食物、疾病同時存在時，改變彼此的吸收、分布、代謝、排泄（藥物動力學交互作用）或作用強度（藥效學交互作用）。動力學層面常見於：競爭血漿蛋白結合位置（如 aspirin 置換 warfarin，使游離 warfarin 上升而出血）、抑制或誘導肝臟 CYP450 酵素（葡萄柚汁抑制 CYP3A4；rifampin、phenytoin、carbamazepine、St. John's wort 為酵素誘導劑，會降低口服避孕藥與抗凝血劑效果）、改變胃腸吸收（制酸劑、牛奶中的鈣與 tetracycline、fluoroquinolone 螯合）。藥效學層面則有加成（additive）、協同（synergism）與拮抗（antagonism）。",
+    "keyPoints": [
+      "Aspirin 與 warfarin 併用最危險：aspirin 競爭血漿蛋白結合並抑制血小板凝集，使出血風險大增；aspirin 也會提高 methotrexate、valproic acid、口服降血糖藥的血中濃度。",
+      "葡萄柚汁（grapefruit juice）抑制腸道／肝臟 CYP3A4，使 statins、calcium channel blockers（nifedipine）、cyclosporine、部分 BZD 血中濃度升高而中毒。",
+      "Tetracycline、fluoroquinolone、bisphosphonate 不可與牛奶、乳製品、制酸劑、鐵劑同服（鈣鎂鋁鐵螯合降低吸收），須間隔至少 2 小時。",
+      "Warfarin 使用者維生素 K 食物（深綠色蔬菜、納豆）須「維持固定攝取量」，不是完全禁食；服用 MAOI 者忌酪胺食物（起司、紅酒、醃燻）。",
+      "腸溶錠（enteric-coated）與持續釋放劑型不可磨粉、剝半或咀嚼；舌下錠不可吞服；鉀離子製劑須稀釋並隨餐服。",
+      "酒精會增強中樞抑制劑（BZD、抗組織胺、鴉片類）作用；metronidazole、cefotetan 與酒精併用產生雙硫龍反應（disulfiram-like reaction）。"
+    ],
+    "comparison": "| 交互作用型態 | 機轉 | 經典例子 | 結果 |\n|---|---|---|---|\n| 蛋白結合置換 | 競爭血漿蛋白 | Aspirin + Warfarin | 游離藥↑ → 出血 |\n| CYP450 抑制 | 抑制代謝 | 葡萄柚汁 + Statin／Cyclosporine | 血中濃度↑ → 中毒（橫紋肌溶解） |\n| CYP450 誘導 | 加速代謝 | Rifampin／St. John's wort + 口服避孕藥 | 藥效↓ → 避孕失敗 |\n| 吸收螯合 | 形成不溶複合物 | 牛奶／制酸劑 + Tetracycline | 吸收↓ → 療效不足 |\n| 藥效拮抗 | 作用相反 | 維生素 K + Warfarin | 抗凝效果↓ |\n| 藥效加成 | 同向作用 | 酒精 + BZD | 中樞抑制↑ → 呼吸抑制 |",
+    "criteria": null,
+    "mustKnow": [
+      "Aspirin + warfarin → 出血風險大增（最高頻考點）。",
+      "葡萄柚汁抑制 CYP3A4，使多種藥物濃度升高。",
+      "Tetracycline／fluoroquinolone 不可與牛奶、制酸劑、鐵鈣製劑同服。"
+    ],
+    "traps": [
+      "把 warfarin 的衛教寫成「完全禁食深綠色蔬菜」——正確是維持穩定攝取量。",
+      "誤認為「所有藥物空腹吃吸收較好」；具腸胃刺激性者（NSAID、鐵劑、類固醇）應飯後服用。",
+      "把「腸溶錠可磨粉方便吞服」列為正確措施——這會破壞劑型並增加胃刺激或造成劑量突釋。"
+    ],
+    "mnemonics": [
+      "「四環＋牛奶＝白喝」——tetracycline、quinolone 遇鈣鎂鋁鐵即失效。",
+      "「葡萄柚會把藥『留』在身體裡」——抑制 CYP3A4 使濃度升高。"
+    ],
+    "samples": [
+      "問某藥（aspirin）與何者併用會使血中濃度升高、危險性提高。",
+      "以「有關藥物與食物服用禁忌／給藥禁忌之敘述，何者錯誤」形式綜合測驗。",
+      "給臨床情境問護理師應提供的用藥衛教是否正確。"
+    ]
+  },
+  "鎮靜安眠藥": {
+    "summary": "近6年共3題（★★☆☆☆），110、112、113年各一；出題偏向「藥物分類與管制屬性」，愛考非管制的 melatonin 受體促效劑 ramelteon、短效與長效 BZD 的區分，以及非 BZD 的 Z-drugs。",
+    "definition": "鎮靜安眠藥（sedative-hypnotics）主要有三大類：①苯二氮平類（benzodiazepines, BZD，如 diazepam、lorazepam、midazolam、triazolam、flurazepam），與 GABA-A 受體上的 BZD 結合位結合，增加氯離子通道「開啟頻率」，具鎮靜、抗焦慮、肌肉鬆弛、抗癲癇作用，屬第四級管制藥品，解毒劑為 flumazenil；②巴比妥類（barbiturates，如 phenobarbital、thiopental），延長氯離子通道「開啟時間」，治療指數窄、易致呼吸抑制，已少用；③非苯二氮平類（non-BZD／Z-drugs，如 zolpidem、zopiclone、zaleplon），選擇性作用於 GABA-A 的 α1 次單位，主要助眠、肌肉鬆弛作用少，但可能出現睡眠相關複雜行為（夢遊、夢食）；④褪黑激素受體促效劑（melatonin receptor agonist，ramelteon）作用於 MT1／MT2 受體，無成癮性、非管制藥品；⑤orexin 受體拮抗劑（suvorexant）。",
+    "keyPoints": [
+      "被濫用可能性最低、未列管制藥品者為 ramelteon（褪黑激素受體促效劑），此為本考點最典型的標準答案。",
+      "能活化 melatonin receptor 的安眠藥＝ramelteon（及 melatonin 本身、agomelatine）。",
+      "短效 BZD：triazolam、midazolam、oxazepam、lorazepam（用於入睡困難）；長效 BZD：diazepam、flurazepam、clonazepam（半衰期長，隔日仍嗜睡、老人易跌倒）。",
+      "BZD 過量的專一性解毒劑為 flumazenil（Anexate®）；巴比妥類無專一性解毒劑，僅支持療法與鹼化尿液。",
+      "安眠藥服用後應立即上床，並注意夜間起身跌倒風險（尤其老人）；不可與酒精或其他中樞抑制劑併用。",
+      "長期使用 BZD 會產生耐藥性與依賴性，停藥須逐漸減量以免出現反彈性失眠、焦慮、震顫甚至癲癇發作。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 機轉 | 管制等級 | 特點 |\n|---|---|---|---|---|\n| BZD | Diazepam、Lorazepam、Triazolam | 增加 Cl⁻ 通道開啟「頻率」 | 第四級管制 | 抗焦慮、肌鬆、抗癲癇；解毒劑 flumazenil |\n| 巴比妥類 | Phenobarbital、Thiopental | 延長 Cl⁻ 通道開啟「時間」 | 第三／四級管制 | 治療指數窄、呼吸抑制、酵素誘導 |\n| Z-drugs | Zolpidem、Zopiclone、Zaleplon | 選擇性 α1 次單位 | 第四級管制 | 快速助眠、複雜睡眠行為 |\n| 褪黑激素促效劑 | Ramelteon | 活化 MT1／MT2 受體 | 非管制 | 無成癮性、適合長期失眠 |\n| Orexin 拮抗劑 | Suvorexant | 阻斷 orexin 受體 | 第四級管制 | 維持睡眠 |",
+    "criteria": null,
+    "mustKnow": [
+      "Ramelteon＝活化褪黑激素受體＋非管制藥品＋濫用可能性低（一題兩考點）。",
+      "BZD 增加通道開啟頻率、巴比妥延長開啟時間；BZD 解毒劑為 flumazenil。",
+      "短效 BZD：triazolam、midazolam、lorazepam、oxazepam；長效：diazepam、flurazepam。"
+    ],
+    "traps": [
+      "把 zolpidem 當成「非管制藥品」——Z-drugs 仍屬第四級管制藥品，非管制的是 ramelteon。",
+      "「下列何者不是短效鎮靜安眠藥」常以 diazepam 或 flurazepam 為答案；易與 midazolam 混淆。",
+      "誤以為 flumazenil 可解巴比妥類中毒。"
+    ],
+    "mnemonics": [
+      "「BZD 開得『頻』繁、巴比妥開得『久』」——頻率 vs. 時間。",
+      "「Ramelteon＝褪黑激素的替身，不上管制名單」。"
+    ],
+    "samples": [
+      "問何種安眠藥濫用可能性低、未列管制藥品。",
+      "問何者「不是」短效性鎮靜安眠藥。",
+      "給機轉描述（活化褪黑激素受體）問對應藥物。"
+    ]
+  },
+  "抗凝血劑": {
+    "summary": "近6年共3題（★★☆☆☆），110、113年出題；固定考 warfarin 的注意事項與中毒解毒（維生素 K）、heparin 用於預防深層靜脈栓塞，以及兩藥監測指標（PT/INR vs. aPTT）的區辨。",
+    "definition": "抗凝血劑（anticoagulants）抑制凝血因子活化以預防血栓形成，與抗血小板藥（antiplatelet，aspirin、clopidogrel）及血栓溶解劑（thrombolytics，t-PA、streptokinase）機轉不同。Heparin（肝素）與 enoxaparin（低分子量肝素 LMWH）活化抗凝血酶 III（antithrombin III）而抑制凝血酶與 factor Xa，作用快、注射給予，是預防與治療深層靜脈栓塞（deep vein thrombosis, DVT）與肺栓塞的主力，監測 aPTT（治療值為對照值 1.5-2.5 倍），解毒劑為魚精蛋白（protamine sulfate）。Warfarin 拮抗維生素 K，抑制凝血因子 II、VII、IX、X 於肝臟合成，口服、起效慢（需 3-5 天），監測 PT／INR，解毒劑為維生素 K1（phytonadione），嚴重出血時輸新鮮冷凍血漿（FFP）或凝血酶原複合物。新型口服抗凝劑 NOAC／DOAC（rivaroxaban、apixaban 抑制 Xa；dabigatran 直接抑制凝血酶）不需常規監測。",
+    "keyPoints": [
+      "Warfarin 過量出血 → 給維生素 K1（phytonadione）；Heparin 過量 → 給魚精蛋白（protamine sulfate）。急性大出血再加 FFP。",
+      "預防深層靜脈栓塞（DVT）之抗凝血劑首選為 heparin／低分子量肝素（enoxaparin），可皮下注射且不需頻繁監測。",
+      "監測指標：Warfarin 看 PT／INR（一般治療目標 INR 2.0-3.0，機械瓣膜 2.5-3.5）；Heparin 看 aPTT（1.5-2.5 倍對照值）。",
+      "Warfarin 衛教：維生素 K 食物（菠菜、花椰菜、納豆、綠茶）維持穩定攝取量而非全面禁食；避免任意併用 aspirin、NSAID、抗生素與中草藥（銀杏、當歸、丹參）。",
+      "Heparin 皮下注射部位選腹部（距臍 5 公分以上），不可揉搓、不需回抽，需輪替注射部位；併發症注意肝素引起的血小板低下症（HIT）。",
+      "共同衛教：使用軟毛牙刷、電動刮鬍刀、避免劇烈碰撞運動、觀察牙齦出血、血尿、黑便、瘀斑，隨身攜帶用藥卡；孕婦禁用 warfarin（致畸胎），可用 heparin。"
+    ],
+    "comparison": "| 項目 | Heparin | Warfarin |\n|---|---|---|\n| 給藥途徑 | IV／SC | PO |\n| 作用機轉 | 活化 antithrombin III | 拮抗維生素 K，抑制因子 II、VII、IX、X |\n| 起效 | 立即（IV） | 3-5 天 |\n| 監測 | aPTT（1.5-2.5 倍） | PT／INR（2.0-3.0） |\n| 解毒劑 | Protamine sulfate | Vitamin K1（phytonadione） |\n| 孕婦 | 可用（不過胎盤） | 禁用（致畸胎） |\n| 特殊副作用 | HIT（血小板低下）、骨質疏鬆 | 出血、皮膚壞死、藍趾症候群 |",
+    "criteria": "**檢驗值判讀**\n\n| 指標 | 正常值 | 治療目標 |\n|---|---|---|\n| INR | 0.8–1.2 | Warfarin 治療 2.0–3.0（機械瓣膜 2.5–3.5）；>4 出血風險高 |\n| aPTT | 25–35 秒 | Heparin 治療為對照值 1.5–2.5 倍（約 60–80 秒） |\n| 血小板 | 15萬–40萬/mm³ | Heparin 使用中下降 >50% 須懷疑 HIT |",
+    "mustKnow": [
+      "Warfarin 解毒＝維生素 K；Heparin 解毒＝protamine sulfate。",
+      "Warfarin 監測 PT／INR；Heparin 監測 aPTT。",
+      "預防 DVT 用 heparin／LMWH；孕婦抗凝用 heparin 而非 warfarin。"
+    ],
+    "traps": [
+      "把 warfarin 衛教寫成「完全避免深綠色蔬菜」——正確是攝取量維持穩定。",
+      "誤以為 aspirin 是抗凝血劑；aspirin 屬抗血小板藥，且與 warfarin 併用大增出血風險。",
+      "Heparin 皮下注射後「按摩以促進吸收」是錯誤措施，會造成瘀血。"
+    ],
+    "mnemonics": [
+      "「W 配 K、H 配 P」——Warfarin↔Vitamin K；Heparin↔Protamine。",
+      "「胖（PT）華（Warfarin）、A（aPTT）肝（Heparin）」——監測指標配對。"
+    ],
+    "samples": [
+      "問 warfarin 使用注意事項「何者錯誤」（測飲食與併用藥）。",
+      "問口服抗凝血劑中毒出血的最佳處置。",
+      "給用途描述（預防深層靜脈栓塞）問應選何種抗凝血劑。"
+    ]
+  },
+  "免疫抑制劑": {
+    "summary": "近6年共3題（★★☆☆☆），110、112、114年各一；考法偏機轉與副作用配對，重點在 mycophenolate mofetil 抑制嘌呤合成、cyclosporine 的腎毒性與牙齦增生，以及人源化單株抗體（basiliximab）用於移植誘導治療。",
+    "definition": "免疫抑制劑（immunosuppressants）用於器官移植抗排斥與自體免疫疾病，主要分為：①鈣調磷酸酶抑制劑（calcineurin inhibitors）——cyclosporine 與 tacrolimus，抑制 calcineurin 使 IL-2 生成減少，阻斷 T 淋巴細胞活化；②抗增殖／抗代謝藥——mycophenolate mofetil（MMF）抑制肌苷單磷酸去氫酶（inosine monophosphate dehydrogenase, IMPDH），選擇性阻斷淋巴球嘌呤（purine）從頭合成途徑而抑制 T、B 細胞增殖；azathioprine 亦屬此類；③mTOR 抑制劑——sirolimus、everolimus；④類固醇——prednisolone、methylprednisolone；⑤生物製劑／單株抗體——basiliximab（人源化 anti-CD25 單株抗體，用於移植誘導治療 induction therapy）、antithymocyte globulin、rituximab（anti-CD20）、adalimumab（anti-TNF-α）。",
+    "keyPoints": [
+      "Mycophenolate mofetil 機轉＝抑制 IMPDH → 阻斷嘌呤（purine）合成 → 淋巴球無法增殖；主要副作用為腸胃道不適與骨髓抑制，具致畸性。",
+      "Cyclosporine 長期使用副作用：腎毒性（最重要）、高血壓、牙齦增生（gingival hyperplasia）、多毛症、肝毒性、震顫、高血鉀與高尿酸；須監測血中濃度與腎功能。",
+      "人源化單株抗體用於移植免疫誘導治療者為 basiliximab（daclizumab），阻斷 IL-2 受體（CD25）；字尾 -ximab＝嵌合型、-zumab＝人源化、-umab＝全人源。",
+      "Cyclosporine 與葡萄柚汁併用會抑制 CYP3A4 使血中濃度升高而中毒；口服液應以玻璃杯裝、不可用葡萄柚汁稀釋。",
+      "所有免疫抑制劑最大共同風險是感染與惡性腫瘤（尤其淋巴瘤、皮膚癌）；須衛教防感染措施、避免活性疫苗、注意防曬。",
+      "移植病人服藥須終身、定時、不可自行停藥；出現發燒、移植部位疼痛腫脹、尿量減少（腎移植）等排斥徵象應立即就醫。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 機轉 | 標誌性副作用 |\n|---|---|---|---|\n| 鈣調磷酸酶抑制劑 | Cyclosporine、Tacrolimus | 抑制 calcineurin → IL-2↓ | 腎毒性、高血壓、牙齦增生／多毛（CsA）；高血糖、震顫（FK506） |\n| 抗代謝藥 | Mycophenolate mofetil、Azathioprine | 抑制嘌呤合成、抑制淋巴球增殖 | 腸胃不適、腹瀉、骨髓抑制 |\n| mTOR 抑制劑 | Sirolimus、Everolimus | 阻斷 mTOR 訊息傳遞 | 高血脂、傷口癒合不良、口腔潰瘍 |\n| 類固醇 | Prednisolone | 廣泛抑制發炎與免疫 | 庫欣氏症、高血糖、骨質疏鬆、感染 |\n| 單株抗體 | Basiliximab（anti-CD25） | 阻斷 IL-2 受體 | 過敏反應；用於誘導治療 |",
+    "criteria": null,
+    "mustKnow": [
+      "MMF＝抑制嘌呤（purine）從頭合成 → 抑制 T、B 淋巴球增殖。",
+      "Cyclosporine 三大特徵副作用：腎毒性、牙齦增生、多毛症。",
+      "Basiliximab＝人源化單株抗體、抗 IL-2 受體、用於移植誘導治療。"
+    ],
+    "traps": [
+      "把 MMF 誤答為「抑制 calcineurin」或「抑制 IL-2 受體」——那分別是 cyclosporine 與 basiliximab。",
+      "把牙齦增生只聯想到 phenytoin；cyclosporine 與 nifedipine 同樣會造成，是常見交錯題。",
+      "誤以為免疫抑制劑病人可正常接種疫苗；活性減毒疫苗（MMR、水痘、口服小兒麻痺）為禁忌。"
+    ],
+    "mnemonics": [
+      "「牙齦三兄弟」：Phenytoin、Cyclosporine、Nifedipine 都會牙齦增生。",
+      "單株抗體字尾：「-ximab 嵌（chimeric）、-zumab 人源（humanized）、-umab 全人（human）」。"
+    ],
+    "samples": [
+      "給藥名（mycophenolate mofetil）問其作用機轉。",
+      "問長期使用某免疫抑制劑（cyclosporine）可能引發的副作用。",
+      "給描述（人源化單株抗體、用於免疫誘導治療）問是哪一個藥物。"
+    ]
+  }
+}

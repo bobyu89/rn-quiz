@@ -1,0 +1,176 @@
+{
+  "消化性潰瘍用藥": {
+    "summary": "近年共出 3 題（110、113 年），屬 2 星穩定小考點；幾乎都考「藥物分類與作用機轉配對」，尤其 Sucralfate 的黏膜保護特性與 Misoprostol 預防 NSAID 潰瘍。",
+    "definition": "消化性潰瘍（peptic ulcer disease, PUD）指胃酸與胃蛋白酶（pepsin）侵蝕胃或十二指腸黏膜，深度超過黏膜肌層而形成的缺損，成因為「攻擊因子（胃酸、幽門螺旋桿菌 Helicobacter pylori、NSAIDs、菸酒、壓力）大於防禦因子（黏液、碳酸氫鹽、前列腺素 prostaglandin、黏膜血流）」。治療用藥依機轉分四大類：(1) 制酸劑（antacids）中和已分泌的胃酸；(2) 組織胺 H2 受體拮抗劑（H2-receptor antagonists, H2RA，如 Cimetidine、Famotidine）阻斷壁細胞 H2 受體，減少胃酸分泌；(3) 質子幫浦抑制劑（proton pump inhibitors, PPIs，如 Omeprazole、Pantoprazole）不可逆抑制壁細胞 H+/K+-ATPase，抑酸最強；(4) 黏膜保護劑（cytoprotective agents，如 Sucralfate、Misoprostol、bismuth）強化防禦因子。若 H. pylori 陽性，需併用抗生素行根除（eradication）療法。",
+    "keyPoints": [
+      "Sucralfate（潰瘍治療劑）本身不中和胃酸，是在酸性環境（pH<4）聚合成黏稠凝膠，選擇性附著於潰瘍面形成保護膜；必須空腹（飯前 1 小時及睡前）服用。",
+      "Sucralfate 不可與制酸劑、H2RA、PPI 同時併服（胃內 pH 升高會使其無法活化），須間隔 30 分鐘至 2 小時；且會干擾 phenytoin、digoxin、levothyroxine、fluoroquinolones 吸收。",
+      "Misoprostol 為前列腺素 E1（PGE1）類似物／致效劑：抑制胃酸分泌 + 促進黏液與碳酸氫鹽分泌 + 增加黏膜血流，是唯一「預防 NSAID／Aspirin 引起潰瘍」的官方適應症藥物；孕婦絕對禁用（引發子宮收縮、流產）。",
+      "PPI 需在早餐前 30–60 分鐘空腹服用，腸溶錠不可磨粉或嚼碎；長期使用可致低鎂血症、維生素 B12 缺乏、骨質疏鬆／骨折、困難梭狀桿菌（C. difficile）感染與肺炎風險上升。",
+      "Cimetidine 抑制肝臟 cytochrome P450，藥物交互作用最多，且具抗雄性素作用（男性女乳症 gynecomastia、陽痿）；Famotidine 較無此問題，臨床多已取代之。",
+      "制酸劑副作用依成分而異：含鋁（aluminum hydroxide）→ 便祕；含鎂（magnesium hydroxide）→ 腹瀉；含鈣（calcium carbonate）→ 反彈性胃酸分泌與結石；腎功能不全者慎用含鎂製劑（高鎂血症）。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 作用機轉 | 服藥時間 | 重要副作用 |\n|---|---|---|---|---|\n| 制酸劑 Antacids | Aluminum/Magnesium hydroxide | 中和已分泌的胃酸 | 飯後 1–3 小時、睡前 | 鋁→便祕；鎂→腹瀉 |\n| H2 拮抗劑 H2RA | Cimetidine、Famotidine | 阻斷壁細胞 H2 受體，減少胃酸分泌 | 睡前（夜間酸分泌） | Cimetidine：P450 抑制、男性女乳症 |\n| 質子幫浦抑制劑 PPI | Omeprazole、Pantoprazole | 不可逆抑制 H+/K+-ATPase（最終共同途徑） | 早餐前 30–60 分鐘 | 低鎂、B12 缺乏、骨折、C. difficile |\n| 黏膜保護劑 | Sucralfate | 酸性下聚合成凝膠覆蓋潰瘍面 | 飯前 1 小時、睡前（空腹） | 便祕（含鋁）、干擾他藥吸收 |\n| 前列腺素類似物 | Misoprostol（PGE1） | 抑酸＋促黏液／碳酸氫鹽＋增加黏膜血流 | 隨餐及睡前 | 腹瀉、腹絞痛；孕婦禁用 |",
+    "criteria": "**H. pylori 根除（三合一療法，療程 10–14 天）**\n\n| 組成 | 藥物範例 |\n|---|---|\n| PPI（1 種） | Omeprazole 20 mg bid |\n| 抗生素（2 種） | Clarithromycin 500 mg bid ＋ Amoxicillin 1 g bid（青黴素過敏改 Metronidazole） |\n\n- 四合一療法：PPI ＋ Bismuth ＋ Metronidazole ＋ Tetracycline（用於抗藥性或再治療）。\n- 服 Bismuth 期間糞便、舌苔可能變黑，屬正常現象，須事先衛教。\n- 服 Metronidazole 期間禁飲酒（disulfiram-like reaction）。\n- 療程結束後至少停藥 4 週再做尿素呼氣試驗（UBT）確認根除，以免偽陰性。",
+    "mustKnow": [
+      "Sucralfate ＝「黏膜保護膜」，不中和胃酸、需空腹服、不與制酸劑同服 — 這三點是最常見的錯誤選項來源。",
+      "「預防或減輕 Aspirin／NSAID 造成之消化性潰瘍」的標準答案是 Misoprostol（PPI 亦可用於預防，但題目若提到『前列腺素致效劑』必選 Misoprostol）。",
+      "PPI 抑酸作用於「最終共同途徑」H+/K+-ATPase，效力強於 H2RA；空腹服用效果最好。",
+      "Misoprostol 為妊娠禁忌（可引發子宮收縮與流產），育齡婦女用藥前須確認未懷孕。"
+    ],
+    "traps": [
+      "把 Sucralfate 誤認為制酸劑（中和胃酸）或誤答「飯後服用」、「宜與制酸劑併用增效」— 皆為錯誤敘述。",
+      "題目問「前列腺素致效劑」時誤選 PPI 或 H2RA；問「男性女乳症」時誤選 Ranitidine（正解是 Cimetidine）。",
+      "制酸劑鋁／鎂副作用顛倒：鋁是便祕（constipation）、鎂是腹瀉（diarrhea），常被對調設陷阱。"
+    ],
+    "mnemonics": [
+      "制酸劑副作用：「鋁便祕、鎂腹瀉」— Aluminum＝A 卡住（便祕），Magnesium＝Must Go（腹瀉）。",
+      "Sucralfate 三不：「不中和、不吃飽（空腹）、不同服（勿與制酸劑／PPI 併用）」。"
+    ],
+    "samples": [
+      "給某藥名（如 Sucralfate、Misoprostol）問「下列敘述何者錯誤」，錯誤選項多藏在作用機轉或服藥時間。",
+      "給功能描述（如「前列腺素致效劑，降低胃酸並促進黏液產生」）反推藥名。",
+      "給臨床情境（長期服用 Aspirin／NSAID 的關節炎病人）問應加用何種藥物預防潰瘍。"
+    ]
+  },
+  "心衰竭用藥": {
+    "summary": "近年共出 3 題（111、114 年），屬 2 星題型；考點高度集中在「作用機轉」— Dobutamine 活化 β1 受體增加心輸出量，以及 ACEI 抑制 RAAS 系統降低前後負荷與抑制心室重塑。",
+    "definition": "心臟衰竭（heart failure, HF）指心臟無法輸出足夠血液滿足組織代謝需求，代償機轉包括交感神經興奮與腎素–血管收縮素–醛固酮系統（renin-angiotensin-aldosterone system, RAAS）活化，長期反而造成後負荷上升、鈉水滯留與心室重塑（ventricular remodeling）。用藥策略分三軸：(1) 正性肌力藥（positive inotropics）— 毛地黃 Digoxin 抑制 Na+/K+-ATPase 使細胞內鈣增加，β1 致效劑 Dobutamine 及磷酸二酯酶抑制劑 Milrinone 提高 cAMP，短期增強收縮力；(2) 神經荷爾蒙阻斷（neurohormonal blockade）— ACEI／ARB／ARNI、β-blocker、醛固酮拮抗劑，可延緩重塑並改善長期存活率；(3) 減輕鬱血症狀 — 利尿劑（Furosemide）與血管擴張劑。近年 SGLT2 抑制劑亦納入 HFrEF 標準治療。",
+    "keyPoints": [
+      "Dobutamine 為選擇性 β1 腎上腺素受體（β1-adrenergic receptor）致效劑，增加心肌收縮力（正性肌力）與心輸出量（cardiac output），用於急性失代償期靜脈短期使用；不用於慢性長期治療。",
+      "ACEI（如 Captopril、Enalapril）抑制血管收縮素轉換酶，使 angiotensin I 無法轉為 angiotensin II → 小動脈舒張降低後負荷（afterload）、醛固酮減少而降低鈉水滯留與前負荷（preload）、並抑制心室重塑改善存活率。",
+      "ACEI 因抑制緩激肽（bradykinin）分解而致乾咳與血管性水腫；副作用為「高血鉀」而非低血鉀；孕婦禁用（胎兒腎損害）；改用 ARB（Losartan、Valsartan）可避免乾咳。",
+      "Digoxin 具正性肌力＋負性頻率（negative chronotropic）作用；給藥前須測心尖脈（apical pulse）滿 1 分鐘，成人 <60 次/分（幼兒 <90–110）應暫停給藥並通報醫師。",
+      "低血鉀（hypokalemia）會增強 Digoxin 與 Na+/K+-ATPase 的結合而誘發毒性，故併用 Furosemide 時須密切監測血鉀；中毒表現為厭食、噁心嘔吐、視覺異常（黃視／綠視 xanthopsia）與心律不整。",
+      "β-blocker（Carvedilol、Bisoprolol、Metoprolol succinate）用於「慢性穩定期」且需由小劑量緩慢調升，可降低死亡率；急性失代償、肺水腫期不可貿然開始或加量。",
+      "Spironolactone 為醛固酮拮抗劑（保鉀利尿劑），可改善存活率，但與 ACEI 併用時高血鉀風險倍增，另有男性女乳症副作用。"
+    ],
+    "comparison": "| 藥物類別 | 代表藥 | 主要機轉 | 臨床定位 | 關鍵副作用／監測 |\n|---|---|---|---|---|\n| β1 致效劑 | Dobutamine | 活化 β1 受體 ↑cAMP ↑收縮力 | 急性失代償短期靜脈輸注 | 心搏過速、心律不整；需監測心律血壓 |\n| 強心配醣體 | Digoxin | 抑制 Na+/K+-ATPase ↑細胞內 Ca | 症狀控制、合併心房顫動 | 治療窗窄；低血鉀誘發中毒；測心尖脈 |\n| ACEI／ARB | Enalapril／Losartan | 阻斷 RAAS ↓前後負荷、抑制重塑 | 改善存活率之基石 | 乾咳（ACEI）、高血鉀、首劑低血壓、孕婦禁用 |\n| β-blocker | Carvedilol | 阻斷交感過度活化、降低心肌耗氧 | 慢性穩定期長期使用 | 心搏過緩、疲倦；急性期禁用 |\n| 醛固酮拮抗劑 | Spironolactone | 拮抗醛固酮、抗纖維化 | 中重度 HFrEF 加藥 | 高血鉀、男性女乳症 |\n| 亨利氏環利尿劑 | Furosemide | 抑制亨利氏環上行支 Na-K-2Cl | 緩解肺鬱血、水腫 | 低血鉀、低血鈉、脫水、耳毒性 |",
+    "criteria": "**Digoxin 用藥安全數值**\n\n| 項目 | 數值 |\n|---|---|\n| 治療血中濃度 | 0.5–2.0 ng/mL（心衰竭建議 0.5–0.9 ng/mL） |\n| 給藥前心尖脈（成人） | <60 次/分 暫停給藥 |\n| 血鉀應維持 | 3.5–5.0 mEq/L（低血鉀↑毒性） |\n\n**心衰竭用藥調整重點**\n- 開始 ACEI／ARB 後 1–2 週追蹤血鉀與腎功能（BUN、Creatinine）。\n- 使用利尿劑期間每日固定時間、同衣著測量體重；**24 小時內增加 1 kg 或 3 天內增加 2 kg** 須回診。\n- β-blocker 採「start low, go slow」，每 2 週調整一次劑量。",
+    "mustKnow": [
+      "Dobutamine → β1 受體 → 增加心肌收縮力與心輸出量（此為考古題標準答案）。",
+      "ACEI 治療心衰竭的機轉＝抑制 angiotensin II 生成 → 血管擴張降低後負荷 ＋ 減少醛固酮降低前負荷 ＋ 抑制心室重塑；副作用是「高血鉀、乾咳」。",
+      "Digoxin 給藥前測心尖脈 1 分鐘、<60 次/分停藥；低血鉀是最重要的中毒誘因。",
+      "β-blocker 與 ACEI／ARB、醛固酮拮抗劑是「改善存活率」的藥；Digoxin、利尿劑主要「改善症狀」不改善存活率。"
+    ],
+    "traps": [
+      "ACEI 的敘述題常把「造成低血鉀」當錯誤選項（正確為高血鉀），或誤述其機轉為「直接擴張靜脈」、「增加醛固酮分泌」。",
+      "誤以為 Dobutamine 作用於 α1 或 β2 受體；或誤把 Dopamine 低劑量（擴張腎血管）與 Dobutamine 的機轉混淆。",
+      "誤答「心衰竭急性肺水腫時應立即給予 β-blocker」— 急性失代償期不可貿然啟用或加量。"
+    ],
+    "mnemonics": [
+      "ACEI 副作用口訣「CAPTOPRIL」：Cough（乾咳）、Angioedema（血管性水腫）、Potassium↑（高血鉀）、Taste 改變、Orthostatic hypotension、Pregnancy 禁用、Renal 功能惡化。",
+      "Digoxin 中毒「一黃二吐三亂跳」：黃視／綠視、噁心嘔吐厭食、心律不整。"
+    ],
+    "samples": [
+      "給藥名（Dobutamine、ACEI）問「主要透過活化／抑制何種受體或酵素」的機轉配對題。",
+      "給 ACEI 的多項敘述問「何者錯誤」，錯誤處常在電解質變化或前後負荷方向。",
+      "給臨床情境（服用 Digoxin 併用 Furosemide 的病人出現噁心與黃視）問最可能原因或首要護理措施。"
+    ]
+  },
+  "抗高血壓藥": {
+    "summary": "近年共出 3 題（111、112、114 年），屬 2 星常客；本考點偏重「受體與作用部位」的機轉辨識 — AT1 受體拮抗、中樞 α2 受體活化，以及哪些藥「不會」引起反射性心搏過速。",
+    "definition": "高血壓（hypertension）治療藥物依作用部位分為五大類：(1) 利尿劑（diuretics，如 Hydrochlorothiazide）降低血容積；(2) 交感神經抑制劑 — 包含 β 受體阻斷劑（β-blockers，如 Propranolol、Atenolol）、α1 受體阻斷劑（如 Prazosin）與中樞性 α2 受體致效劑（central α2-agonists，如 Clonidine、Methyldopa，活化腦幹 α2 受體回饋抑制交感輸出）；(3) 鈣離子通道阻斷劑（calcium channel blockers, CCB），二氫吡啶類（dihydropyridine，如 Amlodipine、Nifedipine）主要擴張小動脈，非二氫吡啶類（Verapamil、Diltiazem）另具抑制心臟傳導作用；(4) RAAS 抑制劑 — ACEI、ARB（angiotensin II type 1 receptor blocker，拮抗 AT1 受體使小動脈與靜脈舒張）、腎素抑制劑；(5) 直接血管擴張劑（如 Hydralazine、Nitroprusside）。",
+    "keyPoints": [
+      "ARB（Losartan、Valsartan、Irbesartan，字尾 -sartan）選擇性拮抗第一型血管收縮素受體（AT1 receptor），阻斷 angiotensin II 的血管收縮與醛固酮作用；因不影響緩激肽代謝，故「不會乾咳」，此為與 ACEI 最大差異。",
+      "Clonidine 與 Methyldopa 活化中樞神經 α2 受體，經負回饋減少交感神經衝動輸出而降壓；Clonidine 突然停藥會出現反彈性高血壓（rebound hypertension），須逐漸減量。",
+      "會引起反射性心搏過速（reflex tachycardia）的是「直接／選擇性擴張血管而不影響心臟」的藥：Hydralazine、Minoxidil、Nitroprusside、短效 Nifedipine、α1 阻斷劑 Prazosin。",
+      "不會引起心搏過速者：β-blocker（直接減慢心跳）、非二氫吡啶類 CCB（Verapamil、Diltiazem，抑制房室結傳導）、中樞 α2 致效劑（Clonidine，降低交感張力）、以及 ACEI／ARB（降壓同時抑制交感反射，心跳多無明顯上升）。",
+      "β-blocker 禁忌／慎用：氣喘與慢性阻塞性肺病（非選擇性者致支氣管痙攣）、心搏過緩、房室傳導阻滯；糖尿病人使用會遮蔽低血糖的心悸、顫抖等警訊（但仍會出汗）。",
+      "利尿劑 Hydrochlorothiazide 副作用「三高三低」：高血糖、高血脂、高尿酸；低血鉀、低血鈉、低血鎂。"
+    ],
+    "comparison": "| 類別 | 代表藥（字尾／特徵） | 作用受體／部位 | 對心跳的影響 | 標誌性副作用 |\n|---|---|---|---|---|\n| β 阻斷劑 | Propranolol、Atenolol（-olol） | 心臟 β1 受體 | 減慢 | 支氣管痙攣、遮蔽低血糖症狀 |\n| 中樞 α2 致效劑 | Clonidine、Methyldopa | 腦幹 α2 受體（活化） | 減慢 | 口乾、嗜睡；停藥反彈性高血壓 |\n| α1 阻斷劑 | Prazosin、Doxazosin（-zosin） | 血管 α1 受體（阻斷） | 加快（反射） | 首劑姿態性低血壓 |\n| CCB（二氫吡啶） | Amlodipine、Nifedipine（-dipine） | 血管平滑肌 L 型鈣通道 | 加快（反射） | 腳踝水腫、頭痛、臉部潮紅、牙齦增生 |\n| CCB（非二氫吡啶） | Verapamil、Diltiazem | 心臟＋血管鈣通道 | 減慢 | 便祕（Verapamil）、心搏過緩 |\n| ACEI | Enalapril（-pril） | 抑制轉換酶、緩激肽↑ | 無明顯變化 | 乾咳、血管性水腫、高血鉀 |\n| ARB | Losartan（-sartan） | 拮抗 AT1 受體 | 無明顯變化 | 高血鉀；無乾咳 |\n| 直接血管擴張劑 | Hydralazine、Minoxidil | 直接鬆弛小動脈平滑肌 | 明顯加快 | 反射性心搏過速、多毛（Minoxidil） |",
+    "criteria": "**血壓分級（依 2022 台灣高血壓治療指引，居家血壓 HBPM 標準）**\n\n| 分級 | 收縮壓 mmHg | | 舒張壓 mmHg |\n|---|---|---|---|\n| 正常 | <120 | 且 | <80 |\n| 高血壓（居家量測診斷閾值） | ≥130 | 或 | ≥80 |\n| 高血壓危象 | >180 | 或 | >120 |\n\n- 居家血壓量測遵循 **722 原則**：連續 7 天、每天 2 次（早晚）、每次量 2 遍取平均。\n- 高血壓危象（hypertensive crisis）合併標的器官損傷者為急症，靜脈給 Nitroprusside 或 Labetalol，降壓速度第 1 小時不超過原血壓的 25%。",
+    "mustKnow": [
+      "「拮抗 AT1 受體使小動脈及靜脈舒張」＝ ARB（-sartan）；「活化中樞 α2 受體減少交感活性」＝ Clonidine／Methyldopa。",
+      "不產生反射性心搏過速的降壓藥：β-blocker、Verapamil／Diltiazem、Clonidine；會產生的是 Hydralazine、Nifedipine、Prazosin、Minoxidil。",
+      "ACEI 乾咳 vs ARB 不咳，是換藥的最常見理由；兩者皆致高血鉀、皆為孕婦禁忌。",
+      "藥名字尾快速判斷類別：-pril（ACEI）、-sartan（ARB）、-olol（β-blocker）、-zosin（α1 阻斷劑）、-dipine（二氫吡啶 CCB）。"
+    ],
+    "traps": [
+      "把 α2「致效劑（activate）」誤看成 α「阻斷劑」；Clonidine 是活化中樞 α2，不是阻斷。",
+      "誤以為所有 CCB 都會心搏過速 — Verapamil 與 Diltiazem 反而使心跳變慢。",
+      "把 ARB 的乾咳副作用寫成「有」— 乾咳是 ACEI 的特徵，源自緩激肽堆積。"
+    ],
+    "mnemonics": [
+      "字尾記類別：「普（-pril）抑轉換、沙（-sartan）擋受體、洛（-olol）壓心跳、唑（-zosin）鬆前列腺、地平（-dipine）擴血管」。",
+      "心跳不會變快的降壓藥：「B（β-blocker）、V/D（Verapamil、Diltiazem）、C（Clonidine）」— BVDC 三家心跳穩。"
+    ],
+    "samples": [
+      "給受體或機轉描述（拮抗 AT1、活化中樞 α2）反推藥名或藥物類別。",
+      "問「下列何者『不會』產生心搏過速（或反射性心搏過速）副作用」的反向選擇題。",
+      "給合併症情境（氣喘、糖尿病、痛風、懷孕）問何種降壓藥應避免使用。"
+    ]
+  },
+  "降血壓藥物": {
+    "summary": "近年共出 3 題（111、114 年），屬 2 星題型；與「抗高血壓藥」互補，本考點更常從「副作用與用藥衛教」切入 — 首劑姿態性低血壓、Losartan 機轉、腎素抑制劑 Aliskiren 的辨識。",
+    "definition": "降血壓藥物依作用於血壓決定因子（血壓＝心輸出量 × 周邊血管阻力）而分類：作用於容積者為利尿劑；作用於心輸出量者為 β 阻斷劑與非二氫吡啶類鈣離子通道阻斷劑；作用於周邊阻力者為 α1 阻斷劑、二氫吡啶類 CCB 與直接血管擴張劑；作用於神經荷爾蒙系統者為腎素–血管收縮素–醛固酮系統（RAAS）抑制劑，其中依阻斷位置由上游到下游依序為：腎素抑制劑（renin inhibitor，Aliskiren）→ 血管收縮素轉換酶抑制劑（ACEI，-pril）→ 血管收縮素受體阻斷劑（ARB，-sartan，選擇性拮抗 AT1 受體）→ 醛固酮拮抗劑（Spironolactone）。臨床選藥須合併考量共病（糖尿病腎病變首選 ACEI／ARB、心絞痛併用 β-blocker、良性攝護腺肥大可選 α1 阻斷劑）。",
+    "keyPoints": [
+      "α1 受體阻斷劑（Prazosin、Doxazosin、Terazosin，字尾 -zosin）有「首劑現象（first-dose phenomenon）」— 初次服用易致姿態性低血壓（orthostatic hypotension）與昏厥，故起始劑量宜小並於睡前服用。",
+      "Losartan 的降壓機轉是「選擇性阻斷 AT1 受體」，使 angiotensin II 無法造成血管收縮與醛固酮分泌，達到血管舒張與降低鈉水滯留；不影響緩激肽故不咳嗽。",
+      "Aliskiren 是唯一的「直接腎素抑制劑（direct renin inhibitor）」，作用於 RAAS 最上游，抑制血管收縮素原轉為 angiotensin I；孕婦禁用，不建議與 ACEI／ARB 併用（高血鉀與腎損害風險）。",
+      "姿態性低血壓衛教：起身時採「躺→坐→站」三步驟並停留 1–2 分鐘、避免久站與熱水澡、避免飲酒、穿彈性襪；跌倒防護是護理考題的常見正解。",
+      "降壓藥不可自行停藥：血壓正常代表藥物有效而非疾病痊癒；Clonidine 與 β-blocker 突然停藥可致反彈性高血壓與心絞痛惡化。",
+      "服用 CCB（尤其 -dipine 類）期間應避免葡萄柚汁（抑制 CYP3A4 使血中濃度上升）；ACEI／ARB／保鉀利尿劑期間避免使用含鉀代鹽（低鈉鹽）以免高血鉀。"
+    ],
+    "comparison": "| RAAS 阻斷位置 | 藥物類別 | 代表藥 | 是否乾咳 | 特別提醒 |\n|---|---|---|---|---|\n| 最上游：腎素 | 直接腎素抑制劑 | Aliskiren | 否 | 勿與 ACEI／ARB 併用；孕婦禁用 |\n| 轉換酶（AT-I→AT-II） | ACEI | Captopril、Enalapril | 是（緩激肽↑） | Captopril 需空腹服；高血鉀 |\n| 受體端（AT1） | ARB | Losartan、Valsartan | 否 | ACEI 引起乾咳時的替代藥 |\n| 最下游：醛固酮 | 醛固酮拮抗劑 | Spironolactone | 否 | 高血鉀、男性女乳症 |",
+    "criteria": "**常見降壓藥的用藥時間與監測重點**\n\n| 藥物 | 建議服藥時間 | 首要監測／衛教 |\n|---|---|---|\n| Prazosin、Doxazosin | 睡前（首劑） | 起身緩慢、防跌；監測姿態性血壓 |\n| Hydrochlorothiazide | 早上（避免夜尿） | 血鉀、尿酸、血糖；每日測體重 |\n| Captopril | 飯前 1 小時空腹 | 乾咳、血鉀、腎功能 |\n| Losartan／Valsartan | 不受食物影響 | 血鉀、腎功能；孕婦禁用 |\n| Amlodipine | 固定時間，勿併葡萄柚汁 | 腳踝水腫、頭痛、牙齦增生 |\n\n- 姿態性低血壓定義：由臥姿改為站姿 3 分鐘內，收縮壓下降 ≥20 mmHg 或舒張壓下降 ≥10 mmHg。",
+    "mustKnow": [
+      "「初次服用造成姿態性低血壓，宜給小起始劑量或睡前服用」＝ α1 阻斷劑（Prazosin 類，字尾 -zosin）。",
+      "Losartan ＝ ARB ＝ 阻斷 AT1 受體（不是抑制轉換酶、不是抑制腎素）。",
+      "腎素抑制劑（renin inhibitor）唯一代表藥為 Aliskiren。",
+      "服藥期間血壓正常仍須持續服藥，不可自行停藥或減量；並教導自我監測血壓與記錄。"
+    ],
+    "traps": [
+      "Losartan 被誤答為「抑制血管收縮素轉換酶」— 那是 ACEI（-pril）的機轉，Losartan 作用在受體端。",
+      "首劑現象誤植於 ACEI 或 CCB；雖然 ACEI 也可能首劑低血壓，但題目講「起始劑量減量或睡前服用以防姿態性低血壓」的標準答案是 α1 阻斷劑。",
+      "把 Aliskiren 歸為 ARB 或 ACEI；也常見誤選 Spironolactone（醛固酮拮抗劑）當腎素抑制劑。"
+    ],
+    "mnemonics": [
+      "RAAS 上下游順序：「腎（Aliskiren）→ 酶（-pril）→ 受體（-sartan）→ 醛固酮（Spironolactone）」，越上游阻斷越徹底。",
+      "看到 -zosin 就想「第一次會暈（first-dose 姿態性低血壓），睡前吃比較安全」。"
+    ],
+    "samples": [
+      "給副作用描述（首次服用會姿態性低血壓）反推藥物類別，並問護理指導內容。",
+      "給藥名（Losartan、Aliskiren）問其作用機轉屬 RAAS 的哪一環節。",
+      "給服藥衛教情境問「下列護理指導何者正確／錯誤」，常涉及自行停藥、代鹽、葡萄柚汁、起身姿勢。"
+    ]
+  },
+  "糖尿病用藥": {
+    "summary": "近年共出 3 題（112、113、114 年），屬 2 星穩定考點；核心在「第二型糖尿病首選藥 Metformin 的機轉與禁忌」以及「哪一類藥單獨使用最易低血糖（磺醯脲類）」。",
+    "definition": "糖尿病（diabetes mellitus, DM）用藥分口服降血糖藥（oral hypoglycemic agents, OHA）與注射劑。口服藥依機轉分：(1) 雙胍類（biguanides，Metformin）抑制肝醣新生（gluconeogenesis）並增加周邊組織對胰島素的敏感性，不刺激胰島素分泌；(2) 磺醯脲類（sulfonylureas，Glipizide、Glimepiride）與美格替耐類（meglitinides，Repaglinide）為胰島素分泌促進劑，關閉 β 細胞 K-ATP 通道使去極化、鈣內流而釋放胰島素；(3) 胰島素增敏劑 thiazolidinediones（TZD，Pioglitazone）活化 PPAR-γ；(4) α-葡萄糖苷酶抑制劑（Acarbose）延緩腸道多醣分解；(5) 腸泌素相關藥物 DPP-4 抑制劑（-gliptin）與 GLP-1 受體促效劑（-tide）；(6) SGLT2 抑制劑（-gliflozin）促進尿糖排出。第一型糖尿病及口服藥控制不佳者需注射胰島素（insulin）。",
+    "keyPoints": [
+      "Metformin 是新診斷第二型糖尿病且無併發症者的第一線用藥：不刺激胰島素分泌，故「單獨使用不會造成低血糖」，且不增加體重（甚至略降），另可改善血脂。",
+      "Metformin 禁忌與注意：eGFR <30 mL/min 禁用、嚴重肝病、心衰竭失代償、缺氧狀態，因有乳酸中毒（lactic acidosis）風險；含碘顯影劑檢查當天需停藥，術後或檢查後追蹤腎功能正常（約 48 小時）再恢復；長期使用可致維生素 B12 缺乏；常見腸胃不適，宜隨餐或飯後服用。",
+      "磺醯脲類（sulfonylureas）與 Repaglinide 直接促進胰島素分泌，是單獨使用時「最容易造成低血糖」且會增加體重的一類；Repaglinide 須餐前服用，未進食則不服（no meal, no pill）。",
+      "Acarbose 須與「第一口飯」同時嚼服；主要降低餐後血糖，副作用為腹脹、排氣與腹瀉；若併用其他藥發生低血糖，必須給予「葡萄糖」而非蔗糖或方糖（雙醣分解受抑制）。",
+      "SGLT2 抑制劑（Empagliflozin、Dapagliflozin）經尿排糖，額外具心腎保護效益；副作用為泌尿生殖道感染、脫水低血壓、正常血糖之酮酸中毒（euglycemic DKA），須衛教多喝水與會陰清潔。",
+      "GLP-1 受體促效劑（Liraglutide、Semaglutide）延緩胃排空、抑制升糖素、增加飽足感而減重；副作用噁心嘔吐、胰臟炎，甲狀腺髓質癌病史者禁用。",
+      "胰島素抽取原則：需混合時「先抽短效（清）再抽中效（濁）」以免濁液污染；長效 Glargine／Detemir 澄清但絕不可與其他胰島素混合；注射部位需輪替以防脂肪失養（lipodystrophy）。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 作用機轉 | 單獨使用低血糖風險 | 體重影響 | 特別注意 |\n|---|---|---|---|---|---|\n| 雙胍類 | Metformin | ↓肝醣新生、↑胰島素敏感性 | 低 | ↓／持平 | 乳酸中毒、顯影劑停藥、B12 缺乏 |\n| 磺醯脲類 | Glipizide、Glimepiride | 關閉 β 細胞 K-ATP → 釋放胰島素 | **高** | ↑ | 老人與腎功能不良者慎用 |\n| 美格替耐類 | Repaglinide | 同上，作用快而短 | 中–高 | ↑ | 餐前服，不吃飯就不吃藥 |\n| TZD | Pioglitazone | 活化 PPAR-γ ↑敏感性 | 低 | ↑ | 水腫、心衰竭惡化、骨折 |\n| α-葡萄糖苷酶抑制劑 | Acarbose | 延緩腸道醣類分解吸收 | 低 | 持平 | 與第一口飯併服；低血糖須給葡萄糖 |\n| DPP-4 抑制劑 | Sitagliptin | 抑制腸泌素分解 | 低 | 持平 | 少數胰臟炎、關節痛 |\n| GLP-1 促效劑 | Liraglutide | 腸泌素受體促效 | 低 | **↓** | 噁心、胰臟炎；皮下注射 |\n| SGLT2 抑制劑 | Empagliflozin | 抑制腎小管葡萄糖再吸收 | 低 | ↓ | 泌尿道感染、脫水、euglycemic DKA |",
+    "criteria": "**胰島素作用時間（皮下注射）**\n\n| 種類 | 代表藥 | 開始作用 | 高峰 | 持續 |\n|---|---|---|---|---|\n| 速效 | Lispro、Aspart | 10–15 分鐘 | 0.5–1.5 小時 | 3–5 小時 |\n| 短效（RI） | Regular insulin | 0.5–1 小時 | 2–4 小時 | 5–8 小時 |\n| 中效 | NPH | 1–2 小時 | 4–12 小時 | 14–18 小時 |\n| 長效 | Glargine、Detemir | 1–2 小時 | 無明顯高峰 | 約 24 小時 |\n\n**血糖控制與低血糖處理**\n\n| 項目 | 標準 |\n|---|---|\n| 糖化血色素 HbA1c | 一般成人目標 <7%（老年或低血糖高風險者可放寬） |\n| 空腹血糖 | 80–130 mg/dL |\n| 餐後 2 小時血糖 | <180 mg/dL |\n| 低血糖定義 | 血糖 <70 mg/dL |\n| 意識清楚之處理 | **15/15 法則**：口服 15 公克單醣，15 分鐘後複測，未改善再給一次 |\n| 意識不清之處理 | 靜脈推注 50% 葡萄糖（D50W）或肌肉注射 Glucagon，勿由口餵食 |",
+    "mustKnow": [
+      "新診斷、無併發症之第二型糖尿病首選藥為 Metformin；其機轉是「減少肝臟葡萄糖生成、增加周邊胰島素敏感性」，不是刺激胰島素分泌。",
+      "單獨使用最易造成低血糖者為磺醯脲類（sulfonylureas，如 Glipizide、Glimepiride）與 Repaglinide。",
+      "Metformin 使用含碘顯影劑檢查前後須暫停，並注意乳酸中毒早期徵象（肌肉痛、倦怠、過度換氣、腹痛）。",
+      "服用 Acarbose 發生低血糖時只能給葡萄糖（glucose），給蔗糖／方糖無效。",
+      "低血糖 <70 mg/dL 採 15/15 法則；胰島素混合抽取「先清後濁」（先 RI 後 NPH）。"
+    ],
+    "traps": [
+      "Metformin 敘述題常見錯誤選項：「刺激胰臟 β 細胞分泌胰島素」、「常見副作用為低血糖」、「腎衰竭病人為首選」— 皆錯。",
+      "把 DPP-4 抑制劑、SGLT2 抑制劑或 Metformin 誤選為「最易造成低血糖」的藥（正解是磺醯脲類）。",
+      "誤答 Acarbose 應「飯前 30 分鐘服用」（正確是與第一口飯同時服）；或低血糖時給予蔗糖。"
+    ],
+    "mnemonics": [
+      "低血糖風險口訣：「會逼胰島素出來的才會低血糖」— 磺醯脲類（-ide）與 Repaglinide 促分泌 → 高風險；Metformin、Acarbose、-gliptin、-gliflozin 不促分泌 → 低風險。",
+      "胰島素抽取「清先濁後」：先抽清澈的 RI，再抽混濁的 NPH（先 R 後 N，RN 順序如同護理師 RN）。"
+    ],
+    "samples": [
+      "給臨床情境（初診斷第二型糖尿病、BMI 偏高、無併發症）問最適合的起始藥物。",
+      "給某藥（Metformin）的多項敘述問「何者錯誤」，錯誤點多在機轉、低血糖風險或腎功能限制。",
+      "問「下列糖尿病治療藥物中，何者單獨使用時最可能造成低血糖」的類別辨識題。",
+      "給胰島素種類問作用高峰時間，或問混合抽取順序與注射部位輪替原則。"
+    ]
+  }
+}
