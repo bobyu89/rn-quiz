@@ -2356,7 +2356,7 @@ body.theme-abyss {
         onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
         <div style="font-size:36px;margin-bottom:10px">⚔️</div>
         <div style="font-family:'Press Start 2P',monospace;font-size:10px;color:var(--color-primary-500);margin-bottom:8px">刷題系統</div>
-        <div style="font-size:12px;color:var(--color-text-muted);line-height:1.5">年份 / 科別<br>智慧複習 / 錯題</div>
+        <div style="font-size:12px;color:var(--color-text-muted);line-height:1.5">年份 / 科別<br>智慧複習 / 宿敵</div>
       </div>
     </div>
 
@@ -2419,7 +2419,7 @@ body.theme-abyss {
           <span class="mode-icon">🔬</span><div class="mode-name">科別</div><div class="mode-desc">指定科目練習</div>
         </button>
         <button class="mode-card" data-mode="weak" onclick="selectMode(this,'weak')">
-          <span class="mode-icon">🎯</span><div class="mode-name">錯題</div><div class="mode-desc">重做歷史錯題</div>
+          <span class="mode-icon">⚔️</span><div class="mode-name">宿敵</div><div class="mode-desc">挑戰未擊敗的錯題</div>
         </button>
         <button class="mode-card" data-mode="srs" onclick="selectMode(this,'srs')">
           <span class="mode-icon">🧠</span><div class="mode-name">智慧複習</div><div class="mode-desc">間隔重複排程</div>
@@ -2701,6 +2701,12 @@ body.theme-abyss {
       <div class="bi-chart" style="height:480px"><canvas id="bi-domain"></canvas></div>
     </div>
 
+    <div class="bi-card" style="margin-bottom:16px">
+      <h3>NEMESIS</h3>
+      <div class="bi-sub">宿敵榜 — 答錯過且尚未擊敗的題目，等級越高排越前面</div>
+      <div class="bi-scroll"><table class="bi-table" id="bi-foes"></table></div>
+    </div>
+
     <div class="bi-card">
       <h3>SESSION LOG</h3>
       <div class="bi-sub">練習明細</div>
@@ -2834,8 +2840,9 @@ function answerContext(q) {
   var p = State.progress || {};
   var e = (p.srs || {})[String(q.id)];
   var la = (p.lastAnswered || {})[q.id];
+  var f = (p.foes || {})[String(q.id)];
   return {
-    wasFoe: !!(la && !la.correct),
+    wasFoe: !!(f && !f.defeated),
     wasDue: !!(e && e.nextReview <= Date.now() && e.level < SRS_MAX_LEVEL),
     mastered: !!(e && e.level >= SRS_MAX_LEVEL),
     overCooked: !!(la && la.count >= 3)
@@ -2889,6 +2896,75 @@ function calcSessionGrade(answers) {
       stars:   Math.round(starScore)
     }
   };
+}
+
+// ═══════════════════════════════════════════════════════════
+// 宿敵：答錯的題目不是一張清單，是有等級、要被征服的對手
+// 「跨天連兩次答對才算擊敗」比「答對一次就移除」嚴謹得多——
+// 用機制強制執行間隔複習，猜對的題目不會蒙混過關
+// ═══════════════════════════════════════════════════════════
+function todayKey() { return new Date().toLocaleDateString('zh-TW'); }
+
+function getFoes() {
+  var p = State.progress;
+  if (!p.foes) p.foes = {};
+  return p.foes;
+}
+
+// 回傳這次答題造成的宿敵事件，供 XP 加成與提示使用
+function updateFoe(qid, correct) {
+  var foes = getFoes();
+  var key = String(qid);
+  var f = foes[key];
+
+  if (!correct) {
+    if (!f) { foes[key] = { lv: 1, wins: 0, lastWinDate: null, defeated: false }; return { kind: 'born', lv: 1 }; }
+    // 已擊敗的又答錯 → 復活且更強；還沒擊敗的 → 升級，勝績歸零
+    f.lv++; f.wins = 0; f.lastWinDate = null; f.defeated = false;
+    return { kind: 'levelup', lv: f.lv };
+  }
+
+  if (!f || f.defeated) return null;
+
+  var today = todayKey();
+  if (f.wins === 0) {
+    f.wins = 1; f.lastWinDate = today;
+    return { kind: 'weaken', lv: f.lv };
+  }
+  if (f.lastWinDate !== today) {
+    f.wins++; f.defeated = true;
+    return { kind: 'defeat', lv: f.lv };
+  }
+  // 同一天內重複答對不算第二次，間隔才是重點
+  return { kind: 'sameday', lv: f.lv };
+}
+
+function foeStats() {
+  var foes = (State.progress || {}).foes || {};
+  var active = 0, defeated = 0;
+  Object.keys(foes).forEach(function (k) { if (foes[k].defeated) defeated++; else active++; });
+  return { active: active, defeated: defeated };
+}
+
+function topFoes(limit) {
+  var foes = (State.progress || {}).foes || {};
+  return Object.keys(foes)
+    .filter(function (k) { return !foes[k].defeated; })
+    .map(function (k) { return { qId: Number(k), lv: foes[k].lv, wins: foes[k].wins }; })
+    .sort(function (a, b) { return b.lv - a.lv || a.wins - b.wins; })
+    .slice(0, limit || 10);
+}
+
+var QMAP = null;
+function questionById(id) {
+  if (!QMAP) { QMAP = {}; (State.allQuestions || []).forEach(function (q) { QMAP[q.id] = q; }); }
+  return QMAP[id];
+}
+
+function esc(x) {
+  return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
 }
 
 var GRADE_COLOR = {
@@ -3082,7 +3158,31 @@ function renderDashboard() {
   renderBIDaily(sessions);
   renderBISubject();
   renderBIDomain();
+  renderBIFoes();
   renderBITable(sessions);
+}
+
+function renderBIFoes() {
+  var el = document.getElementById('bi-foes');
+  if (!el) return;
+  var list = topFoes(10);
+  if (!list.length) {
+    el.innerHTML = '<tr><td class="bi-empty">目前沒有未擊敗的宿敵</td></tr>';
+    return;
+  }
+  var rows = list.map(function (f) {
+    var q = questionById(f.qId);
+    var text = q ? esc(q.question).slice(0, 52) + (q.question.length > 52 ? '…' : '') : '（題目已不在題庫）';
+    var tag = q && q.tags ? esc(q.tags[0]) : '';
+    var step = f.wins >= 1 ? '再答對 1 次（需跨天）' : '連續答對 2 次（需跨天）';
+    return '<tr>'
+      + '<td style="color:var(--color-error-300);font-weight:700">Lv.' + f.lv + '</td>'
+      + '<td style="white-space:normal;min-width:280px">' + text + '</td>'
+      + '<td style="color:var(--color-text-muted)">' + tag + '</td>'
+      + '<td style="color:var(--color-text-muted)">' + step + '</td>'
+      + '</tr>';
+  }).join('');
+  el.innerHTML = '<thead><tr><th>等級</th><th>題目</th><th>領域</th><th>擊敗條件</th></tr></thead><tbody>' + rows + '</tbody>';
 }
 
 function renderBIKpis(sessions) {
@@ -3094,6 +3194,7 @@ function renderBIKpis(sessions) {
   var correct = p.totalCorrect || 0;
   var pct = answered ? Math.round(correct / answered * 100) : 0;
   var srs = getSRSStats();
+  var foe = foeStats();
   var days = {};
   sessions.forEach(function (s) { if (s.date) days[s.date] = 1; });
   var dayCount = Object.keys(days).length;
@@ -3106,7 +3207,8 @@ function renderBIKpis(sessions) {
     { label: '總正確率', num: pct + '%', sub: correct + ' / ' + answered + ' 題答對', color: biPctColor(pct) },
     { label: '已掌握', num: srs.mastered, sub: '待複習 ' + srs.due + '、學習中 ' + srs.learning, color: pal.success },
     { label: '練習天數', num: dayCount, sub: sessions.length + ' 次練習', color: pal.primary },
-    { label: '平均每題', num: avgSec ? avgSec.toFixed(1) + 's' : '--', sub: totSec ? '總計 ' + Math.round(totSec / 60) + ' 分鐘' : '尚無計時資料', color: pal.warning }
+    { label: '平均每題', num: avgSec ? avgSec.toFixed(1) + 's' : '--', sub: totSec ? '總計 ' + Math.round(totSec / 60) + ' 分鐘' : '尚無計時資料', color: pal.warning },
+    { label: '宿敵', num: foe.active, sub: '已征服 ' + foe.defeated + ' 個', color: foe.active ? pal.error : pal.muted }
   ];
 
   el.innerHTML = cards.map(function (c) {
@@ -3328,7 +3430,7 @@ function renderBITable(sessions) {
     el.innerHTML = '<tr><td class="bi-empty">尚無練習紀錄</td></tr>';
     return;
   }
-  var modeLabel = { mixed: '混合', year: '年份', subject: '考科', srs: '智慧複習', weak: '錯題' };
+  var modeLabel = { mixed: '混合', year: '年份', subject: '考科', srs: '智慧複習', weak: '宿敵' };
   var rows = sessions.slice().reverse().map(function (s, i) {
     var col = biPctColor(s.pct);
     var dur = s.duration ? Math.floor(s.duration / 60) + 'm' + ('0' + (s.duration % 60)).slice(-2) + 's' : '--';
@@ -3523,6 +3625,14 @@ function loadProgress() {
     // 舊存檔沒有成長系統的欄位，補預設值
     if (typeof State.progress.xp !== 'number') State.progress.xp = 0;
     if (typeof State.progress.level !== 'number') State.progress.level = 1;
+    if (!State.progress.foes) {
+      // 舊存檔的錯題轉成 Lv.1 宿敵，既有的錯題本不會憑空消失
+      State.progress.foes = {};
+      const la = State.progress.lastAnswered || {};
+      Object.keys(la).forEach(id => {
+        if (!la[id].correct) State.progress.foes[id] = { lv: 1, wins: 0, lastWinDate: null, defeated: false };
+      });
+    }
   } catch {
     State.progress = initProgress();
     State.achievements = {};
@@ -3541,6 +3651,7 @@ function initProgress() {
     srs: {},            // { qId: { level:0-5, nextReview: timestamp } }
     xp: 0,
     level: 1,
+    foes: {},           // { qId: { lv, wins, lastWinDate, defeated } }
   };
 }
 
@@ -3801,8 +3912,10 @@ function startSession() {
     } else if (State.mode === 'subject' && State.selectedTags.length > 0) {
       pool = pool.filter(q => q.tags.some(t => State.selectedTags.includes(t)));
     } else if (State.mode === 'weak') {
-      const p = State.progress;
-      pool = pool.filter(q => p.lastAnswered[q.id] && !p.lastAnswered[q.id].correct);
+      const foes = (State.progress || {}).foes || {};
+      pool = pool.filter(q => { const f = foes[String(q.id)]; return f && !f.defeated; });
+      // 等級越高的宿敵越優先
+      pool.sort((a, b) => (foes[String(b.id)].lv - foes[String(a.id)].lv));
     }
     if (pool.length === 0) {
       alert('沒有符合條件的題目，請調整篩選條件');
@@ -4215,6 +4328,20 @@ function recordAnswer(q, selected, correct, timeUsed) {
 
   // 更新 SRS 排程
   updateSRS(String(q.id), correct);
+
+  // 宿敵：答錯誕生或升級，跨天連兩次答對才算擊敗
+  const foe = updateFoe(q.id, correct);
+  if (foe && foe.kind === 'defeat') {
+    const bonus = 30 * foe.lv;
+    p.xp += bonus;
+    p.level = levelFromXP(p.xp).level;
+    const rec = State.userAnswers[State.userAnswers.length - 1];
+    rec.xp += bonus;
+    rec.foeDefeated = foe.lv;
+    if (typeof showToast === 'function') showToast(`⚔️ 擊敗 Lv.${foe.lv} 宿敵！ +${bonus} XP`);
+  } else if (foe && foe.kind === 'weaken') {
+    if (typeof showToast === 'function') showToast('宿敵削弱中 — 明天再答對一次就能擊敗');
+  }
 
   saveProgress();
   saveSession();
@@ -4743,7 +4870,7 @@ function renderHistory(){
   // ── 歷次列表 ──
   var listHtml=sessions.map(function(s,i){
     var col=s.pct>=75?'var(--color-success-300)':s.pct>=60?'var(--color-warning-500)':'var(--color-error-500)';
-    var modeLabel={'mixed':'混合','year':'年份','subject':'科別','srs':'智慧複習','weak':'錯題'}[s.mode]||s.mode||'';
+    var modeLabel={'mixed':'混合','year':'年份','subject':'科別','srs':'智慧複習','weak':'宿敵'}[s.mode]||s.mode||'';
     var durMin=s.duration?Math.floor(s.duration/60)+'m'+('0'+s.duration%60).slice(-2)+'s':'';
     return '<div style="background:var(--gradient-card);box-shadow:var(--pixel-border-dark);padding:14px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">'
       +'<span style="font-family:\'Press Start 2P\',monospace;font-size:11px;color:var(--color-secondary-300)">#'+(sessions.length-i)+'</span>'
