@@ -106,7 +106,7 @@ patch('head', '🔬 選擇科別（不選＝全部）', '🔬 選擇領域（不
 patch('head', '① 類別', '① 領域群', 'cat-label');
 patch('head', '② 細科（可複選）', '② 領域（可複選）', 'sub-label');
 patch('head', '<span class="mode-icon">🔬</span><div class="mode-name">科別</div><div class="mode-desc">指定科目練習</div>', '<span class="mode-icon">🔬</span><div class="mode-name">考科</div><div class="mode-desc">考科／領域練習</div>', 'mode-card');
-patch('head', '年份 / 科別<br>智慧複習 / 錯題', '年份 / 考科<br>智慧複習 / 錯題', 'landing-desc');
+patch('head', '年份 / 科別<br>智慧複習 / 宿敵', '年份 / 考科<br>智慧複習 / 宿敵', 'landing-desc');
 
 patch('tail', `const SUBJECT_CATEGORIES = {
   '內科系': ['心臟血管', '呼吸系統', '消化系統', '腎臟泌尿', '神經系統', '內分泌代謝', '感染免疫', '血液腫瘤'],
