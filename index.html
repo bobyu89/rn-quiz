@@ -2427,6 +2427,7 @@ body.theme-abyss {
     <p style="font-size:13px;color:var(--color-text-muted);margin-bottom:8px;line-height:1.6">
       根據 <span id="topics-total-q">--</span> 題歷屆考題，依每題的考點標記統計各領域高頻考點。<br>
       ★★★★★ ≥20題（必考）　★★★★ 12-19題（高頻）　★★★ 7-11題（中頻）　★★ 3-6題　★ 1-2題
+      <div id="codex-summary" style="margin-top:16px"></div>
     </p>
     <div id="topics-overview-grid"></div>
   </div>
@@ -2997,6 +2998,66 @@ function learningStats() {
 
   STAT_CACHE = { domains: domains, codex: codex, srsMaxed: srsMaxed };
   return STAT_CACHE;
+}
+
+// ═══════════════════════════════════════════════════════════
+// 考點圖鑑：星等即稀有度，SRS 進度即掌握度
+// ═══════════════════════════════════════════════════════════
+var CODEX_RARITY = [
+  { stars: 5, name: '傳說', color: 'var(--color-error-300)' },
+  { stars: 4, name: '史詩', color: 'var(--color-warning-500)' },
+  { stars: 3, name: '稀有', color: 'var(--color-primary-500)' },
+  { stars: 2, name: '普通', color: 'var(--color-success-300)' },
+  { stars: 1, name: '常見', color: 'var(--color-text-muted)' }
+];
+function rarityOf(stars) {
+  for (var i = 0; i < CODEX_RARITY.length; i++) if (stars >= CODEX_RARITY[i].stars) return CODEX_RARITY[i];
+  return CODEX_RARITY[CODEX_RARITY.length - 1];
+}
+
+// 單一考點的圖鑑狀態：未遭遇 → 已遭遇 → 已掌握 → 滿級
+function topicCodexState(tag, name) {
+  var T = window.__TOPICS || {};
+  var t = (T[tag] || {})[name];
+  if (!t || !t.qids || !t.qids.length) return null;
+  var p = State.progress || {};
+  var srs = p.srs || {}, la = p.lastAnswered || {};
+  var sum = 0, seen = 0, allMax = true;
+  t.qids.forEach(function (id) {
+    var lv = (srs[String(id)] || {}).level || 0;
+    sum += lv;
+    if (la[id]) seen++;
+    if (lv < SRS_MAX_LEVEL) allMax = false;
+  });
+  var avg = sum / t.qids.length;
+  return {
+    state: seen === 0 ? 'unseen' : allMax ? 'maxed' : (avg >= 4 ? 'mastered' : 'seen'),
+    pct: Math.round(avg / SRS_MAX_LEVEL * 100),
+    seen: seen, total: t.qids.length,
+    stars: t.stars, rarity: rarityOf(t.stars)
+  };
+}
+
+var CODEX_BADGE = {
+  unseen:   { mark: '🔒', label: '未遭遇' },
+  seen:     { mark: '',   label: '' },
+  mastered: { mark: '✦',  label: '已掌握' },
+  maxed:    { mark: '★',  label: '滿級' }
+};
+
+// 一個領域的圖鑑進度（只計 >=3 題的熱門考點，與成就的口徑一致）
+function domainCodex(tag) {
+  var T = (window.__TOPICS || {})[tag] || {};
+  var total = 0, mastered = 0, seen = 0;
+  Object.keys(T).forEach(function (name) {
+    if (T[name].count < 3) return;
+    total++;
+    var st = topicCodexState(tag, name);
+    if (!st) return;
+    if (st.state !== 'unseen') seen++;
+    if (st.state === 'mastered' || st.state === 'maxed') mastered++;
+  });
+  return { total: total, mastered: mastered, seen: seen };
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -5588,6 +5649,8 @@ function quickStart(year){
 function renderTopicsOverview(){
   var totalEl=document.getElementById('topics-total-q');
   if(totalEl) totalEl.textContent=(State.allQuestions||[]).length.toLocaleString();
+  invalidateStats();
+  renderCodexSummary();
   var grid=document.getElementById('topics-overview-grid');
   if(!grid||!window.__TOPICS) return;
   var T=window.__TOPICS;
@@ -5609,8 +5672,15 @@ function renderTopicsOverview(){
       var top3=sorted.filter(function(e){return e[0]!=='其他';}).slice(0,3);
 
       html+='<div onclick="showTopicDetail(\''+tag+'\')" style="background:var(--gradient-card);box-shadow:var(--pixel-border-dark);border-radius:8px;padding:18px;cursor:pointer;transition:opacity .15s" onmouseover="this.style.opacity=\'.8\'" onmouseout="this.style.opacity=\'1\'">';
+      var dc=domainCodex(tag);
+      var dm=(learningStats().domains[tag]||{}).pct||0;
       html+='<div style="font-size:15px;font-weight:700;color:var(--color-text-primary);margin-bottom:10px">'+tag+'</div>';
-      html+='<div style="font-size:12px;color:var(--color-text-muted);margin-bottom:10px">'+totalQ+' 題 · '+topicCount+' 個考點</div>';
+      html+='<div style="font-size:12px;color:var(--color-text-muted);margin-bottom:8px">'+totalQ+' 題 · '+topicCount+' 個考點</div>';
+      html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'
+        +'<div class="dt-bar" style="flex:1"><i style="width:'+dm+'%;background:'+(dm>=DOMAIN_MASTERY_TARGET?'var(--color-success-500)':'var(--color-primary-500)')+'"></i></div>'
+        +'<span style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-muted);white-space:nowrap">'+dm+'%</span>'
+        +'</div>';
+      html+='<div style="font-size:11px;color:var(--color-text-muted);margin-bottom:10px">圖鑑 '+dc.mastered+' / '+dc.total+' 已掌握</div>';
       top3.forEach(function(e){
         var name=e[0],info=e[1];
         var stars='';for(var i=0;i<5;i++)stars+=i<info.stars?'★':'☆';
@@ -5622,6 +5692,45 @@ function renderTopicsOverview(){
     html+='</div></div>';
   });
   grid.innerHTML=html;
+}
+
+function renderCodexSummary(){
+  var el=document.getElementById('codex-summary');
+  if(!el) return;
+  var st=learningStats().codex;
+  var pct=st.total?Math.round(st.mastered/st.total*100):0;
+
+  // 各稀有度的掌握狀況
+  var byR={};
+  var T=window.__TOPICS||{};
+  Object.keys(T).forEach(function(cat){
+    Object.keys(T[cat]).forEach(function(name){
+      var t=T[cat][name];
+      if(t.count<3) return;
+      var s2=topicCodexState(cat,name);
+      var r=rarityOf(t.stars);
+      byR[t.stars]=byR[t.stars]||{name:r.name,color:r.color,total:0,got:0};
+      byR[t.stars].total++;
+      if(s2&&(s2.state==='mastered'||s2.state==='maxed')) byR[t.stars].got++;
+    });
+  });
+
+  var chips=[5,4,3,2].map(function(k){
+    var b=byR[k]; if(!b) return '';
+    return '<span style="display:inline-block;font-size:11px;padding:3px 10px;border-radius:999px;'
+      +'background:var(--color-bg-overlay);color:'+b.color+';margin:0 6px 6px 0;font-family:var(--font-mono)">'
+      +b.name+' '+b.got+'/'+b.total+'</span>';
+  }).join('');
+
+  el.innerHTML='<div style="background:var(--gradient-card);box-shadow:var(--pixel-border-dark);border-radius:8px;padding:16px 18px;text-align:left">'
+    +'<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px">'
+    +  '<span style="font-family:\'Press Start 2P\',monospace;font-size:10px;color:var(--color-secondary-300)">📖 考點圖鑑</span>'
+    +  '<span style="font-size:13px;color:var(--color-text-primary)">已掌握 <strong style="font-size:17px;color:var(--color-success-300)">'+st.mastered+'</strong> / '+st.total+'</span>'
+    +  '<span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted)">滿級 '+st.maxed+'　'+pct+'%</span>'
+    +'</div>'
+    +'<div class="dt-bar" style="margin-bottom:12px"><i style="width:'+pct+'%;background:var(--color-success-500)"></i></div>'
+    +'<div>'+chips+'</div>'
+    +'</div>';
 }
 
 function showTopicDetail(tag){
@@ -5642,8 +5751,17 @@ function renderTopicDetail(tag){
   var sorted=Object.entries(topics).sort(function(a,b){return b[1].count-a[1].count;});
   var totalQ=sorted.reduce(function(s,e){return s+e[1].count;},0);
 
+  invalidateStats();
   if(statsEl){
-    statsEl.innerHTML='<span style="color:var(--color-text-muted)">共 '+totalQ+' 題（含重複標記）· '+sorted.length+' 個考點主題</span>';
+    var dc=domainCodex(tag);
+    var dm=(learningStats().domains[tag]||{}).pct||0;
+    statsEl.innerHTML='<span style="color:var(--color-text-muted)">共 '+totalQ+' 題（含重複標記）· '+sorted.length+' 個考點主題</span>'
+      +'<div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">'
+      +  '<span style="font-size:12px;color:var(--color-text-muted)">精熟度</span>'
+      +  '<div class="dt-bar" style="flex:1;min-width:140px"><i style="width:'+dm+'%;background:'+(dm>=DOMAIN_MASTERY_TARGET?'var(--color-success-500)':'var(--color-primary-500)')+'"></i></div>'
+      +  '<span style="font-family:var(--font-mono);font-size:12px;color:'+(dm>=DOMAIN_MASTERY_TARGET?'var(--color-success-300)':'var(--color-text-muted)')+'">'+dm+'% / '+DOMAIN_MASTERY_TARGET+'%</span>'
+      +  '<span style="font-size:12px;color:var(--color-text-muted)">圖鑑 '+dc.mastered+' / '+dc.total+'</span>'
+      +'</div>';
   }
 
   var html='';
@@ -5653,14 +5771,33 @@ function renderTopicDetail(tag){
     var starBg=info.stars>=5?'var(--color-error-300)':info.stars>=4?'var(--color-warning-500)':info.stars>=3?'var(--color-primary-500)':'var(--color-text-muted)';
     var yearTags=(info.years||[]).map(function(y){return '<span style="display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;background:var(--color-bg-overlay);color:var(--color-text-muted);margin-right:4px">'+y+'</span>';}).join('');
 
-    html+='<details style="background:var(--gradient-card);box-shadow:var(--pixel-border-dark);border-radius:8px;margin-bottom:12px;overflow:hidden">';
+    var cx=topicCodexState(tag,name);
+    var badge=cx?CODEX_BADGE[cx.state]:null;
+    var shadow=cx&&cx.state==='maxed'?'var(--pixel-border-gold)'
+              :cx&&cx.state==='mastered'?'var(--pixel-border-success)'
+              :'var(--pixel-border-dark)';
+    var dim=cx&&cx.state==='unseen'?'opacity:.55;':'';
+
+    html+='<details style="background:var(--gradient-card);box-shadow:'+shadow+';border-radius:8px;margin-bottom:12px;overflow:hidden;'+dim+'">';
     html+='<summary style="padding:16px 20px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;flex-wrap:wrap;outline:none">';
     html+='<div style="font-size:14px;letter-spacing:1px">'+stars+'</div>';
     html+='<div style="flex:1;min-width:150px">';
-    html+='<div style="font-size:15px;font-weight:700;color:var(--color-text-primary)">'+name+'</div>';
+    html+='<div style="font-size:15px;font-weight:700;color:var(--color-text-primary)">'
+      +(badge&&badge.mark?'<span style="color:'+(cx.state==='maxed'?'var(--color-warning-500)':cx.state==='mastered'?'var(--color-success-300)':'var(--color-text-muted)')+';margin-right:6px">'+badge.mark+'</span>':'')
+      +name+'</div>';
     html+='<div style="font-size:12px;color:var(--color-text-muted);margin-top:4px">'+info.count+' 題　'+yearTags+'</div>';
+    if(cx){
+      html+='<div style="display:flex;align-items:center;gap:8px;margin-top:8px;max-width:280px">'
+        +'<div class="dt-bar" style="flex:1"><i style="width:'+cx.pct+'%;background:'+(cx.state==='maxed'?'var(--color-warning-500)':cx.state==='mastered'?'var(--color-success-500)':'var(--color-primary-500)')+'"></i></div>'
+        +'<span style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-muted);white-space:nowrap">'
+        +(cx.state==='unseen'?'未遭遇':cx.pct+'%　'+cx.seen+'/'+cx.total+' 題作答過')+'</span>'
+        +'</div>';
+    }
     html+='</div>';
-    html+='<div style="font-size:20px;font-weight:700;color:'+starBg+'">'+info.count+'</div>';
+    html+='<div style="text-align:right">'
+      +'<div style="font-size:20px;font-weight:700;color:'+starBg+'">'+info.count+'</div>'
+      +(badge&&badge.label?'<div style="font-size:10px;color:'+(cx.state==='maxed'?'var(--color-warning-500)':'var(--color-success-300)')+';margin-top:2px">'+badge.label+'</div>':'')
+      +'</div>';
     html+='</summary>';
 
     // Expanded content: intro + samples + practice button
