@@ -6,3 +6,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.tmp
+
+# 導讀生成的中間產物（可由 tools/make-intro-todo.js 重建）
+tools/intro-todo/
+tools/intro-todo-index.json
+tools/intro-batches/
+tools/intro-index.json
