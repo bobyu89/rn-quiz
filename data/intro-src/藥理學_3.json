@@ -1,0 +1,138 @@
+{
+  "止吐劑": {
+    "summary": "近年共出 4 題（110、111、113 年），屬 2 星穩定考點；固定考「藥物與作用機轉配對」，尤其 metoclopramide 的多巴胺 D2 受體拮抗、ondansetron 的 5-HT3 拮抗，以及 dexamethasone 常與 metoclopramide 併用增強止吐的組合。",
+    "definition": "止吐劑（antiemetics）作用於嘔吐反射弧上的各個受體：延腦第四腦室底部的化學受體觸發區（chemoreceptor trigger zone, CTZ）富含多巴胺 D2、血清素 5-HT3 與神經激肽 NK-1 受體；前庭系統以組織胺 H1 與蕈毒鹼（muscarinic）受體為主；腸道嗜鉻細胞受化療藥刺激釋放血清素，經迷走神經傳入而引發嘔吐。因此依機轉可分為六大類：多巴胺 D2 受體拮抗劑、5-HT3 受體拮抗劑、NK-1 受體拮抗劑、抗組織胺與抗膽鹼藥物、皮質類固醇，以及大麻素類與 benzodiazepine 等輔助藥物。選藥須依嘔吐原因（化療、術後、動暈症、前庭疾病、妊娠）決定，臨床上化療引起的噁心嘔吐（chemotherapy-induced nausea and vomiting, CINV）常採多藥合併以涵蓋不同受體。",
+    "keyPoints": [
+      "Metoclopramide（Primperan）：阻斷 CTZ 的多巴胺 D2 受體產生中樞止吐作用，同時促進胃排空與上消化道蠕動（prokinetic）；高劑量亦阻斷 5-HT3。副作用為錐體外症候群（EPS，年輕人與高劑量者尤易發生）、遲發性運動障礙、鎮靜與高泌乳素血症（乳漏、月經不規則）；腸阻塞或穿孔者禁用。",
+      "Ondansetron、granisetron、palonosetron：選擇性阻斷腸道迷走神經末梢與 CTZ 的 5-HT3 受體，為化療與術後嘔吐的首選強效止吐劑，不引起 EPS；主要副作用為頭痛、便祕、肝酵素上升與 QT 間期延長。",
+      "Aprepitant（NK-1 受體拮抗劑）：阻斷 substance P 與 NK-1 結合，對高致吐性化療的「延遲性嘔吐」特別有效，常與 5-HT3 拮抗劑及 dexamethasone 組成三合一方案；經 CYP3A4 代謝，藥物交互作用多。",
+      "Dexamethasone（皮質類固醇）：確切機轉未明，可能與減輕發炎、降低血腦障壁通透性及前列腺素合成有關；本身止吐力中等，但與 metoclopramide 或 ondansetron 併用可顯著增強止吐效果，是化療止吐處方的常規搭配。",
+      "抗組織胺與抗膽鹼類：dimenhydrinate、meclizine、promethazine 作用於 H1 受體；scopolamine（東莨菪鹼貼片）阻斷蕈毒鹼受體，適用於動暈症（motion sickness）與前庭性眩暈，須於出發前 30 分鐘至數小時使用。共同副作用為嗜睡、口乾、視覺模糊、尿滯留與便祕，青光眼與前列腺肥大者禁用。",
+      "Phenothiazine 類（prochlorperazine、chlorpromazine）與 butyrophenone 類（haloperidol、droperidol）亦屬 D2 拮抗，具止吐作用但同樣有 EPS、鎮靜、姿位性低血壓與 QT 延長風險；lorazepam 則用於化療的預期性（anticipatory）噁心嘔吐。"
+    ],
+    "comparison": "| 分類 | 代表藥 | 作用機轉 | 主要適應症 | 重要副作用 |\n|---|---|---|---|---|\n| D2 拮抗劑 | Metoclopramide、Domperidone、Prochlorperazine、Haloperidol | 阻斷 CTZ 的多巴胺 D2 受體（metoclopramide 另促進胃排空） | 化療嘔吐、胃輕癱、胃食道逆流 | 錐體外症候群、鎮靜、乳漏；domperidone 為 QT 延長 |\n| 5-HT3 拮抗劑 | Ondansetron、Granisetron、Palonosetron | 阻斷腸道迷走神經末梢與 CTZ 的 5-HT3 受體 | 化療與術後嘔吐首選 | 頭痛、便祕、QT 間期延長 |\n| NK-1 拮抗劑 | Aprepitant、Fosaprepitant | 阻斷 substance P 與 NK-1 受體結合 | 高致吐化療的延遲性嘔吐 | 疲倦、打嗝、CYP3A4 交互作用 |\n| 抗組織胺／抗膽鹼 | Dimenhydrinate、Meclizine、Scopolamine | 阻斷前庭系統 H1 或蕈毒鹼受體 | 動暈症、眩暈、內耳疾病 | 嗜睡、口乾、視力模糊、尿滯留 |\n| 皮質類固醇 | Dexamethasone | 機轉未明，抗發炎並增強其他止吐劑作用 | 化療嘔吐（合併用藥） | 高血糖、失眠、感染風險 |\n| 其他 | Dronabinol、Lorazepam | 大麻素受體致效／抗焦慮 | 難治性、預期性嘔吐 | 欣快、嗜睡、認知障礙 |",
+    "criteria": null,
+    "mustKnow": [
+      "「抑制多巴胺受體而用於化療嘔吐」＝ metoclopramide；「強力止吐、化療首選」＝ ondansetron 等 5-HT3 拮抗劑；「常合併 metoclopramide 增強止吐」＝ dexamethasone。",
+      "Metoclopramide 是唯一兼具中樞止吐與促進胃腸蠕動雙重作用的止吐劑，也是最會引起錐體外症候群的止吐劑。",
+      "5-HT3 拮抗劑與 domperidone、droperidol 都會延長 QT 間期，用藥期間須監測心電圖與血鉀、血鎂。",
+      "護理監測重點：化療前 30 分鐘預防性給藥、觀察是否出現斜頸、眼球上吊、靜坐不能等 EPS、評估腸蠕動與便祕、抗膽鹼類用藥後注意跌倒與尿滯留。"
+    ],
+    "traps": [
+      "誤把 ondansetron 歸為多巴胺拮抗劑，或誤認它會造成錐體外症候群；5-HT3 拮抗劑並無 EPS。",
+      "把 metoclopramide 用於腸阻塞、腸穿孔或胃腸出血的病人，是禁忌而非適應症。",
+      "誤以為 scopolamine 屬抗組織胺；它是蕈毒鹼受體拮抗劑（抗膽鹼藥），且為貼片劑型需事先貼用。"
+    ],
+    "mnemonics": [
+      "受體對號入座：D2 找 metoclopramide、5-HT3 找 -setron 結尾、NK-1 找 -pitant 結尾、前庭找抗組織胺與 scopolamine。",
+      "化療止吐三劍客：setron ＋ dexamethasone ＋ aprepitant。"
+    ],
+    "samples": [
+      "問「經由抑制多巴胺受體而產生止吐作用，可用於化療引起噁心嘔吐」的藥物為何。",
+      "問下列何者具「強力」止吐作用，答案指向 5-HT3 拮抗劑。",
+      "問何種藥物常與 metoclopramide 併用以增強止吐效果，答案為 dexamethasone。"
+    ]
+  },
+  "乙型阻斷劑": {
+    "summary": "近年共出 4 題（110、112、114 年），屬 2 星必考藥理考點；三題都圍繞 propranolol：非選擇性阻斷造成氣喘病人禁用、藥物特性敘述判斷，以及各種 β 阻斷劑清除半衰期的長短比較（最長為 nadolol、最短為 esmolol）。",
+    "definition": "乙型腎上腺素受體阻斷劑（beta-adrenergic blockers, β-blockers）藉由競爭性阻斷 β 受體而抑制交感神經作用。阻斷心臟 β1 受體可降低心跳速率、心肌收縮力、心輸出量、心肌耗氧量與腎臟腎素（renin）分泌，達到降血壓、抗心絞痛與抗心律不整效果；阻斷 β2 受體則造成支氣管平滑肌收縮、周邊血管收縮與肝醣分解減少。依對受體的選擇性可分三類：非選擇性（β1＋β2，如 propranolol、nadolol、timolol、sotalol）、心臟選擇性（β1 為主，如 atenolol、metoprolol、bisoprolol、esmolol）、以及兼具 α1 阻斷的第三代（carvedilol、labetalol）。此外 pindolol、acebutolol 具內在擬交感活性（intrinsic sympathomimetic activity, ISA），較不易造成嚴重心搏過緩。",
+    "keyPoints": [
+      "適應症廣泛：高血壓、心絞痛、心肌梗塞後次級預防、心律不整、慢性心衰竭（僅 carvedilol、bisoprolol、metoprolol succinate 有實證）、偏頭痛預防、原發性顫抖、甲狀腺功能亢進的心悸與震顫控制及甲狀腺風暴、青光眼（timolol 眼藥水）、肝硬化食道靜脈曲張出血預防。",
+      "Propranolol 特性：非選擇性、脂溶性高可穿透血腦障壁（故有失眠、惡夢、憂鬱等中樞副作用）、首渡代謝（first-pass effect）明顯、無內在擬交感活性、具膜穩定作用；主要在肝臟代謝。",
+      "禁忌與慎用：支氣管氣喘與慢性阻塞性肺病（非選擇性者絕對禁用，因阻斷 β2 引發支氣管痙攣）、心搏過緩、第二至第三度房室傳導阻滯、失代償性心衰竭、嚴重周邊血管疾病與雷諾氏現象；糖尿病人須慎用，因會掩蓋低血糖的心悸與顫抖等警訊（但出汗仍會出現）。",
+      "半衰期差異是常考點：esmolol 最短（約 9 分鐘，靜脈滴注可快速調節）、propranolol 約 3～6 小時、metoprolol 約 3～7 小時、atenolol 約 6～9 小時、nadolol 最長（約 20～24 小時，每日給藥一次）。",
+      "常見副作用：心搏過緩、低血壓、疲倦無力、四肢冰冷、運動耐受度下降、失眠與惡夢、性功能障礙、血脂異常（三酸甘油酯上升、HDL 下降）與情緒低落。",
+      "絕對不可驟然停藥：長期使用會使 β 受體向上調節（up-regulation），突然停藥將出現反彈性心搏過速、血壓升高、心絞痛惡化甚至心肌梗塞，須於 1～2 週內逐漸減量停用。"
+    ],
+    "comparison": "| 類別 | 代表藥 | 受體選擇性 | 臨床特點 |\n|---|---|---|---|\n| 非選擇性 | Propranolol、Nadolol、Timolol、Sotalol | β1＋β2 | 氣喘／COPD 禁用；nadolol 半衰期最長；timolol 用於青光眼；sotalol 兼 Class III 抗心律不整 |\n| 心臟選擇性 | Atenolol、Metoprolol、Bisoprolol、Esmolol | β1 為主 | 呼吸道疾病者較安全（高劑量仍會失去選擇性）；esmolol 半衰期最短，供靜脈急性使用 |\n| 具 ISA | Pindolol、Acebutolol | 部分致效 | 較不造成嚴重心搏過緩，適合心跳偏慢者 |\n| 兼 α1 阻斷 | Carvedilol、Labetalol | α1＋β1＋β2 | 額外血管擴張、降低後負荷；carvedilol 用於心衰竭，labetalol 用於妊娠高血壓 |",
+    "criteria": "**給藥前護理監測標準**\n\n| 監測項目 | 標準／處置 |\n|---|---|\n| 心尖脈 | 給藥前測滿 1 分鐘；< 60 次/分暫停給藥並通報醫師 |\n| 血壓 | 收縮壓 < 90 mmHg 暫停給藥；教導緩慢改變姿勢防姿位性低血壓 |\n| 呼吸 | 出現喘鳴、呼吸困難立即通報，考慮換用心臟選擇性藥物 |\n| 血糖（糖尿病人） | 加強自我血糖監測；衛教低血糖時心悸顫抖可能被掩蓋，但仍會出汗、飢餓、意識改變 |\n| 停藥 | 不可自行停藥，須 1～2 週逐步減量 |",
+    "mustKnow": [
+      "Propranolol 為非選擇性，氣喘與慢性阻塞性肺病病人禁用；甲狀腺亢進的震顫與心悸可用它緩解。",
+      "半衰期最長是 nadolol、最短是 esmolol，這是考題直接比較的標準答案。",
+      "給藥前一定先測脈搏，心跳 < 60 次/分暫停並通報。",
+      "絕不可突然停藥，會產生反彈性高血壓與心絞痛惡化。"
+    ],
+    "traps": [
+      "誤以為心臟選擇性 β1 阻斷劑對氣喘病人「完全安全」；高劑量時選擇性會消失，仍須小心。",
+      "誤選「β 阻斷劑會使低血糖時完全沒有任何症狀」；出汗屬膽鹼性反應，不會被阻斷。",
+      "把 propranolol 說成具有內在擬交感活性或屬心臟選擇性，皆為錯誤敘述。"
+    ],
+    "mnemonics": [
+      "字首分選擇性：A 到 M 開頭（Atenolol、Bisoprolol、Esmolol、Metoprolol）多為 β1 選擇性；N 之後（Nadolol、Propranolol、Sotalol、Timolol）多為非選擇性。",
+      "半衰期兩端記：Esmolol 短如 E-mergency（分鐘級），Nadolol 長到 Nice and long（一天一次）。"
+    ],
+    "samples": [
+      "以甲狀腺亢進病人使用 propranolol 為情境，問合併何種疾病時不宜使用（答案為氣喘）。",
+      "列出多種 β 阻斷劑，問清除半衰期最長或最短者。",
+      "問 propranolol 的特性與作用敘述何者錯誤，涵蓋選擇性、脂溶性、首渡效應與停藥原則。"
+    ]
+  },
+  "青光眼用藥": {
+    "summary": "近年共出 3 題（110、112、115 年），屬 2 星考點；三題都是「藥物分類與適用性」判斷，重點在 pilocarpine 為直接作用的膽鹼性受體致效劑，以及抗膽鹼／散瞳藥物（atropine、scopolamine）不可用於青光眼。",
+    "definition": "青光眼（glaucoma）是視神經因眼內壓（intraocular pressure, IOP）升高或視神經血流灌注不足而進行性受損，造成視野缺損甚至失明。正常眼壓為 10～21 mmHg。房水由睫狀體上皮分泌，經後房通過瞳孔至前房，再由前房隅角的小樑網（trabecular meshwork）與 Schlemm 管排出（傳統途徑），以及經葡萄膜鞏膜途徑（uveoscleral outflow）排出。開放隅角（廣角）型青光眼為小樑網排出阻力增加，多為慢性無症狀；閉鎖隅角型則因虹膜阻塞隅角，屬急症，會出現劇烈眼痛、頭痛、噁心嘔吐、視力驟降與虹視。用藥策略只有兩條路：減少房水生成，或增加房水排出。",
+    "keyPoints": [
+      "前列腺素類似物（latanoprost、travoprost、bimatoprost）：增加葡萄膜鞏膜途徑房水排出，降壓效果最強，為開放隅角型青光眼的一線用藥，每日睡前點一次；副作用為虹膜與眼周色素沉著變深、睫毛增長變粗、結膜充血。",
+      "乙型阻斷劑（timolol、betaxolol）：抑制睫狀體上皮的 β 受體而「減少房水生成」；點藥後須以手指按壓內眥淚囊 1～2 分鐘並閉眼，以減少經鼻淚管吸收造成的全身性副作用（心搏過緩、支氣管痙攣、低血壓），氣喘、COPD 與心臟傳導阻滯者慎用或禁用。",
+      "縮瞳劑／膽鹼性藥物：pilocarpine、carbachol 為「直接」作用於蕈毒鹼（膽鹼性）受體的致效劑；echothiophate、physostigmine 則為膽鹼酯酶抑制劑，屬「間接」作用。它們收縮瞳孔括約肌與睫狀肌，拉開小樑網、增加房水排出，是急性閉鎖隅角青光眼的重要用藥；副作用為瞳孔縮小造成夜間視力變差、眉間痛與調節痙攣所致的假性近視。",
+      "α2 腎上腺素受體致效劑（brimonidine、apraclonidine）：同時減少房水生成並增加葡萄膜鞏膜排出；副作用為口乾、眼部過敏、疲倦，嬰幼兒禁用（可能引起呼吸抑制）。",
+      "碳酸酐酶抑制劑：acetazolamide（口服／靜脈）與 dorzolamide、brinzolamide（點眼）抑制睫狀體碳酸酐酶而「減少房水生成」；acetazolamide 屬磺胺類衍生物，副作用包括感覺異常、多尿、低血鉀、代謝性酸中毒與腎結石，磺胺過敏者禁用。急性發作時另可用高滲透壓製劑 mannitol 或 glycerin 靜脈／口服快速降壓。",
+      "會升高眼壓、青光眼（尤其閉鎖隅角型）應避免的藥物：抗膽鹼藥（atropine、scopolamine）、散瞳劑（phenylephrine、tropicamide）、第一代抗組織胺、三環抗憂鬱劑、部分抗精神病藥與長期全身性類固醇；它們使瞳孔散大、虹膜堆積於隅角而阻礙房水排出。"
+    ],
+    "comparison": "| 分類 | 代表藥 | 降壓機轉 | 主要副作用／注意 |\n|---|---|---|---|\n| 前列腺素類似物 | Latanoprost | 增加葡萄膜鞏膜排出 | 虹膜色素變深、睫毛增長；睡前一次 |\n| β 阻斷劑 | Timolol、Betaxolol | 減少房水生成 | 心搏過緩、支氣管痙攣；點後壓內眥 |\n| 膽鹼性致效劑（縮瞳） | Pilocarpine（直接）、Echothiophate（間接） | 收縮睫狀肌、拉開小樑網增加排出 | 縮瞳、夜視差、眉間痛、假性近視 |\n| α2 致效劑 | Brimonidine | 減少生成＋增加排出 | 口乾、疲倦、眼部過敏 |\n| 碳酸酐酶抑制劑 | Acetazolamide、Dorzolamide | 減少房水生成 | 磺胺過敏禁用、低血鉀、腎結石 |\n| 高滲透壓製劑 | Mannitol、Glycerin | 滲透壓拉出眼內水分 | 僅供急性期短期使用，監測心衰竭與電解質 |\n| **禁用** | Atropine、Scopolamine、Tropicamide | 散瞳，阻塞隅角使眼壓上升 | 青光眼病人禁用 |",
+    "criteria": "**眼壓判讀與治療目標**\n\n| 項目 | 數值 |\n|---|---|\n| 正常眼內壓 | 10～21 mmHg |\n| 慢性開放隅角型青光眼 | 常 > 21 mmHg，但可為正常眼壓性青光眼 |\n| 急性閉鎖隅角型發作 | 可驟升至 40～70 mmHg，屬眼科急症 |\n| 治療目標 | 較基準眼壓降低 20～30%，或降至 < 18 mmHg |",
+    "mustKnow": [
+      "Pilocarpine 是「直接」作用於膽鹼性（蕈毒鹼）受體而縮瞳、增加房水排出的代表藥。",
+      "Timolol 等 β 阻斷劑是「減少房水生成」而非增加排出；點藥後須按壓內眥防全身吸收。",
+      "Atropine、scopolamine、tropicamide 等抗膽鹼與散瞳藥物會升高眼壓，青光眼病人不可使用，也是「何者不適合治療青光眼」的標準答案。",
+      "Acetazolamide 為磺胺類衍生物，磺胺過敏者禁用，並須監測血鉀與酸鹼平衡。"
+    ],
+    "traps": [
+      "把 timolol 的機轉寫成「增加房水排出」為錯；也不可忽略眼藥水仍會產生全身性 β 阻斷副作用。",
+      "誤把 echothiophate（膽鹼酯酶抑制劑，間接作用）當成直接作用於膽鹼性受體的藥物。",
+      "看到「青光眼可用散瞳劑檢查眼底」即認為安全；閉鎖隅角型使用散瞳劑可誘發急性發作。"
+    ],
+    "mnemonics": [
+      "降眼壓兩條路：關水龍頭（β 阻斷劑、碳酸酐酶抑制劑、α2 致效劑減少生成）、通排水孔（前列腺素、縮瞳劑增加排出）。",
+      "縮瞳好、散瞳壞：pilocarpine 縮瞳可用，atropine 散瞳禁用。"
+    ],
+    "samples": [
+      "問何種青光眼用藥是「直接作用於膽鹼性受體」而降低眼壓，答案為 pilocarpine。",
+      "列出數種藥物，問何者「不適合」用來治療青光眼或「無法」用於廣角性青光眼，答案為抗膽鹼／散瞳類藥物。",
+      "問各類降眼壓藥物與其作用機轉的配對何者錯誤。"
+    ]
+  },
+  "抗心律不整藥": {
+    "summary": "近年共出 3 題（111、112、115 年），屬 2 星考點；固定考 Vaughan Williams 四大分類與機轉配對，特別是 adenosine 為體內生性物質可治療心室上心搏過速，以及 lidocaine 兼可作為局部麻醉劑的雙重身分。",
+    "definition": "抗心律不整藥（antiarrhythmic agents）藉由改變心肌細胞動作電位的離子流，抑制異位節律點的自動性、改變傳導速度或延長不反應期，以終止或預防心律不整。臨床沿用 Vaughan Williams 分類法分為四大類：Class I 為鈉離子通道阻斷劑（再細分 Ia、Ib、Ic）、Class II 為乙型腎上腺素受體阻斷劑、Class III 為鉀離子通道阻斷劑（延長動作電位與不反應期）、Class IV 為鈣離子通道阻斷劑（作用於竇房結與房室結）。另有不屬於此四類的藥物，如腺苷（adenosine）、毛地黃（digoxin）與硫酸鎂。所有抗心律不整藥本身都具有致心律不整（proarrhythmia）風險，用藥期間必須持續心電圖監測。",
+    "keyPoints": [
+      "Class I 鈉通道阻斷劑：Ia（quinidine、procainamide、disopyramide）中度阻斷並延長 QT，可能誘發 torsades de pointes；Ib（lidocaine、mexiletine、phenytoin）弱阻斷、縮短動作電位，對「心室性」心律不整與心肌梗塞後心室早期收縮特別有效；Ic（flecainide、propafenone）強阻斷、明顯減慢傳導，結構性心臟病者禁用。",
+      "Lidocaine 是 Class Ib 的代表，同時也是臨床常用的「局部麻醉劑」（阻斷神經細胞鈉通道而阻斷痛覺傳導），此一藥一雙用途是考題常設的關鍵；靜脈使用過量會出現口周麻木、耳鳴、意識混亂與抽搐等中樞毒性。",
+      "Class II 乙型阻斷劑（propranolol、metoprolol、esmolol）：抑制交感神經對竇房結與房室結的作用，減慢心率與房室傳導，用於心房顫動的心室速率控制與心肌梗塞後預防猝死。",
+      "Class III 鉀通道阻斷劑：amiodarone 為最廣效者（兼具四類作用），可用於心室與心室上心律不整；長期使用副作用多且嚴重——肺纖維化、甲狀腺功能異常（藥物含碘，可致亢進或低下）、肝毒性、角膜微沉積、皮膚呈藍灰色與光敏感，須定期追蹤胸部 X 光／肺功能、甲狀腺功能、肝功能與眼科檢查。",
+      "Class IV 鈣通道阻斷劑（verapamil、diltiazem）：抑制房室結傳導，用於心室上心搏過速與心房顫動速率控制；副作用為心搏過緩、低血壓、便祕；不可與 β 阻斷劑併用於心功能不良者（心臟抑制作用相加）。",
+      "Adenosine：為人體內生性的嘌呤核苷（endogenous nucleoside），靜脈快速推注（6 mg 於 1～2 秒內推入後立即以生理食鹽水沖洗）可短暫阻斷房室結傳導，終止陣發性心室上心搏過速（PSVT）；半衰期極短（< 10 秒），給藥後常出現數秒心跳暫停、臉部潮紅、胸悶與呼吸困難，須事先向病人說明並全程心電圖監測。"
+    ],
+    "comparison": "| 分類 | 機轉 | 代表藥 | 主要用途 | 重要副作用／監測 |\n|---|---|---|---|---|\n| Class Ia | 中度阻斷 Na 通道，延長動作電位 | Quinidine、Procainamide | 心房與心室心律不整 | QT 延長、torsades、紅斑性狼瘡樣症候群（procainamide） |\n| Class Ib | 弱阻斷 Na 通道，縮短動作電位 | Lidocaine、Mexiletine、Phenytoin | 心室性心律不整；lidocaine 亦為局部麻醉劑 | 中樞毒性：口周麻木、耳鳴、抽搐 |\n| Class Ic | 強阻斷 Na 通道，明顯減慢傳導 | Flecainide、Propafenone | 心房顫動、心室上心律不整 | 致心律不整；結構性心臟病禁用 |\n| Class II | 阻斷 β 受體 | Propranolol、Esmolol、Metoprolol | 速率控制、心肌梗塞後 | 心搏過緩、低血壓、支氣管痙攣 |\n| Class III | 阻斷 K 通道，延長不反應期 | Amiodarone、Sotalol、Ibutilide | 心室顫動、心房顫動 | 肺纖維化、甲狀腺與肝功能異常、角膜沉積、QT 延長 |\n| Class IV | 阻斷 L 型 Ca 通道 | Verapamil、Diltiazem | 心室上心搏過速、心房顫動 | 心搏過緩、低血壓、便祕 |\n| 其他 | 體內生性核苷，短暫阻斷房室結 | Adenosine | 陣發性心室上心搏過速 | 短暫心跳暫停、潮紅、胸悶；半衰期 < 10 秒 |",
+    "criteria": "**用藥監測參考值**\n\n| 項目 | 標準 |\n|---|---|\n| QT／QTc 間期 | QTc 男性 < 450 ms、女性 < 470 ms；> 500 ms 有 torsades de pointes 風險，應停藥並通報 |\n| 心率 | 給藥前測心尖脈 1 分鐘，< 60 次/分暫停 β 阻斷劑或鈣離子通道阻斷劑 |\n| 血鉀／血鎂 | 低血鉀、低血鎂會加重 QT 延長與致心律不整，須矯正 |\n| Amiodarone 追蹤 | 甲狀腺功能與肝功能每 6 個月、胸部 X 光與肺功能每年、眼科檢查每年 |\n| Adenosine 給藥 | 6 mg 快速 IV push（1～2 秒）＋ 20 mL 生理食鹽水沖洗；無效可再給 12 mg |",
+    "mustKnow": [
+      "「人體內生性物質、靜脈給予可治療心室上心搏過速」＝ adenosine；「抗心律不整藥中亦可作局部麻醉劑」＝ lidocaine。",
+      "Vaughan Williams 四類對應：I 鈉、II 乙型阻斷、III 鉀、IV 鈣，這是配對題的骨架。",
+      "Amiodarone 因含碘會造成甲狀腺功能異常，且有肺纖維化風險，需長期定期追蹤。",
+      "所有抗心律不整藥皆可能致心律不整，須持續監測心電圖、QT 間期與電解質。"
+    ],
+    "traps": [
+      "把 adenosine 誤歸為 Class III 或鈣離子通道阻斷劑；它不屬 Vaughan Williams 四大類。",
+      "誤以為 amiodarone 只是單純的鉀通道阻斷劑；它兼具四類作用，副作用也橫跨多器官。",
+      "把 verapamil 與 β 阻斷劑併用視為安全；兩者對心臟的抑制作用相加，可致嚴重心搏過緩與心衰竭。"
+    ],
+    "mnemonics": [
+      "分類口訣「鈉乙鉀鈣」＝ Class I 鈉、II 乙型阻斷劑、III 鉀、IV 鈣，順序背下即可拆解配對題。",
+      "Amiodarone 六大器官毒性「肺甲肝眼皮心」：肺纖維化、甲狀腺異常、肝毒性、角膜沉積、皮膚變藍灰、心律與 QT。"
+    ],
+    "samples": [
+      "列出多組「藥物—作用機轉」配對，問何者錯誤，考 Vaughan Williams 分類的正確歸屬。",
+      "問何種抗心律不整藥為人體內生性物質、可靜脈給藥治療心室上心搏過速。",
+      "問何種抗心律不整藥於臨床上亦可作為局部麻醉劑使用。"
+    ]
+  }
+}
