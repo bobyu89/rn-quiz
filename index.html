@@ -2438,6 +2438,7 @@ body.theme-abyss {
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px">
       <button class="btn btn-secondary btn-sm" onclick="showScreen('notebook-screen');renderNotebook()">📝 我的筆記</button>
       <button class="btn btn-secondary btn-sm" onclick="showScreen('achievements-screen');renderAllAchievements()">🏆 成就廳</button>
+      <button class="btn btn-secondary btn-sm" onclick="showScreen('boss-screen');renderBossList()">👹 Boss 挑戰</button>
       <button class="btn btn-secondary btn-sm" onclick="showScreen('dashboard-screen');renderDashboard()">📈 學習儀表板</button>
       <button class="btn btn-secondary btn-sm" onclick="showScreen('history-screen')">📊 練習紀錄</button>
     </div>
@@ -2739,6 +2740,18 @@ body.theme-abyss {
   </div>
 </div>
 
+<!-- Boss 挑戰 -->
+<div id="screen-boss-screen" class="screen">
+  <div style="width:100%;max-width:900px;padding:40px 20px">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px">
+      <button class="btn btn-sm btn-secondary" onclick="showScreen('landing')">← 返回</button>
+      <h2 class="screen-title" style="margin:0">👹 Boss 挑戰</h2>
+    </div>
+    <div id="boss-list-intro" style="font-size:12px;color:var(--color-text-muted);margin-bottom:20px"></div>
+    <div id="boss-list"></div>
+  </div>
+</div>
+
 <!-- 學習儀表板 -->
 <div id="screen-dashboard-screen" class="screen">
   <div class="bi-wrap">
@@ -2994,15 +3007,23 @@ function learningStats() {
 
   // 領域精熟度：該領域所有題目的 SRS 進度佔滿級的比例
   var domains = {};
+  var la0 = (State.progress || {}).lastAnswered || {};
   (State.allQuestions || []).forEach(function (q) {
     var cat = (q.tags && q.tags[0]) || '其他';
-    var d = domains[cat] = domains[cat] || { total: 0, sum: 0 };
+    var d = domains[cat] = domains[cat] || { total: 0, sum: 0, seen: 0 };
     d.total++;
     d.sum += ((srs[String(q.id)] || {}).level || 0);
+    if (la0[q.id]) d.seen++;
   });
+  var byTag0 = (State.progress || {}).byTag || {};
   Object.keys(domains).forEach(function (c) {
     var d = domains[c];
+    // 精熟度＝長期記憶的深度（SRS），覆蓋率＝這個領域摸過多少
     d.pct = d.total ? Math.round(d.sum / (d.total * SRS_MAX_LEVEL) * 100) : 0;
+    d.coverage = d.total ? Math.round(d.seen / d.total * 100) : 0;
+    var bt = byTag0[c];
+    d.answered = bt ? bt.total : 0;
+    d.accuracy = bt && bt.total ? Math.round(bt.correct / bt.total * 100) : 0;
   });
 
   // 考點圖鑑：只計熱門考點（>=3 題，共 423 個）
@@ -3048,9 +3069,24 @@ function getBosses() {
   return p.bosses;
 }
 
-function bossUnlocked(domain) {
-  return ((learningStats().domains[domain] || {}).pct || 0) >= DOMAIN_MASTERY_TARGET;
+// 解鎖看「摸熟了沒」而不是「複習了幾輪」。
+// 原本綁 SRS 精熟度 60%，但 SRS 等級要靠多輪複習才會動，新手玩很久都看不到 Boss。
+var BOSS_REQ = { coverage: 40, accuracy: 60, answered: 20 };
+
+function bossProgress(domain) {
+  var d = learningStats().domains[domain] || {};
+  return {
+    coverage: d.coverage || 0,
+    accuracy: d.accuracy || 0,
+    answered: d.answered || 0,
+    mastery: d.pct || 0,
+    ok: (d.coverage || 0) >= BOSS_REQ.coverage
+        && (d.accuracy || 0) >= BOSS_REQ.accuracy
+        && (d.answered || 0) >= BOSS_REQ.answered
+  };
 }
+
+function bossUnlocked(domain) { return bossProgress(domain).ok; }
 
 // 高星題優先，同星等內隨機
 function bossPool(domain) {
@@ -3062,7 +3098,9 @@ function bossPool(domain) {
 
 function startBoss(domain) {
   if (!bossUnlocked(domain)) {
-    alert('這個領域的精熟度還沒達到 ' + DOMAIN_MASTERY_TARGET + '%，Boss 尚未解鎖。');
+    var pr = bossProgress(domain);
+    alert('這個領域的 Boss 還沒解鎖。\n\n目前：覆蓋率 ' + pr.coverage + '%（需 ' + BOSS_REQ.coverage + '%）、'
+      + '正確率 ' + pr.accuracy + '%（需 ' + BOSS_REQ.accuracy + '%）、作答 ' + pr.answered + ' 題（需 ' + BOSS_REQ.answered + ' 題）');
     return;
   }
   State.mode = 'boss';
@@ -3079,6 +3117,70 @@ function applyBossDamage(correct) {
   else         State.bossHP += (phase === 1 ? BOSS_HEAL.p1 : BOSS_HEAL.p2);
   State.bossHP = Math.max(0, Math.min(BOSS_HP, State.bossHP));
   renderBossHUD();
+}
+
+function renderBossList() {
+  var el = document.getElementById('boss-list');
+  if (!el) return;
+  invalidateStats();
+  var bosses = (State.progress || {}).bosses || {};
+  var doms = Object.keys(window.__TOPICS || {});
+
+  var rows = doms.map(function (d) {
+    var pr = bossProgress(d);
+    var rec = bosses[d];
+    return { domain: d, pr: pr, cleared: !!(rec && rec.cleared), rec: rec };
+  }).sort(function (a, b) {
+    // 可挑戰的排最前，其次是接近解鎖的
+    if (a.cleared !== b.cleared) return a.cleared ? 1 : -1;
+    if (a.pr.ok !== b.pr.ok) return a.pr.ok ? -1 : 1;
+    return b.pr.coverage - a.pr.coverage;
+  });
+
+  var unlocked = rows.filter(function (r) { return r.pr.ok; }).length;
+  var cleared = rows.filter(function (r) { return r.cleared; }).length;
+  setEl('boss-list-intro',
+    '已討伐 ' + cleared + ' / ' + doms.length + ' 個領域　可挑戰 ' + unlocked + ' 個　'
+    + '解鎖條件：該領域作答覆蓋率 ' + BOSS_REQ.coverage + '%、正確率 ' + BOSS_REQ.accuracy + '%、至少 ' + BOSS_REQ.answered + ' 題');
+
+  el.innerHTML = rows.map(function (r) {
+    var pr = r.pr;
+    var shadow = r.cleared ? 'var(--pixel-border-gold)' : pr.ok ? 'var(--pixel-border-error)' : 'var(--pixel-border-dark)';
+    var status = r.cleared ? '<span style="color:var(--color-warning-500)">👑 已討伐</span>'
+               : pr.ok ? '<span style="color:var(--color-error-300)">⚔️ 可挑戰</span>'
+               : '<span style="color:var(--color-text-muted)">🔒 未解鎖</span>';
+
+    var bar = function (label, cur, target, unit) {
+      var w = Math.min(100, cur / target * 100);
+      var done = cur >= target;
+      return '<div style="flex:1;min-width:120px">'
+        + '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--color-text-muted);margin-bottom:3px">'
+        +   '<span>' + label + '</span><span style="font-family:var(--font-mono);color:' + (done ? 'var(--color-success-300)' : 'var(--color-text-muted)') + '">' + cur + unit + ' / ' + target + unit + '</span>'
+        + '</div>'
+        + '<div class="dt-bar"><i style="width:' + w + '%;background:' + (done ? 'var(--color-success-500)' : 'var(--color-primary-500)') + '"></i></div>'
+        + '</div>';
+    };
+
+    return '<div style="background:var(--gradient-card);box-shadow:' + shadow + ';border-radius:8px;padding:16px 20px;margin-bottom:12px">'
+      + '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px">'
+      +   '<span style="font-size:15px;font-weight:700;color:var(--color-text-primary)">' + esc(r.domain) + '</span>'
+      +   '<span style="font-size:12px">' + status + '</span>'
+      +   (r.rec ? '<span style="font-size:11px;color:var(--color-text-muted)">挑戰 ' + r.rec.attempts + ' 次'
+            + (r.cleared ? '' : '．最佳剩餘 ' + r.rec.bestHp) + '</span>' : '')
+      +   '<span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted)">精熟度 ' + pr.mastery + '%</span>'
+      + '</div>'
+      + (pr.ok
+          ? '<button class="btn btn-sm ' + (r.cleared ? 'btn-secondary' : 'btn-danger') + '" onclick="startBoss(\'' + r.domain + '\')">'
+            + (r.cleared ? '👑 再戰' : '👹 開始挑戰') + '</button>'
+            + '<span style="font-size:11px;color:var(--color-text-muted);margin-left:10px">'
+            + BOSS_QUESTIONS + ' 題．兩階段．每題 ' + BOSS_TIME + ' 秒</span>'
+          : '<div style="display:flex;gap:14px;flex-wrap:wrap">'
+            + bar('作答覆蓋率', pr.coverage, BOSS_REQ.coverage, '%')
+            + bar('正確率', pr.accuracy, BOSS_REQ.accuracy, '%')
+            + bar('作答題數', pr.answered, BOSS_REQ.answered, ' 題')
+            + '</div>')
+      + '</div>';
+  }).join('');
 }
 
 function renderBossHUD() {
@@ -5936,9 +6038,11 @@ function bossEntryHtml(tag){
   var rec=((State.progress||{}).bosses||{})[tag];
   var cleared=rec&&rec.cleared;
   if(!unlocked){
-    var dm=(learningStats().domains[tag]||{}).pct||0;
+    var pr=bossProgress(tag);
     return '<div style="margin-top:12px;font-size:12px;color:var(--color-text-muted)">'
-      +'🔒 精熟度達 '+DOMAIN_MASTERY_TARGET+'% 解鎖領域 Boss（目前 '+dm+'%）</div>';
+      +'🔒 領域 Boss 未解鎖 — 覆蓋率 '+pr.coverage+'/'+BOSS_REQ.coverage+'%、'
+      +'正確率 '+pr.accuracy+'/'+BOSS_REQ.accuracy+'%、'
+      +'作答 '+pr.answered+'/'+BOSS_REQ.answered+' 題</div>';
   }
   return '<div style="margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">'
     +'<button class="btn btn-sm '+(cleared?'btn-secondary':'btn-danger')+'" onclick="startBoss(\''+tag+'\')">'
