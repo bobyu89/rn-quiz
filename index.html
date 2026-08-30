@@ -2410,7 +2410,7 @@ body.theme-abyss {
     <!-- 次要功能 -->
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px">
       <button class="btn btn-secondary btn-sm" onclick="showScreen('notebook-screen');renderNotebook()">📝 我的筆記</button>
-      <button class="btn btn-secondary btn-sm" onclick="showScreen('achievements-screen')">🏆 成就廳</button>
+      <button class="btn btn-secondary btn-sm" onclick="showScreen('achievements-screen');renderAllAchievements()">🏆 成就廳</button>
       <button class="btn btn-secondary btn-sm" onclick="showScreen('dashboard-screen');renderDashboard()">📈 學習儀表板</button>
       <button class="btn btn-secondary btn-sm" onclick="showScreen('history-screen')">📊 練習紀錄</button>
     </div>
@@ -2685,7 +2685,7 @@ body.theme-abyss {
       <button class="btn btn-sm btn-secondary" onclick="showScreen('landing')">← 返回</button>
       <h2 class="screen-title" style="margin:0">🏆 成就廳</h2>
     </div>
-    <div id="all-achievements-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px"></div>
+    <div id="all-achievements-grid"></div>
   </div>
 </div>
 
@@ -2947,6 +2947,189 @@ function calcSessionGrade(answers) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// 學習統計：領域精熟度與考點圖鑑
+// 兩者都由 SRS 即時算出，不另外儲存，避免同步問題
+// ═══════════════════════════════════════════════════════════
+var STAT_CACHE = null;
+function invalidateStats() { STAT_CACHE = null; }
+
+function learningStats() {
+  if (STAT_CACHE) return STAT_CACHE;
+  var srs = (State.progress || {}).srs || {};
+  var T = window.__TOPICS || {};
+
+  // 領域精熟度：該領域所有題目的 SRS 進度佔滿級的比例
+  var domains = {};
+  (State.allQuestions || []).forEach(function (q) {
+    var cat = (q.tags && q.tags[0]) || '其他';
+    var d = domains[cat] = domains[cat] || { total: 0, sum: 0 };
+    d.total++;
+    d.sum += ((srs[String(q.id)] || {}).level || 0);
+  });
+  Object.keys(domains).forEach(function (c) {
+    var d = domains[c];
+    d.pct = d.total ? Math.round(d.sum / (d.total * SRS_MAX_LEVEL) * 100) : 0;
+  });
+
+  // 考點圖鑑：只計熱門考點（>=3 題，共 423 個）
+  var codex = { total: 0, mastered: 0, maxed: 0, star5: 0, star5Mastered: 0, byCat: {} };
+  Object.keys(T).forEach(function (cat) {
+    codex.byCat[cat] = { total: 0, mastered: 0 };
+    Object.keys(T[cat]).forEach(function (sub) {
+      var t = T[cat][sub];
+      if (t.count < 3) return;
+      codex.total++; codex.byCat[cat].total++;
+      var sum = 0, allMax = true;
+      t.qids.forEach(function (id) {
+        var lv = (srs[String(id)] || {}).level || 0;
+        sum += lv;
+        if (lv < SRS_MAX_LEVEL) allMax = false;
+      });
+      var avg = sum / t.qids.length;
+      if (avg >= 4) { codex.mastered++; codex.byCat[cat].mastered++; }
+      if (allMax) codex.maxed++;
+      if (t.stars === 5) { codex.star5++; if (avg >= 4) codex.star5Mastered++; }
+    });
+  });
+
+  var srsMaxed = 0;
+  Object.keys(srs).forEach(function (k) { if (srs[k].level >= SRS_MAX_LEVEL) srsMaxed++; });
+
+  STAT_CACHE = { domains: domains, codex: codex, srsMaxed: srsMaxed };
+  return STAT_CACHE;
+}
+
+// ═══════════════════════════════════════════════════════════
+// 成就：階梯型與領域型由資料生成，不用手寫上百條
+// ═══════════════════════════════════════════════════════════
+var ACH_TIERS = [
+  { p: 'ans',  icon: '📚', name: '題海',   steps: [100, 500, 1000, 2000, 4560], desc: function (n) { return '累計答題 ' + n.toLocaleString() + ' 題'; } },
+  { p: 'foe',  icon: '⚔️', name: '獵手',   steps: [10, 50, 100, 300],           desc: function (n) { return '擊敗 ' + n + ' 個宿敵'; } },
+  { p: 'day',  icon: '🔥', name: '不間斷', steps: [3, 7, 30, 100],              desc: function (n) { return '連續練習 ' + n + ' 天'; } },
+  { p: 'lv',   icon: '⭐', name: '境界',   steps: [5, 12, 22, 35, 50, 70],      desc: function (n) { return '達到 Lv.' + n; } },
+  { p: 'xp',   icon: '💠', name: '積累',   steps: [1000, 10000, 50000, 150000], desc: function (n) { return '累計 ' + n.toLocaleString() + ' XP'; } },
+  { p: 'mem',  icon: '🧠', name: '記憶',   steps: [50, 200, 500, 1000],         desc: function (n) { return n + ' 題進入長期記憶（SRS 滿級）'; } },
+  { p: 'sess', icon: '🎮', name: '歷練',   steps: [10, 50, 200],                desc: function (n) { return '完成 ' + n + ' 場練習'; } }
+];
+var ACH_CODEX_STEPS = [10, 25, 50, 75, 100];
+var DOMAIN_MASTERY_TARGET = 60;   // 平均 SRS level 3 ≒ 間隔 7 天，代表真的記住了
+
+// 挑戰型與隱藏型
+var ACH_EXTRA = {
+  grade_s:      { icon: '🥇', name: '完美一戰', desc: '單場拿到 S 評級' },
+  grade_s_50:   { icon: '🏅', name: '長跑高手', desc: '50 題以上的一場拿到 S 評級' },
+  burst_100:    { icon: '💪', name: '單日破百', desc: '單日答題 100 題' },
+  burst_200:    { icon: '🦾', name: '單日破雙百', desc: '單日答題 200 題' },
+  flawless_20:  { icon: '✨', name: '零失誤', desc: '20 題全對' },
+  srs_30:       { icon: '🗓️', name: '複習狂', desc: '單場清掉 30 題到期複習' },
+  foe_hunt_5:   { icon: '🗡️', name: '連環獵殺', desc: '單場擊敗 5 個宿敵' },
+  foe_lv5:      { icon: '👹', name: '硬骨頭', desc: '擊敗 Lv.5 以上的宿敵' },
+  foe_lv10:     { icon: '🐉', name: '宿命對決', desc: '擊敗 Lv.10 以上的宿敵' },
+  high_star:    { icon: '🌟', name: '專攻必考', desc: '單場平均 4★ 以上' },
+  daily_all_10: { icon: '📅', name: '自律', desc: '累計 10 天完成全部今日任務' },
+  codex_5star:  { icon: '👑', name: '傳說收藏家', desc: '掌握所有 5★ 考點' },
+  domain_full:  { icon: '🎓', name: '滾瓜爛熟', desc: '某個領域的所有熱門考點全部掌握' },
+
+  // 隱藏成就：不顯示條件，觸發才揭曉
+  h_nightowl:   { icon: '🦉', name: '夜貓子', desc: '凌晨 3–5 點還在刷題', hidden: true },
+  h_freeze:     { icon: '❄️', name: '幸好有保險', desc: '用掉一張凍結卡', hidden: true },
+  h_nemesis:    { icon: '💀', name: '死敵', desc: '同一題答錯 5 次後終於擊敗', hidden: true },
+  h_first_foe:  { icon: '🩸', name: '初次征服', desc: '擊敗第一個宿敵', hidden: true },
+  h_lastminute: { icon: '⏱️', name: '壓線過關', desc: '在剩 3 秒內答對', hidden: true },
+  h_triple_lv:  { icon: '🚀', name: '一日三級跳', desc: '同一天內連升 3 級', hidden: true },
+  h_allmode:    { icon: '🎲', name: '樣樣都來', desc: '同一天玩過 3 種以上模式', hidden: true },
+  h_marathon:   { icon: '🕰️', name: '馬拉松', desc: '累計作答時間超過 10 小時', hidden: true },
+  h_comeback10: { icon: '🔄', name: '絕地反攻', desc: '連錯 5 題後連對 10 題', hidden: true },
+  h_star5_first:{ icon: '💎', name: '第一顆星', desc: '掌握第一個 5★ 考點', hidden: true }
+};
+
+// 在 init 時把生成的成就併進 ACHIEVEMENTS
+function buildAchievements() {
+  ACH_TIERS.forEach(function (t) {
+    t.steps.forEach(function (n, i) {
+      ACHIEVEMENTS[t.p + '_' + n] = {
+        icon: t.icon, name: t.name + ' ' + 'ⅠⅡⅢⅣⅤⅥ'.charAt(i),
+        desc: t.desc(n), group: 'tier', metric: t.p, target: n
+      };
+    });
+  });
+
+  ACH_CODEX_STEPS.forEach(function (n) {
+    ACHIEVEMENTS['codex_' + n] = {
+      icon: '📖', name: '圖鑑 ' + n + '%', desc: '掌握 ' + n + '% 的高頻考點',
+      group: 'codex', metric: 'codex', target: n
+    };
+  });
+
+  Object.keys(window.__TOPICS || {}).sort().forEach(function (cat) {
+    ACHIEVEMENTS['dom_' + cat] = {
+      icon: '🎯', name: cat, desc: cat + ' 精熟度達 ' + DOMAIN_MASTERY_TARGET + '%',
+      group: 'domain', metric: 'domain', domain: cat, target: DOMAIN_MASTERY_TARGET
+    };
+  });
+
+  Object.keys(ACH_EXTRA).forEach(function (k) {
+    ACHIEVEMENTS[k] = Object.assign({ group: ACH_EXTRA[k].hidden ? 'hidden' : 'challenge' }, ACH_EXTRA[k]);
+  });
+
+  Object.keys(ACHIEVEMENTS).forEach(function (k) {
+    if (!ACHIEVEMENTS[k].group) ACHIEVEMENTS[k].group = 'basic';
+  });
+}
+
+function unlockAch(key) {
+  if (!ACHIEVEMENTS[key] || State.achievements[key]) return false;
+  State.achievements[key] = { date: new Date().toISOString() };
+  State.newlyUnlocked = (State.newlyUnlocked || []).concat([key]);
+  if (typeof showToast === 'function') showToast(ACHIEVEMENTS[key].icon + ' 成就解鎖：' + ACHIEVEMENTS[key].name);
+  return true;
+}
+
+// 目前進度值，供成就廳的進度條使用
+function achMetricValue(a) {
+  var p = State.progress || {};
+  var st = learningStats();
+  switch (a.metric) {
+    case 'ans':    return p.totalAnswered || 0;
+    case 'foe':    return foeStats().defeated;
+    case 'day':    return (p.streak || {}).count || 0;
+    case 'lv':     return p.level || 1;
+    case 'xp':     return p.xp || 0;
+    case 'mem':    return st.srsMaxed;
+    case 'sess':   return (p.counters || {}).sessionCount || 0;
+    case 'codex':  return st.codex.total ? Math.round(st.codex.mastered / st.codex.total * 100) : 0;
+    case 'domain': return (st.domains[a.domain] || {}).pct || 0;
+    default:       return null;
+  }
+}
+
+// 累積型成就：每題檢查太重，結算時掃一次就好
+function checkProgressAchievements() {
+  invalidateStats();
+  var p = State.progress || {};
+  var st = learningStats();
+
+  Object.keys(ACHIEVEMENTS).forEach(function (k) {
+    var a = ACHIEVEMENTS[k];
+    if (!a.metric || State.achievements[k]) return;
+    var v = achMetricValue(a);
+    if (v != null && v >= a.target) unlockAch(k);
+  });
+
+  if (st.codex.star5 > 0 && st.codex.star5Mastered >= st.codex.star5) unlockAch('codex_5star');
+  if (st.codex.star5Mastered >= 1) unlockAch('h_star5_first');
+  Object.keys(st.codex.byCat).forEach(function (c) {
+    var b = st.codex.byCat[c];
+    if (b.total > 0 && b.mastered >= b.total) unlockAch('domain_full');
+  });
+  if ((p.counters || {}).dailyAllDone >= 10) unlockAch('daily_all_10');
+  if ((p.counters || {}).freezeUsed >= 1) unlockAch('h_freeze');
+  if ((p.counters || {}).totalSeconds >= 36000) unlockAch('h_marathon');
+
+  if (State.newlyUnlocked && State.newlyUnlocked.length) saveProgress();
+}
+
+// ═══════════════════════════════════════════════════════════
 // 日迴圈：每日首勝、每日任務、連續天數
 // 這一層是整套系統的心臟 —— 它決定使用者明天會不會再打開
 // ═══════════════════════════════════════════════════════════
@@ -2989,7 +3172,7 @@ function ensureDaily() {
   if (!p) return null;
   var today = dayStr();
   if (!p.dailyTasks || p.dailyTasks.date !== today) {
-    p.dailyTasks = { date: today, tasks: pickDailyTasks(today), firstWinUsed: false, allClaimed: false };
+    p.dailyTasks = { date: today, tasks: pickDailyTasks(today), firstWinUsed: false, allClaimed: false, answered: 0, modes: [], levelUps: 0 };
   }
   if (!p.streak) p.streak = { count: 0, lastDate: null, freezes: 1 };
   return p.dailyTasks;
@@ -3022,6 +3205,7 @@ function progressDaily(id, value, mode) {
   });
   if (!d.allClaimed && d.tasks.length && d.tasks.every(function (t) { return t.done; })) {
     d.allClaimed = true;
+    p.counters.dailyAllDone = (p.counters.dailyAllDone || 0) + 1;
     p.xp += DAILY_ALL_XP;
     p.level = levelFromXP(p.xp).level;
     if (typeof showToast === 'function') showToast('🎉 今日任務全數完成　+' + DAILY_ALL_XP + ' XP');
@@ -3038,6 +3222,7 @@ function bumpStreak() {
   var gap = daysBetween(st.lastDate, today);
   if (gap === 2 && st.freezes > 0) {
     st.freezes--; st.count++; st.lastDate = today;
+    State.progress.counters.freezeUsed = (State.progress.counters.freezeUsed || 0) + 1;
     return { kind: 'freeze', count: st.count, freezes: st.freezes };
   }
   if (gap !== 1) { st.count = 1; st.lastDate = today; return { kind: 'reset', count: 1 }; }
@@ -3697,6 +3882,7 @@ const ACHIEVEMENTS = {
 // ── 初始化 ──────────────────────────────────
 async function init() {
   loadProgress();
+  buildAchievements();
   await loadQuestions();
   updateLandingStats();
 
@@ -3804,6 +3990,10 @@ function loadProgress() {
     if (typeof State.progress.xp !== 'number') State.progress.xp = 0;
     if (typeof State.progress.level !== 'number') State.progress.level = 1;
     if (!State.progress.streak) State.progress.streak = { count: 0, lastDate: null, freezes: 1 };
+    if (!State.progress.counters) State.progress.counters = {};
+    ['dailyAllDone', 'freezeUsed', 'totalSeconds', 'maxFoeLv', 'sessionCount'].forEach(k => {
+      if (typeof State.progress.counters[k] !== 'number') State.progress.counters[k] = 0;
+    });
     if (!State.progress.foes) {
       // 舊存檔的錯題轉成 Lv.1 宿敵，既有的錯題本不會憑空消失
       State.progress.foes = {};
@@ -3833,6 +4023,7 @@ function initProgress() {
     foes: {},           // { qId: { lv, wins, lastWinDate, defeated } }
     dailyTasks: null,   // { date, tasks:[{id,target,current,done}], firstWinUsed, allClaimed }
     streak: { count: 0, lastDate: null, freezes: 1 },
+    counters: { dailyAllDone: 0, freezeUsed: 0, totalSeconds: 0, maxFoeLv: 0, sessionCount: 0 },
   };
 }
 
@@ -4068,6 +4259,11 @@ function selectCount(el, count) {
 }
 
 function startSession() {
+  const d0 = ensureDaily();
+  if (d0 && State.mode && d0.modes.indexOf(State.mode) < 0) {
+    d0.modes.push(State.mode);
+    if (d0.modes.length >= 3) unlockAch('h_allmode');
+  }
   let pool;
 
   // SRS 智慧複習模式
@@ -4483,6 +4679,7 @@ function recordAnswer(q, selected, correct, timeUsed) {
 
   // 更新長期進度
   const p = State.progress;
+  const lvBefore = p.level;
   p.xp = (p.xp || 0) + gained;
   p.level = levelFromXP(p.xp).level;
   p.totalAnswered++;
@@ -4524,10 +4721,41 @@ function recordAnswer(q, selected, correct, timeUsed) {
     const rec = State.userAnswers[State.userAnswers.length - 1];
     rec.xp += bonus;
     rec.foeDefeated = foe.lv;
+    p.counters.maxFoeLv = Math.max(p.counters.maxFoeLv || 0, foe.lv);
+    unlockAch('h_first_foe');
+    if (foe.lv >= 5) unlockAch('foe_lv5');
+    if (foe.lv >= 10) unlockAch('foe_lv10');
+    if (foe.lv >= 5) unlockAch('h_nemesis');
     if (typeof showToast === 'function') showToast(`⚔️ 擊敗 Lv.${foe.lv} 宿敵！ +${bonus} XP`);
   } else if (foe && foe.kind === 'weaken') {
     if (typeof showToast === 'function') showToast('宿敵削弱中 — 明天再答對一次就能擊敗');
   }
+
+  // 今日進度與逆轉連段
+  const d = ensureDaily();
+  if (d) {
+    d.answered = (d.answered || 0) + 1;
+    if (d.answered >= 100) unlockAch('burst_100');
+    if (d.answered >= 200) unlockAch('burst_200');
+    if (p.level > lvBefore) {
+      d.levelUps = (d.levelUps || 0) + (p.level - lvBefore);
+      if (d.levelUps >= 3) unlockAch('h_triple_lv');
+    }
+  }
+  if (correct) {
+    if (State.comebackArmed) {
+      State.comebackRun = (State.comebackRun || 0) + 1;
+      if (State.comebackRun >= 10) { unlockAch('h_comeback10'); State.comebackArmed = false; }
+    }
+    State.wrongRun = 0;
+  } else {
+    State.wrongRun = (State.wrongRun || 0) + 1;
+    State.comebackRun = 0;
+    if (State.wrongRun >= 5) State.comebackArmed = true;
+  }
+  if (correct && timeUsed >= 57) unlockAch('h_lastminute');
+  const hr = new Date().getHours();
+  if (hr >= 3 && hr < 5) unlockAch('h_nightowl');
 
   // 今日任務
   progressDaily('answer', 1, 'inc');
@@ -4652,6 +4880,20 @@ function endSession() {
   });
   if (State.progress.sessions.length > 200) State.progress.sessions.pop();
   saveProgress();
+
+  // 單場條件的成就
+  const dur = Math.round((Date.now() - State.sessionStart) / 1000);
+  State.progress.counters.totalSeconds = (State.progress.counters.totalSeconds || 0) + dur;
+  State.progress.counters.sessionCount = (State.progress.counters.sessionCount || 0) + 1;
+  if (gradeInfo && gradeInfo.grade === 'S') {
+    unlockAch('grade_s');
+    if (total >= 50) unlockAch('grade_s_50');
+  }
+  if (total >= 20 && correct === total) unlockAch('flawless_20');
+  if (gradeInfo && gradeInfo.dueCleared >= 30) unlockAch('srs_30');
+  if (gradeInfo && gradeInfo.avgStars >= 4) unlockAch('high_star');
+  if (answers.filter(a => a.foeDefeated).length >= 5) unlockAch('foe_hunt_5');
+  checkProgressAchievements();
 
   showScreen('result');
   renderResult(correct, total, pct, gradeInfo, xpGained, firstWin);
@@ -5037,18 +5279,70 @@ function confirmEnd(){
   clearInterval(State.timerInterval);endSession();
 }
 
+var ACH_GROUPS = [
+  { id: 'basic',     title: '基礎',   hint: '一路上會自然碰到的里程碑' },
+  { id: 'tier',      title: '階梯',   hint: '同一條路上的多個層級' },
+  { id: 'domain',    title: '領域精熟', hint: '23 個領域各自的精熟度達標' },
+  { id: 'codex',     title: '考點圖鑑', hint: '掌握高頻考點的收集進度' },
+  { id: 'challenge', title: '挑戰',   hint: '需要刻意達成的條件' },
+  { id: 'hidden',    title: '隱藏',   hint: '達成後才會揭曉條件' }
+];
+
 function renderAllAchievements(){
   var grid=document.getElementById('all-achievements-grid');
   if(!grid)return;
-  grid.innerHTML=Object.entries(ACHIEVEMENTS).map(function(pair){
-    var key=pair[0],ach=pair[1],unlocked=State.achievements[key];
-    return '<div style="background:var(--gradient-card);box-shadow:var(--pixel-border-dark);padding:20px;text-align:center;opacity:'+(unlocked?1:0.4)+'">'
-      +'<div style="font-size:32px;margin-bottom:8px">'+ach.icon+'</div>'
-      +'<div style="font-family:\'Press Start 2P\',monospace;font-size:9px;color:'+(unlocked?'var(--color-secondary-300)':'var(--color-text-muted)')+'">'+ach.name+'</div>'
-      +'<div style="font-size:11px;color:var(--color-text-muted);margin-top:6px">'+ach.desc+'</div>'
-      +(unlocked?'<div style="font-size:10px;color:var(--color-success-300);margin-top:8px">已解鎖</div>':'')
+  invalidateStats();
+
+  var total=Object.keys(ACHIEVEMENTS).length;
+  var got=Object.keys(State.achievements).filter(function(k){return ACHIEVEMENTS[k];}).length;
+  var html='<div style="margin-bottom:24px;font-size:13px;color:var(--color-text-muted)">'
+    +'已解鎖 <span style="color:var(--color-secondary-300);font-weight:700;font-size:16px">'+got+'</span> / '+total+' 個成就</div>';
+
+  ACH_GROUPS.forEach(function(g){
+    var keys=Object.keys(ACHIEVEMENTS).filter(function(k){return ACHIEVEMENTS[k].group===g.id;});
+    if(!keys.length)return;
+    var gGot=keys.filter(function(k){return State.achievements[k];}).length;
+
+    html+='<div style="margin-bottom:10px;margin-top:28px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">'
+      +'<span style="font-family:\'Press Start 2P\',monospace;font-size:10px;color:var(--color-secondary-300)">'+esc(g.title)+'</span>'
+      +'<span style="font-size:11px;color:var(--color-text-muted)">'+esc(g.hint)+'</span>'
+      +'<span style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted)">'+gGot+' / '+keys.length+'</span>'
       +'</div>';
-  }).join('');
+
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px">';
+    html+=keys.map(function(key){
+      var a=ACHIEVEMENTS[key], unlocked=!!State.achievements[key];
+      var isSecret=(a.group==='hidden' && !unlocked);
+      var icon=isSecret?'❓':a.icon;
+      var name=isSecret?'？？？':a.name;
+      var desc=isSecret?'達成後揭曉':a.desc;
+
+      var bar='';
+      if(!unlocked && a.metric && a.target){
+        var v=achMetricValue(a);
+        if(v!=null){
+          var w=Math.min(100, v/a.target*100);
+          bar='<div style="margin-top:10px">'
+            +'<div class="dt-bar"><i style="width:'+w+'%"></i></div>'
+            +'<div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-muted);margin-top:4px">'
+            + (a.metric==='codex'||a.metric==='domain' ? v+'% / '+a.target+'%' : v.toLocaleString()+' / '+a.target.toLocaleString())
+            +'</div></div>';
+        }
+      }
+
+      return '<div style="background:var(--gradient-card);box-shadow:var(--pixel-border-'+(unlocked?'gold':'dark')+');'
+        +'border-radius:8px;padding:16px;text-align:center;opacity:'+(unlocked?1:0.55)+'">'
+        +'<div style="font-size:28px;margin-bottom:6px">'+icon+'</div>'
+        +'<div style="font-family:\'Press Start 2P\',monospace;font-size:8px;line-height:1.6;color:'+(unlocked?'var(--color-secondary-300)':'var(--color-text-muted)')+'">'+esc(name)+'</div>'
+        +'<div style="font-size:11px;color:var(--color-text-muted);margin-top:6px;line-height:1.5">'+esc(desc)+'</div>'
+        +bar
+        +(unlocked?'<div style="font-size:10px;color:var(--color-success-300);margin-top:8px">已解鎖</div>':'')
+        +'</div>';
+    }).join('');
+    html+='</div>';
+  });
+
+  grid.innerHTML=html;
 }
 
 function renderHistory(){
