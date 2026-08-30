@@ -2307,6 +2307,45 @@ body.theme-abyss {
   font-family: var(--font-mono);
 }
 
+/* ── 日迴圈：今日任務與連續天數 ── */
+.daily-box {
+  background: var(--gradient-card); box-shadow: var(--pixel-border-dark);
+  border-radius: 8px; padding: 16px 18px; margin-bottom: 20px; text-align: left;
+}
+.daily-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.daily-title {
+  font-family: 'Press Start 2P', monospace; font-size: 10px;
+  color: var(--color-secondary-300);
+}
+.daily-streak {
+  margin-left: auto; font-size: 12px; color: var(--color-warning-500);
+  font-family: var(--font-mono);
+}
+.daily-task { margin-bottom: 10px; }
+.daily-task:last-child { margin-bottom: 0; }
+.daily-task-row {
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: 13px; margin-bottom: 5px;
+}
+.daily-task-row .dt-num {
+  margin-left: auto; font-family: var(--font-mono); font-size: 11px;
+  color: var(--color-text-muted); white-space: nowrap;
+}
+.daily-task.done .dt-label { color: var(--color-success-300); }
+.daily-task.done .dt-num { color: var(--color-success-300); }
+.dt-bar {
+  height: 6px; border-radius: 999px; overflow: hidden;
+  background: var(--color-bg-overlay);
+}
+.dt-bar > i {
+  display: block; height: 100%; border-radius: 999px;
+  background: var(--color-primary-500); transition: width .5s var(--ease-smooth);
+}
+.daily-task.done .dt-bar > i { background: var(--color-success-500); }
+
 @media (max-width: 820px) {
   .bi-row.c2, .bi-row.c31 { grid-template-columns: 1fr; }
   .bi-wrap { padding: 24px 14px; }
@@ -2338,6 +2377,14 @@ body.theme-abyss {
       <span class="lv-title" id="landing-title">實習生</span>
       <span class="lv-meta" id="landing-xp">0 / 100 XP</span>
       <div class="xp-bar"><i id="landing-xp-bar" style="width:0%"></i></div>
+    </div>
+
+    <div class="daily-box" id="daily-box" style="display:none">
+      <div class="daily-head">
+        <span class="daily-title">📅 今日任務</span>
+        <span class="daily-streak" id="daily-streak"></span>
+      </div>
+      <div id="daily-list"></div>
     </div>
 
     <!-- 兩大模組入口 -->
@@ -2843,6 +2890,7 @@ function answerContext(q) {
   var f = (p.foes || {})[String(q.id)];
   return {
     wasFoe: !!(f && !f.defeated),
+    isNew: !la,
     wasDue: !!(e && e.nextReview <= Date.now() && e.level < SRS_MAX_LEVEL),
     mastered: !!(e && e.level >= SRS_MAX_LEVEL),
     overCooked: !!(la && la.count >= 3)
@@ -2896,6 +2944,134 @@ function calcSessionGrade(answers) {
       stars:   Math.round(starScore)
     }
   };
+}
+
+// ═══════════════════════════════════════════════════════════
+// 日迴圈：每日首勝、每日任務、連續天數
+// 這一層是整套系統的心臟 —— 它決定使用者明天會不會再打開
+// ═══════════════════════════════════════════════════════════
+
+// 任務與連續天數用 ISO 日期（好算天數差）；宿敵沿用既有的當地日期格式
+function dayStr(d) {
+  d = d || new Date();
+  return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+}
+function daysBetween(a, b) {
+  return Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 86400000);
+}
+
+// 每項都要能在 15 分鐘內做完，壓力過大反而勸退
+var DAILY_POOL = [
+  { id: 'answer', target: 20, label: '完成 20 題',            unit: '題' },
+  { id: 'srs',    target: 10, label: '清掉 10 題到期複習',    unit: '題' },
+  { id: 'foe',    target: 1,  label: '擊敗 1 個宿敵',          unit: '個' },
+  { id: 'acc',    target: 70, label: '單場正確率達 70%',       unit: '%' },
+  { id: 'fresh',  target: 10, label: '作答 10 題沒做過的新題', unit: '題' },
+  { id: 'star',   target: 5,  label: '完成 5 題 4★ 以上高星題', unit: '題' }
+];
+var DAILY_TASK_XP = 40, DAILY_ALL_XP = 100;
+
+// 同一天重開 App 不該換一批任務，用日期當種子
+function pickDailyTasks(key) {
+  var seed = 0;
+  for (var i = 0; i < key.length; i++) seed = (seed * 31 + key.charCodeAt(i)) % 2147483647;
+  var pool = DAILY_POOL.slice(), out = [];
+  for (var k = 0; k < 3 && pool.length; k++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var t = pool.splice(Math.abs(seed) % pool.length, 1)[0];
+    out.push({ id: t.id, target: t.target, current: 0, done: false });
+  }
+  return out;
+}
+
+function ensureDaily() {
+  var p = State.progress;
+  if (!p) return null;
+  var today = dayStr();
+  if (!p.dailyTasks || p.dailyTasks.date !== today) {
+    p.dailyTasks = { date: today, tasks: pickDailyTasks(today), firstWinUsed: false, allClaimed: false };
+  }
+  if (!p.streak) p.streak = { count: 0, lastDate: null, freezes: 1 };
+  return p.dailyTasks;
+}
+
+function dailyDef(id) {
+  for (var i = 0; i < DAILY_POOL.length; i++) if (DAILY_POOL[i].id === id) return DAILY_POOL[i];
+  return null;
+}
+
+// mode: 'inc' 累加、'max' 取最高（單場正確率用）
+function progressDaily(id, value, mode) {
+  var d = ensureDaily();
+  if (!d) return;
+  var p = State.progress;
+  d.tasks.forEach(function (t) {
+    if (t.id !== id || t.done) return;
+    t.current = mode === 'max' ? Math.max(t.current, value) : t.current + value;
+    if (t.current >= t.target) {
+      t.current = t.target; t.done = true;
+      p.xp += DAILY_TASK_XP;
+      p.level = levelFromXP(p.xp).level;
+      var def = dailyDef(id);
+      if (typeof showToast === 'function') showToast('✅ 任務完成：' + (def ? def.label : id) + '　+' + DAILY_TASK_XP + ' XP');
+      var res = bumpStreak();
+      if (res && res.kind === 'freeze' && typeof showToast === 'function') {
+        showToast('❄️ 昨天沒練習，用掉一張凍結卡保住連續 ' + res.count + ' 天（剩 ' + res.freezes + ' 張）');
+      }
+    }
+  });
+  if (!d.allClaimed && d.tasks.length && d.tasks.every(function (t) { return t.done; })) {
+    d.allClaimed = true;
+    p.xp += DAILY_ALL_XP;
+    p.level = levelFromXP(p.xp).level;
+    if (typeof showToast === 'function') showToast('🎉 今日任務全數完成　+' + DAILY_ALL_XP + ' XP');
+  }
+}
+
+// 斷一天就歸零是勸退設計，所以留一張凍結卡自動補
+function bumpStreak() {
+  var st = State.progress.streak;
+  var today = dayStr();
+  if (st.lastDate === today) return null;
+  if (!st.lastDate) { st.count = 1; st.lastDate = today; return { kind: 'start', count: 1 }; }
+
+  var gap = daysBetween(st.lastDate, today);
+  if (gap === 2 && st.freezes > 0) {
+    st.freezes--; st.count++; st.lastDate = today;
+    return { kind: 'freeze', count: st.count, freezes: st.freezes };
+  }
+  if (gap !== 1) { st.count = 1; st.lastDate = today; return { kind: 'reset', count: 1 }; }
+
+  st.count++; st.lastDate = today;
+  if (st.count % 7 === 0 && st.freezes < 3) st.freezes++;   // 連滿 7 天回補一張
+  return { kind: 'up', count: st.count };
+}
+
+function renderDaily() {
+  var box = document.getElementById('daily-box');
+  if (!box) return;
+  var d = ensureDaily();
+  var p = State.progress;
+  box.style.display = 'block';
+
+  var st = p.streak || { count: 0, freezes: 0 };
+  setEl('daily-streak', st.count > 0
+    ? '🔥 連續 ' + st.count + ' 天　❄️ ' + st.freezes
+    : '尚未開始連續紀錄');
+
+  var el = document.getElementById('daily-list');
+  if (!el) return;
+  el.innerHTML = d.tasks.map(function (t) {
+    var def = dailyDef(t.id) || { label: t.id, unit: '' };
+    var pctW = Math.min(100, t.current / t.target * 100);
+    return '<div class="daily-task' + (t.done ? ' done' : '') + '">'
+      + '<div class="daily-task-row">'
+      +   '<span class="dt-label">' + (t.done ? '✅ ' : '') + esc(def.label) + '</span>'
+      +   '<span class="dt-num">' + t.current + ' / ' + t.target + esc(def.unit) + '</span>'
+      + '</div>'
+      + '<div class="dt-bar"><i style="width:' + pctW + '%"></i></div>'
+      + '</div>';
+  }).join('');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2988,7 +3164,7 @@ function renderLevelRow() {
   if (bar) bar.style.width = Math.min(100, info.into / info.need * 100) + '%';
 }
 
-function renderGrowthResult(gradeInfo, xpGained) {
+function renderGrowthResult(gradeInfo, xpGained, firstWin) {
   var box = document.getElementById('result-growth');
   if (!box) return;
   if (!gradeInfo) { box.style.display = 'none'; return; }
@@ -2999,7 +3175,7 @@ function renderGrowthResult(gradeInfo, xpGained) {
     badge.textContent = gradeInfo.grade;
     badge.style.color = GRADE_COLOR[gradeInfo.grade] || GRADE_COLOR.D;
   }
-  setEl('result-xp', '+' + xpGained + ' XP');
+  setEl('result-xp', '+' + xpGained + ' XP' + (firstWin ? '　🌅 每日首勝 ×2' : ''));
 
   var info = levelFromXP((State.progress || {}).xp || 0);
   setEl('result-grade-note', 'Lv.' + info.level + ' ' + titleForLevel(info.level)
@@ -3627,6 +3803,7 @@ function loadProgress() {
     // 舊存檔沒有成長系統的欄位，補預設值
     if (typeof State.progress.xp !== 'number') State.progress.xp = 0;
     if (typeof State.progress.level !== 'number') State.progress.level = 1;
+    if (!State.progress.streak) State.progress.streak = { count: 0, lastDate: null, freezes: 1 };
     if (!State.progress.foes) {
       // 舊存檔的錯題轉成 Lv.1 宿敵，既有的錯題本不會憑空消失
       State.progress.foes = {};
@@ -3654,6 +3831,8 @@ function initProgress() {
     xp: 0,
     level: 1,
     foes: {},           // { qId: { lv, wins, lastWinDate, defeated } }
+    dailyTasks: null,   // { date, tasks:[{id,target,current,done}], firstWinUsed, allClaimed }
+    streak: { count: 0, lastDate: null, freezes: 1 },
   };
 }
 
@@ -3735,6 +3914,7 @@ function showError(msg) {
 // ── Landing Page ─────────────────────────────
 function updateLandingStats() {
   renderLevelRow();
+  renderDaily();
   const p = State.progress;
   setEl('stat-total-q', State.allQuestions.length.toLocaleString());
   setEl('stat-answered', (p?.totalAnswered || 0).toLocaleString());
@@ -4349,6 +4529,13 @@ function recordAnswer(q, selected, correct, timeUsed) {
     if (typeof showToast === 'function') showToast('宿敵削弱中 — 明天再答對一次就能擊敗');
   }
 
+  // 今日任務
+  progressDaily('answer', 1, 'inc');
+  if (correct && ctx.wasDue) progressDaily('srs', 1, 'inc');
+  if (ctx.isNew) progressDaily('fresh', 1, 'inc');
+  if (qidStars(q.id) >= 4) progressDaily('star', 1, 'inc');
+  if (foe && foe.kind === 'defeat') progressDaily('foe', 1, 'inc');
+
   saveProgress();
   saveSession();
 }
@@ -4436,7 +4623,20 @@ function endSession() {
   });
 
   const gradeInfo = calcSessionGrade(answers);
-  const xpGained = answers.reduce((sum, a) => sum + (a.xp || 0), 0);
+  let xpGained = answers.reduce((sum, a) => sum + (a.xp || 0), 0);
+
+  if (total > 0) progressDaily('acc', pct, 'max');
+
+  // 每日首勝：當天第一場結算全額再給一份，等於 ×2
+  const daily = ensureDaily();
+  let firstWin = false;
+  if (daily && !daily.firstWinUsed && total > 0) {
+    daily.firstWinUsed = true;
+    firstWin = true;
+    State.progress.xp += xpGained;
+    State.progress.level = levelFromXP(State.progress.xp).level;
+    xpGained *= 2;
+  }
 
   // 儲存 session（含科別細項）
   State.progress.sessions.unshift({
@@ -4448,12 +4648,13 @@ function endSession() {
     tagPct,
     xp: xpGained,
     grade: gradeInfo ? gradeInfo.grade : null,
+    firstWin,
   });
   if (State.progress.sessions.length > 200) State.progress.sessions.pop();
   saveProgress();
 
   showScreen('result');
-  renderResult(correct, total, pct, gradeInfo, xpGained);
+  renderResult(correct, total, pct, gradeInfo, xpGained, firstWin);
   // 詳解 Tab 的內容永遠準備好，讓使用者隨時可切換查看
   // （deferred 模式：自動切換到詳解 Tab；immediate 模式：留在成績 Tab）
   if (State.explainMode === 'deferred') {
@@ -4465,13 +4666,13 @@ function endSession() {
   }
 }
 
-function renderResult(correct, total, pct, gradeInfo, xpGained) {
+function renderResult(correct, total, pct, gradeInfo, xpGained, firstWin) {
   // 分數
   setEl('result-score', `${pct}%`);
   setEl('result-detail', `${correct} / ${total} 題答對`);
 
   // 本場評級與獲得的 XP
-  renderGrowthResult(gradeInfo, xpGained || 0);
+  renderGrowthResult(gradeInfo, xpGained || 0, firstWin);
 
   // 等級
   const rank = getRank(pct);
