@@ -1,9 +1,10 @@
 // QC: verify ✅ marker lands on the official answer in every explanation
 const fs = require('fs');
 const path = require('path');
-const qs = require('./questions-raw.json');
+const { dataFile, workDir, workFile, readJSON, requireDir } = require('./paths');
+const qs = readJSON(dataFile('questions-raw.json'));
 const qById = Object.fromEntries(qs.map(q => [q.id, q]));
-const EXP_DIR = path.join(__dirname, 'exp');
+const EXP_DIR = requireDir(workDir('exp'), '代理產出的詳解 JSON 應放在 work/exp/（見 tools/AGENT-INSTRUCTIONS.md）');
 
 const bad = [], noMark = [], byFile = {};
 let checked = 0;
@@ -40,4 +41,4 @@ if (Object.keys(byFile).length) {
   Object.entries(byFile).sort((a, b) => b[1] - a[1]).forEach(([f, n]) => console.log(`  ${f}: ${n}`));
 }
 bad.slice(0, 15).forEach(b => console.log(`  id=${b.id} marked=${b.marked} expect=${b.expect} ${b.neg ? '(否定式)' : ''} [${b.f}]`));
-fs.writeFileSync(path.join(__dirname, 'qc-bad.json'), JSON.stringify(bad, null, 1));
+fs.writeFileSync(workFile('qc-bad.json'), JSON.stringify(bad, null, 1));

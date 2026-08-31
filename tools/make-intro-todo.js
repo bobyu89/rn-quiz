@@ -19,7 +19,8 @@ for (const f of fs.readdirSync(SRC).filter(f => f.endsWith('.json'))) {
 const qById = Object.fromEntries(qs.map(q => [q.id, q]));
 
 const MIN_COUNT = 3, CH = 12;
-const OUT = path.join(__dirname, 'intro-todo');
+const { workDir, workFile } = require('./paths');
+const OUT = workDir('intro-todo');
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -57,6 +58,6 @@ for (const [c, subs] of Object.entries(cat)) {
     index.push({ introId: id, category: c, subtopics: part.length, targetFile: payload.targetFile });
   }
 }
-fs.writeFileSync(path.join(__dirname, 'intro-todo-index.json'), JSON.stringify(index, null, 1));
+fs.writeFileSync(workFile('intro-todo-index.json'), JSON.stringify(index, null, 1));
 console.log(`待補批次 ${index.length} 個，考點 ${index.reduce((s, b) => s + b.subtopics, 0)} 個`);
 index.forEach(b => console.log(`  ${b.introId}: ${b.subtopics} → ${b.targetFile}`));

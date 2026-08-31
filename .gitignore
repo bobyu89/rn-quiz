@@ -7,8 +7,11 @@ node_modules/
 Thumbs.db
 *.tmp
 
-# 導讀生成的中間產物（可由 tools/make-intro-todo.js 重建）
-tools/intro-todo/
-tools/intro-todo-index.json
-tools/intro-batches/
-tools/intro-index.json
+# 題庫生成流程的中繼檔與代理產出（可重新產生，見 tools/paths.js）
+work/
+
+# 抓取腳本的下載暫存
+tools/pdfs2/
+
+# 建置產出（約 10MB，由 tools/build.js 產生，CI 自動部署）
+index.html

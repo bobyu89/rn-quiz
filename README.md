@@ -71,18 +71,23 @@ node tools/merge-intros.js && node tools/check-intros.js && node tools/build.js
 
 ## 使用
 
-直接用瀏覽器開啟 `index.html` 即可（或部署到 GitHub Pages）。
+線上版：**https://bobyu89.github.io/rn-quiz/**（每次推送由 GitHub Actions 自動重建部署）
 
-本機預覽伺服器：
+本機執行需先建置一次——`index.html` 是約 10MB 的建置產出，不納入版控：
 
 ```bash
-node tools/serve.js
+node tools/build.js    # 由 data/ 產生 index.html
+node tools/serve.js    # 本機預覽 http://localhost:8377
 ```
+
+建置完成後也可直接用瀏覽器開啟 `index.html`，完全離線可用。
 
 ## 專案結構
 
 ```
-index.html          ← 完整應用（含內嵌題庫與詳解，可單檔部署）
+index.html          ← 完整應用（建置產出，不入版控；執行 tools/build.js 產生）
+.github/workflows/  ← 推送時自動建置並部署 GitHub Pages
+work/               ← 題庫生成流程的中繼檔與代理產出（不入版控，可重建）
 data/
   questions-raw.json   ← 解析後的原始題庫（題目/選項/官方答案/更正註記）
   explanations.json    ← 每題詳解 + 領域標籤 + 子考點
@@ -94,6 +99,7 @@ tools/
   harvest2.js       ← 考選部網站抓取腳本
   parse-pdfs2.js    ← PDF 座標式解析器（雙格式：圈字/點號）
   serve.js          ← 本機預覽伺服器
+  paths.js          ← 共用路徑約定（data/ 讀輸入、work/ 放中繼檔）
 ```
 
 ## 重建
@@ -101,6 +107,10 @@ tools/
 ```bash
 node tools/build.js
 ```
+
+題庫生成流程的工具（`merge-exp.js`、`check-exp.js`、`make-todo.js`、`make-intro-*.js`）
+統一從 `data/` 讀輸入、把中繼檔與代理產出寫到 `work/`；
+可用 `--work=<dir>` 或環境變數 `RNQ_WORK` 指定其他工作目錄。
 
 ## 資料備註
 

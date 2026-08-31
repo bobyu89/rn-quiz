@@ -1,15 +1,16 @@
 // Build per-category batches of HIGH-FREQUENCY subtopics for 考點導讀 generation
 const fs = require('fs');
 const path = require('path');
-const qs = require('./questions-raw.json');
-const merged = JSON.parse(fs.readFileSync(path.join(__dirname, 'exp-merged.json'), 'utf-8'));
+const { dataFile, workDir, workFile, readJSON, requireDir } = require('./paths');
+const qs = readJSON(dataFile('questions-raw.json'));
+const merged = readJSON(fs.existsSync(workFile('exp-merged.json')) ? workFile('exp-merged.json') : dataFile('explanations.json'));
 const qById = Object.fromEntries(qs.map(q => [q.id, q]));
 
 const MIN_COUNT = 3;      // only subtopics with >= 3 questions get an intro
-const OUT = path.join(__dirname, 'intro-batches');
+const OUT = workDir('intro-batches');
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
-fs.mkdirSync(path.join(__dirname, 'intro'), { recursive: true });
+fs.mkdirSync(workDir('intro'), { recursive: true });
 
 // aggregate
 const cat = {};
@@ -45,6 +46,6 @@ for (const [c, subs] of Object.entries(cat)) {
     index.push({ introId: id, category: c, subtopics: part.length });
   }
 }
-fs.writeFileSync(path.join(__dirname, 'intro-index.json'), JSON.stringify(index, null, 1));
+fs.writeFileSync(workFile('intro-index.json'), JSON.stringify(index, null, 1));
 console.log(`intro batches: ${index.length}, subtopics: ${index.reduce((s, b) => s + b.subtopics, 0)}`);
 index.forEach(b => console.log(`  ${b.introId}: ${b.subtopics}`));

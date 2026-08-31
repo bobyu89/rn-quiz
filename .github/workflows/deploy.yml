@@ -1,0 +1,64 @@
+name: Build and Deploy
+
+# index.html 為建置產出（約 10MB），不入版控；改由此流程在推送時重建並部署到 Pages
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+      - '.gitattributes'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 建置 index.html
+        run: node tools/build.js
+
+      - name: 驗證產出
+        run: |
+          test -f index.html || { echo "index.html 未產生"; exit 1; }
+          size=$(stat -c%s index.html)
+          echo "index.html: $size bytes"
+          # 少於 5MB 代表資料沒被嵌入，視為失敗
+          [ "$size" -gt 5000000 ] || { echo "index.html 過小，資料可能未嵌入"; exit 1; }
+          node tools/check-intros.js
+
+      - uses: actions/configure-pages@v5
+
+      - name: 打包網站（index.html + pdfs）
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -r pdfs _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

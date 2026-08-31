@@ -1,8 +1,9 @@
 // Merge + validate agent explanation outputs
 const fs = require('fs');
 const path = require('path');
-const qs = require('./questions-raw.json');
-const EXP_DIR = path.join(__dirname, 'exp');
+const { dataFile, workDir, workFile, readJSON, requireDir } = require('./paths');
+const qs = readJSON(dataFile('questions-raw.json'));
+const EXP_DIR = requireDir(workDir('exp'), '代理產出的詳解 JSON 應放在 work/exp/');
 
 const VALID_TAGS = ['解剖生理', '病理學', '藥理學', '微生物免疫', '基本護理技術', '護理原理', '感染控制', '護理行政', '心臟血管', '呼吸系統', '消化系統', '腎臟泌尿', '內分泌代謝', '神經系統', '骨骼肌肉', '血液腫瘤', '急重症與周手術', '眼耳鼻喉皮膚', '產科護理', '兒科護理', '精神科護理', '社區衛生護理', '法規倫理'];
 const VALID = new Set(VALID_TAGS);
@@ -64,18 +65,18 @@ for (const f of fs.readdirSync(EXP_DIR).filter(f => f.endsWith('.json')).sort())
 }
 
 const missingSet = new Set(qs.filter(q => !merged[q.id]).map(q => q.id));
-const batchIndex = JSON.parse(fs.readFileSync(path.join(__dirname, 'batches-index.json'), 'utf-8'));
+const batchIndex = readJSON(workFile('batches-index.json'), '請先執行 node tools/make-todo.js');
 const incomplete = [];
 for (const b of batchIndex) {
-  const batch = JSON.parse(fs.readFileSync(path.join(__dirname, 'batches', `${b.batchId}.json`), 'utf-8'));
+  const batch = JSON.parse(fs.readFileSync(workFile(`batches/${b.batchId}.json`), 'utf-8'));
   const miss = batch.filter(q => missingSet.has(q.id));
   if (miss.length) incomplete.push({ batchId: b.batchId, missing: miss.length, of: batch.length, ids: miss.map(q => q.id) });
 }
 
-fs.writeFileSync(path.join(__dirname, 'exp-merged.json'), JSON.stringify(merged));
-fs.writeFileSync(path.join(__dirname, 'incomplete.json'), JSON.stringify(incomplete, null, 1));
+fs.writeFileSync(workFile('exp-merged.json'), JSON.stringify(merged));
+fs.writeFileSync(workFile('incomplete.json'), JSON.stringify(incomplete, null, 1));
 // also write to project data dir
-fs.writeFileSync(path.join('C:', 'Users', 'samuelho', 'Desktop', 'AI 計畫', '國考題庫', 'data', 'explanations.json'), JSON.stringify(merged));
+fs.writeFileSync(dataFile('explanations.json'), JSON.stringify(merged));
 
 console.log(`covered: ${Object.keys(merged).length}/${qs.length}`);
 console.log(`problems: ${problems.length}`);
